@@ -1,2 +1,0 @@
-﻿review_status,recommended_status,overall_score,expertise_fit,tool_fit,domain_fit,growth_fit,interest_fit,practical_fit,risk_score,job_id,input_file,title,normalized_title,company,city,work_mode,source_url,matched_terms,suggested_role_groups,hard_blockers,soft_risks,reason
-keep,keep,79,98,96,100,72,60,95,15,job_b089d2425f,sample_job_embedded.txt,Senior Embedded Software Engineer,Embedded Software Engineer,,Gothenburg,hybrid,,"C++, AUTOSAR",VOLVO_2024_2026,,Swedish may be preferred,good fit
