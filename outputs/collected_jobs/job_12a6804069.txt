@@ -1,0 +1,226 @@
+Source URL: https://app.verama.com/app/job-requests/79369
+Collected From: verama_browser_gothenburg
+Collected At: 2026-05-04T13:11:05+00:00
+Hem
+Uppdragsannonser
+Visa
+Ework+
+Tidsrapporter
+Help center
+Tillbaka till uppdrag
+Du kan inte ansöka själv. Be din Manager att ansöka.
+Telematics Service platform Incident Manager
+JR-51593
+Publicerad den 03 maj 2026 av
+Ework Group AB
+Roll
+Cyber Security Engineer
+Senioritetsnivå
+Senior
+Plats
+Göteborg (SE)
+Distansarbete
+0%
+Uppdragsperiod
+18 maj 2026
+31 dec 2026
+Ansökningstiden löper ut
+07 maj 2026 15:59 (3 dagar kvar)
+Uppdragsbeskrivning
+
+Description of the assignment
+
+We are looking for a technically sharp and communicative 2nd Line Support & Incident Manager to
+
+safeguard our Telematics Service Platform (TSP). Unlike a general IT support role, this position
+
+requires a deep dive into the end-to-end vehicle connectivity service. You will be responsible for
+
+querying complex logs, analyzing monitoring alerts, leading Root Cause Analysis (RCA), and acting as
+
+the technical bridge between our platform and the customer.
+
+﻿
+
+Key Responsibilities
+
+• Advanced Log Analysis & Troubleshooting: Perform deep-dive log queries to trace end-to-end
+
+telematics flows. You will identify exactly where a service fails—whether it is the Vehicle
+
+(ECU), the Mobile Network (MNO), or the Cloud Backend.
+
+• AI-Assisted Incident Analysis & Automation: Leverage AI-powered tools to accelerate incident
+
+investigation, log analysis, and pattern detection across large-scale datasets. Actively explore
+
+opportunities to use AI for anomaly detection, signal correlation, and incident triage, reducing
+
+mean time to detect (MTTD) and mean time to resolve (MTTR).
+
+• Proactive Monitoring, Observability & Alert Ownership: Design, maintain, and continuously
+
+improve monitoring and alerting strategies across systems and services. Actively analyze
+
+signals from metrics, logs, and alerts to distinguish actionable incidents from noise.
+
+Proactively identify monitoring gaps and create or refine dashboards, metrics, and alert rules
+
+to detect service degradations early ensuring issues are mitigated before impacting
+
+customers or SLA commitments.
+
+• Incident Leadership & RCA: Take charge when major problems happen. You will own the
+
+entire incident life cycle—from the initial alert to finding the "why," writing clear Root Cause
+
+Analysis (RCA) reports, and proposing long-term fixes to prevent recurrence.
+
+• Customer & Stakeholder Interfacing: Act as the primary technical contact for customer issues.
+
+Translate complex technical findings into clear, actionable updates for both technical and nontechnical
+
+stakeholders.
+
+• Connectivity Management: Collaborate with MNO partners to resolve connectivity-specific
+
+issues (APN, SIM provisioning, roaming) that impact TSP service availability.
+
+• Documentation & Knowledge Sharing: Maintain comprehensive records of all technical issues.
+
+Create and update KBAs (Knowledge Base Articles) and SOPs to empower 1st line support
+
+and speed up future resolutions.
+
+﻿
+
+Qualifications and skills required for the role
+
+Requirements & Technical Proficiency
+
+• TSP Expertise: Previous experience in a 2nd line support role, or Product Owner / Architect
+
+role specifically for Telematics or Connected Car platforms.
+
+• Log & Data Proficiency: Expert-level ability to query and interpret logs using tools such as
+
+ELK, Loki, GCP Cloud Logging, or Splunk. Proficiency in SQL and Redis is required.
+
+• Cloud Platforms: Hands-on experience with AWS or GCP environments and their respective
+
+monitoring suites.
+
+• AI-Augmented Operations Mindset: Demonstrated interest or hands-on experience in
+
+applying AI or automation to operations, incident management —such as log summarization,
+
+anomaly detection, alert correlation, or RCA assistance.
+
+• Connectivity Knowledge: A solid understanding of MNO connectivity (cellular networks, SIM
+
+life cycle) is highly preferred.
+
+• Communication: Exceptional verbal and written English. The ability to explain technical
+
+failures to customers and management is critical.
+
+• Language Plus: Proficiency in Mandarin is a significant advantage for collaborating with global
+
+development teams.
+
+﻿
+
+Personal attributes
+
+• Analytical Mindset: A methodical approach to troubleshooting "needle-in-a-haystack"
+
+problems and a proven track record in Root Cause Analysis.
+
+• Communication: Exceptional verbal and written English. The ability to explain technical
+
+failures to customers and management is critical.
+
+• Language Plus: Proficiency in Mandarin is a significant advantage for collaborating with global
+
+development teams.
+
+﻿
+
+Other
+
+The assignment includes travel:
+
+☒ Yes ☐ No
+
+Other
+
+The assignment includes on call:
+
+☒ Yes ☐ No
+
+Expected approximately 1 week/month
+
+Nödvändiga färdigheter
+Root Cause Analysis (RCA)
+SQL querying
+Log Analysis
+monitoring tools
+Incident Management
+Cloud platforms
+Network Connectivity
+Telematics systems
+Språk
+Engelska
+(Expert)
+Få betalt snabbt och enkelt!
+Oavsett kundens betalningsvillkor
+Läs mer
+Ytterligare detaljer
+Kund
+Ework Group AB
+Publicerat datum
+03 maj 2026
+Antal jobbtitlar
+1
+Timmar per vecka
+40
+Rate type
+Hourly
+Kontakt Ework Group AB
+FF
+Fredrik From
+fredrik.from@eworkgroup.com
++46 0725610813
+For the duration of this assignment Ework Services (0,9 %) will be deducted from the total amount invoiced.
+Ework Group Sweden
+Ework Group is a market-leading and independent competence provider operating in Sweden, Denmark, Norway, Finland and Poland. We are bridging the gap between competence and assignments. Through a vast portfolio of service and product solutions, we make competence accessible to companies, as well as assignments accessible to professionals, in order to contribute to a more dynamic, well-functioning and future proof competence market. Ework Group was founded in Sweden in 2000 and is listed on Nasdaq Stockholm. We have framework agreements with over 170 leading organizations in both the private and public sector, and over 11,000 consultants on assignment. Consultant suppliers of all sizes use Ework as a vital source of assignment on a daily basis to boost their business. From the freelancer searching for the next assignment to advance the career, to the largest consultant firms looking to complement their own customer portfolio with a steady stream of assignments for their employees. As an independent competence provider we nurture the relationship with our clients and become experts in their business, culture and competence needs. We manage the whole recruitment process and source the consultants for our clients from the open market by posting the assignments publicly on Verama. Unbiased, we match the most suitable candidates based on competence, experience and personality fit, in relation to fair market rates. Ework make it easy for you find, sign, work and get paid on a contract. You will get support from our highly dedicated employees, all the way from the recruitment process, during the assignment and the transition into the next project. With efficient and digital processes and add-on services such as pre-payment, you will not find a more convenient way of working B2B.
+Visa profil
+Dela
+Spara uppdrag
+Plats
+Terms of use© 1987–2026 HERE
+Senast visade
+Telematics Service platform Incident Manager
+Gothenburg (SE)
+Senior ML/AI Engineer - Aurobay
+Aurobay Sweden AB
+Gothenburg (SE)
+Basic Software Engineer
+InfiMotion Technology Europe AB
+Gothenburg (SE)
+Diagnostic SW Product Owner - Inverters
+InfiMotion Technology Europe AB
+Gothenburg (SE)
+Samverkansledare för separeringsprojekt i Majorna
+Gothenburg (SE)
+Hitta uppdrag
+Köpare av konsulttjänster
+Konsultbolag
+Om oss
+Blogg
+Kontakta oss / Support
+Användaråtkomstavtal
+Integritetspolicy
+Cookiepolicy
+©️ 2026 Ework Verama. Alla rättigheter förbehållna av Ework Group AB.
+På Ework Groups digitala plattform Verama, kopplar vi samman konsulter med kunder som söker efter talanger. Få intressanta konsultuppdrag, samarbeta mer effektivt och ta del av smarta lösningar som ger resultat.

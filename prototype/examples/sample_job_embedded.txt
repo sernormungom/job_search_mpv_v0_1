@@ -1,0 +1,17 @@
+Senior Embedded Software Engineer - Gothenburg, Hybrid
+
+We are looking for a senior embedded software engineer to join an automotive development team in Gothenburg.
+You will develop embedded software in C++ and C, work with AUTOSAR, Vector DaVinci and CI/CD pipelines, and contribute to verification and validation.
+
+Responsibilities:
+- Develop and integrate embedded software for safety-critical vehicle systems.
+- Work in Agile teams using Jira, Git and Jenkins.
+- Participate in requirements analysis, implementation, unit testing, SIL and HIL verification.
+- Collaborate with system architects and test engineers.
+
+Requirements:
+- Strong C++ experience.
+- Experience with embedded systems and real-time software.
+- Experience from automotive or other safety-critical domains.
+- Knowledge of ISO 26262, AUTOSAR, Vector tools, CI/CD, SIL or HIL is desirable.
+- Swedish is a plus, English is required.

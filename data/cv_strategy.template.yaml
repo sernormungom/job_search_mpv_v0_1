@@ -1,0 +1,26 @@
+{
+  "cv_strategy": {
+    "job_id": null,
+    "employee_id": "norberto_munoz",
+    "status": "awaiting_review",
+    "selected_role_groups": [],
+    "selected_evidence_items": [],
+    "summary_angle": {
+      "generated_from": [],
+      "emphasize": [],
+      "avoid_over_anchoring_to": []
+    },
+    "tech_competence_inclusion": {
+      "Programming": [],
+      "Knowledge": [],
+      "Soft Skills": []
+    },
+    "mandatory_cv_terms": [],
+    "excluded_or_deemphasized": [],
+    "validation_before_generation": {
+      "mandatory_terms_have_evidence": null,
+      "selected_role_groups_within_limit": null,
+      "foundational_role_policy_checked": null
+    }
+  }
+}

@@ -1,0 +1,136 @@
+job_standardized:
+  job_id: job_6297df9e32
+  source:
+    site: manual_input
+    url: https://app.verama.com/app/job-requests/79405
+    scraped_at: '2026-05-04T13:16:23.013507+00:00'
+  language:
+    original: Swedish
+    standardized_output: English
+  identity:
+    original_title: Uppdragsannonser
+    normalized_title: Software Engineer
+    company: null
+    location:
+      city: Gothenburg
+      country: Sweden
+      work_mode: remote
+    employment_type: unspecified
+  summary:
+    short_summary: 'Hem
+
+      Uppdragsannonser
+
+      Visa
+
+      Ework+
+
+      Tidsrapporter
+
+      Help center
+
+      Tillbaka till uppdrag
+
+      Du kan inte ansöka själv. Be din Manager att ansöka. Samverkansledare för separeringsprojekt i Majorna
+
+      JR-51270
+
+      Publicerad den 04 maj 2026 av
+
+      Ework Group AB
+
+      Roll
+
+      Construction Project Manager
+
+      Senioritetsnivå
+
+      Senior
+
+      Plats
+
+      Göteborg (SE)
+
+      Distansarbete
+
+      30%
+
+      Uppdragsperiod
+
+      15 maj 2026
+
+      30 dec 2028
+
+      Ansökningstiden löper ut
+
+      08 maj 2026 23:59 (4 dagar kvar)
+
+      Uppdragsbeskrivning
+
+
+      För vår kund söker vi en Samverksansledare för ett separeringsprojekt i Majorna.'
+  job_analysis:
+    role_archetype: Software Engineer
+    seniority: senior
+    primary_technical_focus:
+    - Software Engineer
+    secondary_technical_focus:
+    - DevOps
+    - automotive
+    leadership_expectations:
+    - technical ownership
+    - cross-functional collaboration
+    - stakeholder coordination
+    de_emphasized_or_not_required: []
+  explicit_terms:
+    languages: []
+    tools: []
+    methods:
+    - DevOps
+    standards: []
+    verification: []
+    domains:
+    - automotive
+  normalized_requirements:
+    must_have:
+    - Entreprenadprojektet är en totalentreprenad i samverkan. Omfattningen är separering av ca. 700 meter kombinerade
+      ledningar samt förnyelse av ca. 1700 meter vattenledning med rördimensioner 100–400 mm som ska utföras i stadsmiljö
+      där det ställs höga krav på planering, logistik och hänsyn till omgivningen.
+    - 'Tidplan: Planering till överlämning 2026–2028'
+    - Minst 5 års erfarenhet som Samverkansledare
+    - Ha erfarenhet som samverkansledare från minst två (2) projekt med uppdrag från planering till avtalsskrivning
+      med total entreprenadbudget på minst 40 miljoner sek (OBS! Ska framgå av CV:t)
+    - Vara väl insatt i entreprenadbranschen, ABT06, AMA och LOU
+    - Dokumenterad erfarenhet av att leda, planera och genomföra workshops i samverkansprojekt
+    - Mycket god erfarenhet av komplexa samverkansentreprenader
+    - Diplomerad samverkansledare
+    nice_to_have:
+    - Diplomerad samverkansledare
+    - 'Möjlighet till distansarbete: Ja, upp till 30%'
+    - 'Omfattning: Deltid'
+    - Meriterande färdigheter
+    - Diplomerad samverkansledare
+    - (Modersmål)
+    - Få betalt snabbt och enkelt!
+    - Oavsett kundens betalningsvillkor
+  blockers:
+    hard: []
+    soft:
+    - Swedish may be preferred
+  raw_text_excerpt: "Hem\nUppdragsannonser\nVisa\nEwork+\nTidsrapporter\nHelp center\nTillbaka till uppdrag\nDu\
+    \ kan inte ansöka själv. Be din Manager att ansöka.\nSamverkansledare för separeringsprojekt i Majorna\nJR-51270\n\
+    Publicerad den 04 maj 2026 av\nEwork Group AB\nRoll\nConstruction Project Manager\nSenioritetsnivå\nSenior\n\
+    Plats\nGöteborg (SE)\nDistansarbete\n30%\nUppdragsperiod\n15 maj 2026\n30 dec 2028\nAnsökningstiden löper ut\n\
+    08 maj 2026 23:59 (4 dagar kvar)\nUppdragsbeskrivning\n\nFör vår kund söker vi en Samverksansledare för ett\
+    \ separeringsprojekt i Majorna. \n\nVår kund planerar att genomföra en upphandling av ett separeringsprojekt\
+    \ samt omläggning av dricksvattenledningar i området Majorna-Göteborg. Projektet omfattar planering, projektering\
+    \ och genomförande av åtgärder inom befintligt VA. Kundens avsikt är att upphandla projektet som en totalentreprenad\
+    \ med partnering som samverkansform.\n\nUppdraget innebär att bistå som stöd samt aktivt medverka i framtagandet\
+    \ av upphandlingsunderlaget inför en planerad samverkansupphandling, som beräknas genomföras under 2026. Projektet\
+    \ beräknas avslutas 2028. Detta uppdrag är särskilt utmanande på grund av att området är trafikintensivt, att\
+    \ det finns parkering längs gatorna samt att flera skolor är belägna i området. Därtill saknas tillräcklig kännedom\
+    \ om dagvattenledningarna, eftersom avloppsledningen är placerad i dagvattenledningen. Detta medför att det\
+    \ inte är möjligt att genomföra filmning med traditionella TV-inspektionskameror.\n\nProjektet kommer att utföras\
+    \ i Majorna, Göteborgs Stad.\n\nEntreprenadprojektet är en totalentreprenad i samverkan. Omfattningen är separering\
+    \ av ca. 700 meter kombinerade ledningar samt förnyelse av ca. 1700 meter vattenledning med rördimensioner 100–400\
+    \ mm som ska utföras i stadsmiljö där det ställs höga krav på planering, logistik o"

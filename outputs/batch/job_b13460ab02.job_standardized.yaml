@@ -1,0 +1,378 @@
+job_standardized:
+  job_id: job_b13460ab02
+  source:
+    site: manual_input
+    url: https://app.verama.com/app/job-requests?filtersConfig=%7B%22id%22%3A17883%2C%22signature%22%3A%22DbbWDnf26FAEZPkT7X%2F%2FIFnVV3T1oEykfCopJvFSdeVjZEoaSMun01qr8hEfIeLDvXU0e9KdCn32Ui7x%2Bgbatw%22%2C%22name%22%3A%22Gothenburg%22%2C%22frequency%22%3A%22NEVER%22%2C%22location%22%3A%7B%22name%22%3A%22Gothenburg%2C%20Sweden%22%2C%22country%22%3A%22Sweden%22%2C%22city%22%3A%22Gothenburg%22%2C%22locationId%22%3A%22here%3Acm%3Anamedplace%3A20298983%22%2C%22countryCode%22%3A%22SWE%22%7D%2C%22radius%22%3A30000%2C%22remote%22%3A%5B%7B%22code%22%3A%22PARTIALLY_REMOTE%22%2C%22parameter%22%3Anull%7D%2C%7B%22code%22%3A%22NO_REMOTE%22%2C%22parameter%22%3Anull%7D%5D%2C%22skillRoleCategories%22%3A%5B%5D%2C%22dedicated%22%3Afalse%2C%22originIds%22%3A%5B%5D%2C%22favouritesOnly%22%3Afalse%2C%22recommendedOnly%22%3Afalse%2C%22languages%22%3A%5B%5D%2C%22skillIds%22%3A%5B%5D%2C%22skills%22%3A%5B%5D%2C%22level%22%3A%5B%5D%7D&tab=search-17883
+    scraped_at: '2026-05-04T13:16:23.304413+00:00'
+  language:
+    original: English/unspecified
+    standardized_output: English
+  identity:
+    original_title: Uppdragsannonser
+    normalized_title: Software Engineer
+    company: null
+    location:
+      city: Gothenburg
+      country: Sweden
+      work_mode: hybrid
+    employment_type: unspecified
+  summary:
+    short_summary: 'Hem
+
+      Uppdragsannonser
+
+      Visa
+
+      Ework+
+
+      Tidsrapporter
+
+      Help center
+
+      Sök uppdrag efter titel eller nyckelord
+
+      Gothenburg
+
+      +30 km
+
+      Sök
+
+      2
+
+      Hybrid, På plats
+
+      Exklusiva uppdrag
+
+      Language
+
+      Seniority
+
+      Skills
+
+      Rensa allt
+
+      Spara som
+
+      Lediga uppdrag: 26
+
+      Alla
+
+      Rekommenderade
+
+      Sparat
+
+      Gothenburg
+
+      Samverkansledare för separeringsprojekt i Majorna
+
+      JR-51270
+
+      Ework Group AB
+
+      Gothenburg (SE)
+
+      Spara uppdrag
+
+      Dela
+
+      för 23 minuter sedan
+
+      Diagnostic SW Product Owner - Inverters
+
+      JR-51367
+
+      InfiMotion Technology Europe AB
+
+      Gothenburg (SE)
+
+      Spara uppdrag
+
+      Dela
+
+      för 3 timmar sedan
+
+      Basic Software Engineer
+
+      JR-51606
+
+      InfiMotion Technology Europe AB
+
+      Gothenburg (SE)
+
+      Spara uppdrag
+
+      Dela
+
+      för 3 timmar sedan
+
+      Senior ML/AI Engineer - Aurobay
+
+      JR-51347
+
+      Aurobay Swede'
+  job_analysis:
+    role_archetype: Software Engineer
+    seniority: senior
+    primary_technical_focus:
+    - Software Engineer
+    secondary_technical_focus:
+    - DevOps
+    - automotive
+    leadership_expectations:
+    - technical ownership
+    - cross-functional collaboration
+    - stakeholder coordination
+    de_emphasized_or_not_required: []
+  explicit_terms:
+    languages:
+    - Python
+    tools: []
+    methods:
+    - DevOps
+    standards: []
+    verification: []
+    domains:
+    - automotive
+  normalized_requirements:
+    must_have: []
+    nice_to_have: []
+  blockers:
+    hard: []
+    soft: []
+  raw_text_excerpt: 'Hem
+
+    Uppdragsannonser
+
+    Visa
+
+    Ework+
+
+    Tidsrapporter
+
+    Help center
+
+    Sök uppdrag efter titel eller nyckelord
+
+    Gothenburg
+
+    +30 km
+
+    Sök
+
+    2
+
+    Hybrid, På plats
+
+    Exklusiva uppdrag
+
+    Language
+
+    Seniority
+
+    Skills
+
+    Rensa allt
+
+    Spara som
+
+    Lediga uppdrag: 26
+
+    Alla
+
+    Rekommenderade
+
+    Sparat
+
+    Gothenburg
+
+    Samverkansledare för separeringsprojekt i Majorna
+
+    JR-51270
+
+    Ework Group AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 23 minuter sedan
+
+    Diagnostic SW Product Owner - Inverters
+
+    JR-51367
+
+    InfiMotion Technology Europe AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 3 timmar sedan
+
+    Basic Software Engineer
+
+    JR-51606
+
+    InfiMotion Technology Europe AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 3 timmar sedan
+
+    Senior ML/AI Engineer - Aurobay
+
+    JR-51347
+
+    Aurobay Sweden AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 6 timmar sedan
+
+    Telematics Service platform Incident Manager
+
+    JR-51593
+
+    Ework Group AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för en dag sedan
+
+    AI Act compliance professional - Automotive
+
+    JR-51575
+
+    Ework Group AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 4 dagar sedan
+
+    Function Developer - EATS & Combustion
+
+    JR-51560
+
+    Aurobay Sweden AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 4 dagar sedan
+
+    Teknikstöd och applikationskonsulter Unit4
+
+    JR-51559
+
+    Ework Group AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 4 dagar sedan
+
+    Total Reward Expert
+
+    JR-51557
+
+    SKF Sverige AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 4 dagar sedan
+
+    Senior DevOps / SRE Engineer
+
+    JR-51524
+
+    Ework Group AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 4 dagar sedan
+
+    DevOps Engineer - AWS
+
+    JR-51554
+
+    SKF Sverige AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 4 dagar sedan
+
+    Solution Architect
+
+    JR-51530
+
+    Ework Group AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 4 dagar sedan
+
+    Interior Component Designer
+
+    JR-51500
+
+    Ework Group AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 6 dagar sedan
+
+    Design Painter
+
+    JR-51499
+
+    Ework Group AB
+
+    Gothenburg (SE)
+
+    Sp'

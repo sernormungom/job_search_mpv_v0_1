@@ -1,0 +1,102 @@
+{
+  "tool_aliases": {
+    "C++": {
+      "exact_terms": [
+        "C++"
+      ],
+      "supporting_terms": [
+        "C++ development"
+      ]
+    },
+    "CI/CD": {
+      "exact_terms": [
+        "CI/CD"
+      ],
+      "supporting_terms": [
+        "Bitbucket",
+        "Jenkins",
+        "shared CI/CD pipelines",
+        "automated tests",
+        "DevOps",
+        "CI/CD integration"
+      ]
+    },
+    "Jira": {
+      "exact_terms": [
+        "Jira"
+      ],
+      "supporting_terms": [
+        "Agile",
+        "Scrum",
+        "SAFe",
+        "PI Planning",
+        "issue tracking"
+      ]
+    },
+    "Vector": {
+      "exact_terms": [
+        "Vector",
+        "Vector DaVinci Developer",
+        "DaVinci"
+      ],
+      "supporting_terms": [
+        "AUTOSAR",
+        "AUTOSAR (DaVinci - Vector toolsuite)",
+        "Vector toolsuite"
+      ]
+    },
+    "AUTOSAR": {
+      "exact_terms": [
+        "AUTOSAR"
+      ],
+      "supporting_terms": [
+        "Vector DaVinci Developer",
+        "DaVinci",
+        "embedded automotive platform"
+      ]
+    },
+    "V&V": {
+      "exact_terms": [
+        "V&V",
+        "verification and validation"
+      ],
+      "supporting_terms": [
+        "SIL",
+        "HIL",
+        "PIL",
+        "Unit Testing",
+        "Google Test",
+        "Google Mock",
+        "system smoke testing",
+        "service-level validation",
+        "test automation",
+        "Hardware-in-the-Loop",
+        "Model-in-the-Loop"
+      ]
+    },
+    "AI-assisted development": {
+      "exact_terms": [
+        "AI-assisted development"
+      ],
+      "supporting_terms": [
+        "GitHub Copilot",
+        "Microsoft Copilot",
+        "VolvoGPT",
+        "Volvo GPT",
+        "developer productivity",
+        "AI Based Automation of V&V"
+      ]
+    },
+    "Agile": {
+      "exact_terms": [
+        "Agile"
+      ],
+      "supporting_terms": [
+        "Scrum",
+        "SAFe",
+        "PI Planning",
+        "Jira"
+      ]
+    }
+  }
+}

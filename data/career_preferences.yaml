@@ -1,0 +1,95 @@
+{
+  "career_preferences": {
+    "strategy": {
+      "primary_goal": "career_growth",
+      "secondary_goals": [
+        "technical_fit",
+        "exploration",
+        "fast_hiring"
+      ]
+    },
+    "scoring_weights": {
+      "expertise_fit": 0.4,
+      "growth_fit": 0.3,
+      "interest_fit": 0.2,
+      "practical_fit": 0.1
+    },
+    "target_roles": {
+      "high_priority": [
+        "senior individual contributor",
+        "technical lead",
+        "senior systems engineer",
+        "AI innovation technical lead",
+        "developer productivity lead"
+      ],
+      "medium_priority": [
+        "software engineer",
+        "technical project lead",
+        "engineering manager with hands-on technical scope"
+      ],
+      "avoid": [
+        "pure people manager",
+        "low-seniority maintenance-only role",
+        "role with no technical growth"
+      ]
+    },
+    "growth_focus": {
+      "primary": [
+        "AI-assisted development",
+        "AI in verification and validation",
+        "machine learning development",
+        "AI for developer productivity",
+        "computer vision"
+      ],
+      "secondary": [
+        "engineering tooling",
+        "quality automation",
+        "regulated context AI adoption"
+      ]
+    },
+    "ai_growth_bias": {
+      "orientation": "engineering_enablement",
+      "reward_signals": [
+        "tooling ownership",
+        "process transformation",
+        "first-time AI adoption",
+        "regulated-context AI",
+        "AI-assisted verification and validation"
+      ],
+      "penalize_signals": [
+        "superficial AI usage",
+        "feature-only roles with little engineering enablement",
+        "legacy maintenance only"
+      ]
+    },
+    "work_preferences": {
+      "location": {
+        "preferred": [
+          "Gothenburg",
+          "hybrid Gothenburg",
+          "remote Sweden"
+        ],
+        "acceptable": [
+          "remote Europe",
+          "occasional travel"
+        ],
+        "avoid": [
+          "full-time onsite outside Gothenburg"
+        ]
+      },
+      "role_shape": {
+        "preferred": [
+          "technical delivery",
+          "cross-team influence",
+          "innovation leadership",
+          "process ownership",
+          "mentoring"
+        ],
+        "avoid": [
+          "pure administration",
+          "generic project coordination without technical substance"
+        ]
+      }
+    }
+  }
+}

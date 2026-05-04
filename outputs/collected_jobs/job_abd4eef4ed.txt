@@ -1,0 +1,20 @@
+Source URL: https://careers.egra.com/jobs/5713854-test-developer-for-automotive-software
+Collected From: copied_job_ads
+Collected At: 2026-05-04T13:11:05+00:00
+Source URL: https://careers.egra.com/jobs/5713854-test-developer-for-automotive-software
+Test Developer for Automotive Software
+Egra
+Location: Gothenburg
+
+We are looking for an experienced Test Developer to join our team. You will work as a consultant in one of our customer's organizations.
+
+Requirements:
+- Experience in software testing and frameworks Pytest and Python 3.x
+- Experience working with CAN, USB, Ethernet, WiFi and Telecom
+- Strong in Python and C++ for developing automation scripts and test frameworks
+- CI/CD, Jenkins and Git/Gerrit
+- Experience of embedded systems and ECU testing
+- Familiar with ASPICE standards
+
+Company context:
+Egra are Tech & IT Consultants helping customers develop digital solutions. The role is based in Gothenburg.

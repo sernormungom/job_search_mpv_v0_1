@@ -1,0 +1,7 @@
+Source URL: https://example.com/jobs/123?utm_source=newsletter
+Collected From: copied
+Collected At: 2026-05-04T14:08:48+00:00
+Source URL: https://example.com/jobs/123?utm_source=newsletter
+
+Senior Embedded Developer
+C++ and AUTOSAR role in Gothenburg.

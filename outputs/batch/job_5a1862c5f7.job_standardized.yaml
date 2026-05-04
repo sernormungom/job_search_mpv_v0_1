@@ -1,0 +1,143 @@
+job_standardized:
+  job_id: job_5a1862c5f7
+  source:
+    site: manual_input
+    url: https://app.verama.com/app/job-requests/79332
+    scraped_at: '2026-05-04T13:16:22.956557+00:00'
+  language:
+    original: Swedish
+    standardized_output: English
+  identity:
+    original_title: Uppdragsannonser
+    normalized_title: Embedded Software Engineer
+    company: null
+    location:
+      city: Gothenburg
+      country: Sweden
+      work_mode: hybrid
+    employment_type: unspecified
+  summary:
+    short_summary: 'Hem
+
+      Uppdragsannonser
+
+      Visa
+
+      Ework+
+
+      Tidsrapporter
+
+      Help center
+
+      Tillbaka till uppdrag
+
+      Du kan inte ansöka själv. Be din Manager att ansöka. Function Developer - EATS & Combustion
+
+      JR-51560
+
+      Publicerad den 30 apr 2026 av
+
+      Aurobay Sweden AB
+
+      Roll
+
+      Function Developer
+
+      Senioritetsnivå
+
+      Senior
+
+      Plats
+
+      Göteborg (SE)
+
+      Distansarbete
+
+      0%
+
+      Uppdragsperiod
+
+      01 jun 2026
+
+      31 dec 2026
+
+      Ansökningstiden löper ut
+
+      14 maj 2026 23:59 (10 dagar kvar)
+
+      Uppdragsbeskrivning
+
+
+      For our client Aurobay we are looking for a Function Developer - EATS & Combustion.'
+  job_analysis:
+    role_archetype: Embedded Software Engineer
+    seniority: senior
+    primary_technical_focus:
+    - embedded software development
+    - verification and validation
+    secondary_technical_focus:
+    - SIL
+    - embedded
+    - automotive
+    leadership_expectations:
+    - technical ownership
+    - cross-functional collaboration
+    - stakeholder coordination
+    de_emphasized_or_not_required: []
+  explicit_terms:
+    languages:
+    - Python
+    - MATLAB
+    - Simulink
+    tools: []
+    methods: []
+    standards:
+    - SIL
+    verification:
+    - SIL
+    - testing
+    domains:
+    - embedded
+    - automotive
+  normalized_requirements:
+    must_have:
+    - The team works in close collaboration with the EATS & Start and Combustion Calibration team, who also are
+      their main stakeholders when specifying the requirements for the functions developed.
+    - Skill requirements
+    - B.Sc./ M.Sc. in Mechanical, Physics, or Electrical Engineering, or equivalent.
+    - Embedded system developer with strong skills and experience in Matlab, Simulink/Embedded Coder/ Target link.
+    - Fluent in English (written and spoken)
+    - Appreciated qualities
+    - You have a passion for cars and good knowledge of internal combustion engines
+    - Theoretical courses in combustion engines, software programming and electronics
+    nice_to_have:
+    - Meriterande färdigheter
+    - Drivers Licence
+    - T1/T2 test driving
+    - calibration
+    - Få betalt snabbt och enkelt!
+    - Oavsett kundens betalningsvillkor
+    - Ytterligare detaljer
+    - Aurobay Sweden AB
+  blockers:
+    hard: []
+    soft:
+    - Swedish may be preferred
+  raw_text_excerpt: "Hem\nUppdragsannonser\nVisa\nEwork+\nTidsrapporter\nHelp center\nTillbaka till uppdrag\nDu\
+    \ kan inte ansöka själv. Be din Manager att ansöka.\nFunction Developer - EATS & Combustion\nJR-51560\nPublicerad\
+    \ den 30 apr 2026 av\nAurobay Sweden AB\nRoll\nFunction Developer\nSenioritetsnivå\nSenior\nPlats\nGöteborg\
+    \ (SE)\nDistansarbete\n0%\nUppdragsperiod\n01 jun 2026\n31 dec 2026\nAnsökningstiden löper ut\n14 maj 2026 23:59\
+    \ (10 dagar kvar)\nUppdragsbeskrivning\n\nFor our client Aurobay we are looking for a Function Developer - EATS\
+    \ & Combustion. \n\n\uFEFF\n\nAurobay develops and produces world-class hybrid engines and transmissions. With\
+    \ factories on two continents - Sweden and China - we're a pioneering global supplier of propulsion technology,\
+    \ development services and contract manufacturing. The Aurobay brand brings together over 9,000 dedicated and\
+    \ determined people that design, develop, and manufacture next-generation powertrain solutions for a global\
+    \ market.\n\nAurobay is part of HORSE Powertrain Limited, a global leader in powertrain solutions. The Group\
+    \ has 19,000 employees, 17 plants and 5 R&D centers across three continents. We partner with OEM customers around\
+    \ the world and offer innovative solutions that can cater to up to 80% of the growing hybrid and combustion\
+    \ powertrain market, enabling a faster transition toward cleaner mobility.\n\nAt Aurobay, we are committed to\
+    \ diversity and inclusion. We welcome applicants from all backgrounds and believe that different perspectives\
+    \ and experiences make for a stronger, more innovative company.\n\n\uFEFF\n\nAssignment description\n\nAurobay\
+    \ Sweden is looking for a function developer to support their EATS & Combustion Control team. They are responsible\
+    \ for developing, testing and validating functions in the engine control software regarding combustion and emission\
+    \ control of "

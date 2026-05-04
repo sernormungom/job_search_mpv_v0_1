@@ -1,0 +1,364 @@
+job_standardized:
+  job_id: job_f5dad4d4a2
+  source:
+    site: manual_input
+    url: https://app.verama.com/app/job-requests?tab=all-jobs
+    scraped_at: '2026-05-04T13:16:23.684035+00:00'
+  language:
+    original: English/unspecified
+    standardized_output: English
+  identity:
+    original_title: Uppdragsannonser
+    normalized_title: Software Engineer
+    company: null
+    location:
+      city: Gothenburg
+      country: Sweden
+      work_mode: remote
+    employment_type: unspecified
+  summary:
+    short_summary: 'Hem
+
+      Uppdragsannonser
+
+      Visa
+
+      Ework+
+
+      Tidsrapporter
+
+      Help center
+
+      Sök uppdrag efter titel eller nyckelord
+
+      Plats
+
+      Sök
+
+      På plats / Distans
+
+      Exklusiva uppdrag
+
+      Language
+
+      Seniority
+
+      Skills
+
+      Spara sökning
+
+      Lediga uppdrag: 187
+
+      Alla
+
+      Rekommenderade
+
+      Sparat
+
+      Gothenburg
+
+      Byggledare för Upplands-Bro kommuns VA-utbyggnad
+
+      JR-51614
+
+      Ework Group AB
+
+      Stockholm (SE)
+
+      Spara uppdrag
+
+      Dela
+
+      för 9 minuter sedan
+
+      Samverkansledare för separeringsprojekt i Majorna
+
+      JR-51270
+
+      Ework Group AB
+
+      Gothenburg (SE)
+
+      Spara uppdrag
+
+      Dela
+
+      för 23 minuter sedan
+
+      Master Data Responsible
+
+      JR-51243
+
+      Tetra Pak Processing Systems AB
+
+      Lund (SE)
+
+      Spara uppdrag
+
+      Dela
+
+      för en timme sedan
+
+      Projektcontroller inriktning mot exploatering och stadsbyggn
+
+      JR-51611
+
+      Ework Group AB
+
+      S'
+  job_analysis:
+    role_archetype: Software Engineer
+    seniority: senior
+    primary_technical_focus:
+    - Software Engineer
+    secondary_technical_focus:
+    - Scrum
+    - DevOps
+    - automation
+    leadership_expectations:
+    - technical ownership
+    - cross-functional collaboration
+    - stakeholder coordination
+    de_emphasized_or_not_required: []
+  explicit_terms:
+    languages: []
+    tools: []
+    methods:
+    - Scrum
+    - DevOps
+    standards: []
+    verification: []
+    domains:
+    - automation
+  normalized_requirements:
+    must_have: []
+    nice_to_have: []
+  blockers:
+    hard: []
+    soft:
+    - Swedish may be preferred
+  raw_text_excerpt: 'Hem
+
+    Uppdragsannonser
+
+    Visa
+
+    Ework+
+
+    Tidsrapporter
+
+    Help center
+
+    Sök uppdrag efter titel eller nyckelord
+
+    Plats
+
+    Sök
+
+    På plats / Distans
+
+    Exklusiva uppdrag
+
+    Language
+
+    Seniority
+
+    Skills
+
+    Spara sökning
+
+    Lediga uppdrag: 187
+
+    Alla
+
+    Rekommenderade
+
+    Sparat
+
+    Gothenburg
+
+    Byggledare för Upplands-Bro kommuns VA-utbyggnad
+
+    JR-51614
+
+    Ework Group AB
+
+    Stockholm (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 9 minuter sedan
+
+    Samverkansledare för separeringsprojekt i Majorna
+
+    JR-51270
+
+    Ework Group AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 23 minuter sedan
+
+    Master Data Responsible
+
+    JR-51243
+
+    Tetra Pak Processing Systems AB
+
+    Lund (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för en timme sedan
+
+    Projektcontroller inriktning mot exploatering och stadsbyggn
+
+    JR-51611
+
+    Ework Group AB
+
+    Stockholm (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för en timme sedan
+
+    Senior Devops/Administrator
+
+    JR-51279
+
+    Ework Group Sp. z o.o.
+
+    Lodz (PL)
+
+    170 PLN/h
+
+    Spara uppdrag
+
+    Dela
+
+    för 2 timmar sedan
+
+    ServiceNow Operational Product Owner
+
+    JR-51261
+
+    EG Danmark A/S
+
+    Warsaw (PL)
+
+    Distansarbete
+
+    150 PLN/h
+
+    Spara uppdrag
+
+    Dela
+
+    för 2 timmar sedan
+
+    Senior Automation Test Engineer
+
+    JR-51546
+
+    Ework Group AB
+
+    Stockholm (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 2 timmar sedan
+
+    Dokumentationsansvarig i stationsprojekt
+
+    JR-51579
+
+    Svenska kraftnät
+
+    Stockholm (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 2 timmar sedan
+
+    Scrum master
+
+    JR-51605
+
+    Ework Group Oy
+
+    Heidelberg,Helsinki,Vasteras (SE)
+
+    Distansarbete
+
+    Spara uppdrag
+
+    Dela
+
+    för 2 timmar sedan
+
+    Diagnostic SW Product Owner - Inverters
+
+    JR-51367
+
+    InfiMotion Technology Europe AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 3 timmar sedan
+
+    Junior Service Integrator
+
+    JR-51317
+
+    Husqvarna AB
+
+    Huskvarna (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 3 timmar sedan
+
+    Basic Software Engineer
+
+    JR-51606
+
+    InfiMotion Technology Europe AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 3 timmar sedan
+
+    IT-konsult för Användarsupport och teknikstöd M365
+
+    JR-51604
+
+    Ework Group AB
+
+    Täby (SE)
+
+    Spa'

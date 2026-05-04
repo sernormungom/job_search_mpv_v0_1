@@ -1,0 +1,81 @@
+job_standardized:
+  job_id: job_f7ae35e272
+  source:
+    site: manual_input
+    url: https://app.verama.com/app/job-requests/79245
+    scraped_at: '2026-05-04T13:16:23.730969+00:00'
+  language:
+    original: Swedish
+    standardized_output: English
+  identity:
+    original_title: Uppdragsannonser
+    normalized_title: Software Engineer
+    company: null
+    location:
+      city: Gothenburg
+      country: Sweden
+      work_mode: remote
+    employment_type: unspecified
+  summary:
+    short_summary: "Hem\nUppdragsannonser\nVisa\nEwork+\nTidsrapporter\nHelp center\nTillbaka till uppdrag\nDu kan\
+      \ inte ansöka själv. Be din Manager att ansöka. Interior Component Designer\nJR-51500\nPublicerad den 28 apr\
+      \ 2026 av\nEwork Group AB\nRoll\nInterior Designer\nSenioritetsnivå\nSenior\nPlats\nGöteborg (SE)\nDistansarbete\n\
+      0%\nUppdragsperiod\n20 maj 2026\n30 nov 2026\nAnsökningstiden löper ut\n08 maj 2026 23:59 (4 dagar kvar)\n\
+      Uppdragsbeskrivning\n\nFor our client we're looking for a Interior Component Designer\n\n\uFEFF\n\nDescription\
+      \ of the assignment\nWe're are looking for a Senior Component Designer responsible for the design and development\
+      \ of high-quality interior components that define Lynk & Co's next-generation user experience."
+  job_analysis:
+    role_archetype: Software Engineer
+    seniority: senior
+    primary_technical_focus:
+    - Software Engineer
+    secondary_technical_focus:
+    - DevOps
+    - automotive
+    - industrial
+    leadership_expectations:
+    - technical ownership
+    - cross-functional collaboration
+    - stakeholder coordination
+    de_emphasized_or_not_required: []
+  explicit_terms:
+    languages: []
+    tools: []
+    methods:
+    - DevOps
+    standards: []
+    verification: []
+    domains:
+    - automotive
+    - industrial
+  normalized_requirements:
+    must_have:
+    - Qualifications and skills required for the role
+    - E.g. degrees, years of experience, competencies needed
+    - '* Bachelor''s or Master''s degree in Transportation Design, Industrial Design, or a related field.'
+    - '* Experience within an Automotive OEM or supplier environment.'
+    - '* Demonstrated ability to deliver production-ready component designs.'
+    - '* Strong sketching and visualization skills to communicate design intent.'
+    - '* Proficiency in 3D modeling and visualization tools (Alias, Blender, Photoshop, VRED).'
+    - '* Solid understanding of ergonomics, materials, and manufacturing processes.'
+    nice_to_have: []
+  blockers:
+    hard: []
+    soft: []
+  raw_text_excerpt: "Hem\nUppdragsannonser\nVisa\nEwork+\nTidsrapporter\nHelp center\nTillbaka till uppdrag\nDu\
+    \ kan inte ansöka själv. Be din Manager att ansöka.\nInterior Component Designer\nJR-51500\nPublicerad den 28\
+    \ apr 2026 av\nEwork Group AB\nRoll\nInterior Designer\nSenioritetsnivå\nSenior\nPlats\nGöteborg (SE)\nDistansarbete\n\
+    0%\nUppdragsperiod\n20 maj 2026\n30 nov 2026\nAnsökningstiden löper ut\n08 maj 2026 23:59 (4 dagar kvar)\nUppdragsbeskrivning\n\
+    \nFor our client we're looking for a Interior Component Designer\n\n\uFEFF\n\nDescription of the assignment\n\
+    We're are looking for a Senior Component Designer responsible for the design and development of high-quality\
+    \ interior components that define Lynk & Co's next-generation user experience. This role focuses on delivering\
+    \ tactile, visually refined, and production-feasible components that contribute to a cohesive and emotionally\
+    \ engaging interior environment.\nWorking at the intersection of design, engineering, and user experience, the\
+    \ Interior Component Designer will translate design intent into detailed, production-ready solutions ensuring\
+    \ each component reflects Lynk & Co's progressive, human-centric design DNA.\n\nQualifications and skills required\
+    \ for the role\nE.g. degrees, years of experience, competencies needed\n* Bachelor's or Master's degree in Transportation\
+    \ Design, Industrial Design, or a related field.\n* Experience within an Automotive OEM or supplier environment.\n\
+    * Demonstrated ability to deliver production-ready component designs.\n* Strong sketching and visualization\
+    \ skills to communicate design intent.\n* Proficiency in 3D modeling and visualization tools (Alias, Blender,\
+    \ Photoshop, VRED).\n* Solid understanding of ergonomics, materials, and manufacturing processes.\n* Ability\
+    \ to balance aesthetics, function, and feasibility in component design.\n\nThe assignment "

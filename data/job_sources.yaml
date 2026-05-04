@@ -1,0 +1,64 @@
+# Job source configuration for the Job Search Automation MVP.
+#
+# This first source layer is intentionally conservative:
+# - local_folder sources are the safest and most reliable for copied job ads
+# - url_list sources can fetch simple public pages, but not JavaScript/login apps
+# - Verama/Ework-style portals should initially be handled by manual copy/export
+#   until a browser automation adapter is added.
+
+sources:
+  - id: copied_job_ads
+    label: Copied job ads
+    type: local_folder
+    enabled: true
+    path: prototype/examples/job_batch
+    file_glob: "*.txt"
+
+  - id: public_job_urls
+    label: Public job URLs
+    type: url_list
+    enabled: false
+    urls:
+      # Example:
+      # - url: https://careers.example.com/jobs/12345-senior-embedded-developer
+      #   title_hint: Senior Embedded Developer
+      #   company_hint: Example AB
+      []
+
+  - id: verama_manual_copy
+    label: Verama/Ework manual copy folder
+    type: local_folder
+    enabled: false
+    path: prototype/examples/verama_manual_copy
+    file_glob: "*.txt"
+    notes: >
+      Verama/Ework uses a JavaScript application and may require login/session access.
+      For the MVP, copy selected job details into .txt files in this folder. A future
+      browser automation adapter can read this portal more directly.
+
+  - id: verama_browser_gothenburg
+    label: Verama/Ework browser collector - Gothenburg
+    type: browser_verama
+    enabled: true
+    start_url: https://app.verama.com/app/job-requests
+    location: Gothenburg
+    max_jobs: 25
+    headless: false
+    wait_for_manual_filter: true
+    strict_location: true
+    user_data_dir: outputs/browser_profiles/verama
+    allowed_domains:
+      - verama.com
+      - eworkgroup.com
+    notes: >
+      Optional Playwright collector for the logged-in Verama/Ework browser app.
+      It opens a persistent browser profile so you can log in manually once.
+      After login, apply or confirm the Gothenburg location filter, press Enter
+      in the terminal, and collected jobs will flow into the same deduplicated
+      review queue as copied job ads.
+
+deduplication:
+  strategy: source_url_first_else_content_hash
+  normalize_urls: true
+  output_dir: outputs/collected_jobs
+  manifest_file: outputs/collected_jobs/job_manifest.csv

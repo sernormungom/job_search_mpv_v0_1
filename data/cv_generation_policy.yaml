@@ -1,0 +1,85 @@
+{
+  "cv_generation_policy": {
+    "output_language": "English",
+    "max_pages": 1,
+    "generate_summary_dynamically": true,
+    "input_contract": {
+      "required": [
+        "job_standardized.yaml",
+        "match_result.yaml",
+        "cv_strategy.yaml",
+        "employee_profile.yaml",
+        "experience_database.yaml",
+        "career_preferences.yaml"
+      ],
+      "optional": [
+        "tool_aliases.yaml",
+        "optional_role_fit_profiles.yaml"
+      ]
+    },
+    "hard_constraints": {
+      "grounded_generation_only": true,
+      "forbid_invented_experience": true,
+      "forbid_invented_skills": true,
+      "forbid_invented_titles": true,
+      "forbid_invented_seniority": true,
+      "forbid_invented_clients": true
+    },
+    "sections": [
+      "professional_summary",
+      "tech_competence",
+      "experience"
+    ],
+    "professional_summary": {
+      "maintained_manually": false,
+      "source": "selected_evidence_from_cv_strategy",
+      "max_sentences": 4,
+      "must_be_supported_by_selected_experience": true,
+      "avoid_generic_language": true,
+      "avoid_over_anchoring_to_irrelevant_domains": true
+    },
+    "tech_competence": {
+      "columns": [
+        "Programming",
+        "Knowledge",
+        "Soft Skills"
+      ],
+      "max_items_per_column": 10,
+      "include_explicit_job_tools_when_supported": true,
+      "include_alias_matches": true,
+      "no_prose": true,
+      "no_explanations": true,
+      "prefer_recognizable_terms": true
+    },
+    "experience": {
+      "max_role_groups": 3,
+      "role_group_coherence_required": true,
+      "include_all_blocks_from_selected_role_group_in_reasoning": true,
+      "top_roles_bullets": 4,
+      "additional_roles_bullets": 2,
+      "foundational_role_min_bullets_when_used": 3,
+      "pruning_order": [
+        "remove weak bullets",
+        "compress older or less relevant roles",
+        "remove least relevant older role group"
+      ]
+    },
+    "foundational_role_policy": {
+      "keep_only_when_supports_target_role": true,
+      "compress_unless_highly_relevant": true,
+      "examples": [
+        "GE_2005_2020 may be foundational for embedded, control systems, V&V, regulated engineering, or technical leadership roles"
+      ]
+    },
+    "consistency_check": {
+      "required": true,
+      "checks": [
+        "no tech competence item absent from selected evidence",
+        "no professional summary claim unsupported by selected evidence",
+        "mandatory job tools surfaced when supported by exact or alias evidence",
+        "no excluded or de-emphasized topic dominates the CV",
+        "final draft appears one-page feasible"
+      ]
+    }
+  }
+}

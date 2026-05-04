@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Job Review Queue</title>
+<style>
+  :root { --bg:#f6f6f6; --ink:#202124; --muted:#666; --line:#ddd; --keep:#0b7a3b; --maybe:#a06100; --reject:#9b1c1c; }
+  body { margin:0; font-family: Arial, Helvetica, sans-serif; color:var(--ink); background:var(--bg); }
+  header { padding:24px 32px; background:#9d1b86; color:white; }
+  header h1 { margin:0 0 6px 0; font-size:28px; }
+  header p { margin:0; opacity:.9; }
+  main { max-width:1120px; margin:24px auto; padding:0 16px 32px; }
+  .summary { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+  .pill { background:white; border:1px solid var(--line); border-radius:999px; padding:8px 12px; }
+  .card { display:grid; grid-template-columns:54px 1fr 150px; gap:16px; background:white; border:1px solid var(--line); border-left:8px solid #aaa; border-radius:14px; padding:16px; margin:14px 0; box-shadow:0 2px 8px rgba(0,0,0,.04); }
+  .card.keep { border-left-color:var(--keep); } .card.maybe { border-left-color:var(--maybe); } .card.reject { border-left-color:var(--reject); }
+  .rank { font-size:18px; font-weight:700; color:var(--muted); padding-top:4px; }
+  .topline { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
+  h2 { margin:0; font-size:20px; }
+  .score { background:#111; color:white; border-radius:999px; padding:8px 12px; font-weight:700; min-width:32px; text-align:center; }
+  .meta { color:var(--muted); margin:6px 0 10px; }
+  .badges { display:flex; flex-wrap:wrap; gap:7px; margin:10px 0; }
+  .badge { border:1px solid var(--line); border-radius:999px; padding:4px 9px; font-size:12px; background:#fafafa; }
+  .status { font-weight:700; text-transform:uppercase; }
+  p { margin:7px 0; line-height:1.35; }
+  .reason { color:#333; }
+  .decision label { display:block; font-size:12px; color:var(--muted); margin-bottom:5px; }
+  select { width:100%; padding:7px; border-radius:8px; border:1px solid var(--line); background:white; }
+  @media (max-width: 780px) { .card { grid-template-columns:1fr; } .decision { max-width:220px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Job Review Queue</h1>
+  <p>Generated from copied job descriptions. Review status is currently visual only; edit the CSV to persist decisions.</p>
+</header>
+<main>
+  <section class="summary">
+    <div class="pill"><strong>3</strong> jobs processed</div>
+    <div class="pill"><strong>3</strong> keep</div>
+    <div class="pill"><strong>0</strong> maybe</div>
+    <div class="pill"><strong>0</strong> reject</div>
+  </section>
+  
+        <article class="card keep">
+          <div class="rank">#1</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Test Developer for Automotive Software</h2>
+              <span class="score">81</span>
+            </div>
+            <div class="meta">
+              Embedded Software Engineer | Gothenburg | unspecified | <a href="https://careers.egra.com/jobs/5713854-test-developer-for-automotive-software" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 95</span>
+              <span class="badge">tools 92</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> C++, C, Git, Gerrit, Jenkins, CI/CD, testing, embedded, embedded systems, automotive, telecom, automation</p>
+            <p><strong>Suggested role groups:</strong> VOLVO_2024_2026, ERICSSON_2021_2024, GE_2005_2020</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 81: matched explicit job terms (C, C++, CI/CD, Gerrit, Git, Jenkins, automation, automotive, embedded, embedded systems, telecom, testing) against evidence in VOLVO_2024_2026, ERICSSON_2021_2024, GE_2005_2020.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#2</div>
+          <div class="main">
+            <div class="topline">
+              <h2>System Verification Engineer</h2>
+              <span class="score">81</span>
+            </div>
+            <div class="meta">
+              Embedded Software Engineer | Gothenburg | unspecified | <a href="https://careers.egra.com/jobs/4474683-system-verification-engineer" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 94</span>
+              <span class="badge">tools 90</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> C, MATLAB, unit testing, SIL, HIL, verification, testing, embedded, automotive</p>
+            <p><strong>Suggested role groups:</strong> GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 81: matched explicit job terms (C, HIL, MATLAB, SIL, automotive, embedded, testing, unit testing, verification) against evidence in GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#3</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Senior Embedded Developer</h2>
+              <span class="score">77</span>
+            </div>
+            <div class="meta">
+              Embedded Software Engineer | Gothenburg | unspecified | <a href="https://careers.egra.com/jobs/5706871-senior-embedded-developer" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 85</span>
+              <span class="badge">tools 75</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> C++, C#, C, Agile, DevOps, embedded</p>
+            <p><strong>Suggested role groups:</strong> GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 77: matched explicit job terms (Agile, C, C#, C++, DevOps, embedded) against evidence in GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+</main>
+</body>
+</html>

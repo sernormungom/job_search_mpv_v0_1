@@ -1,0 +1,6 @@
+# Optional, but recommended for reading/editing normal YAML files
+PyYAML>=6.0
+
+# Optional browser adapter for Verama/Ework-style JavaScript/login portals.
+# After installing this package, run: python -m playwright install chromium
+playwright>=1.44

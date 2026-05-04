@@ -1,0 +1,109 @@
+{
+  "role_fit_profiles": [
+    {
+      "role_fit_profile_id": "embedded_software_engineer",
+      "label": "Embedded Software Engineer",
+      "required_for_mvp": false,
+      "explanation_for_managers": "Uses embedded software, real-time systems, safety, verification, C/C++, AUTOSAR, and Vector/DaVinci evidence when tailoring or scoring a role.",
+      "matching_job_titles": [
+        "Embedded Software Engineer",
+        "Senior Embedded Software Engineer",
+        "Software Function Developer",
+        "C++ Developer",
+        "AUTOSAR Developer"
+      ],
+      "priority_evidence_tags": [
+        "embedded",
+        "safety-critical",
+        "real-time",
+        "verification",
+        "C",
+        "C++",
+        "AUTOSAR",
+        "Vector",
+        "DaVinci",
+        "ISO 26262",
+        "SIL",
+        "HIL"
+      ],
+      "de_emphasize": [
+        "pure people management",
+        "generic AI innovation unless requested"
+      ]
+    },
+    {
+      "role_fit_profile_id": "systems_engineer_complex_regulated",
+      "label": "Senior Systems Engineer - Complex and Regulated Environments",
+      "required_for_mvp": false,
+      "explanation_for_managers": "Uses systems thinking, lifecycle ownership, safety, quality, V&V, and cross-functional collaboration evidence.",
+      "matching_job_titles": [
+        "Senior Systems Engineer",
+        "Lead Software Engineer",
+        "Technical Specialist",
+        "System Architect"
+      ],
+      "priority_evidence_tags": [
+        "systems thinking",
+        "full lifecycle",
+        "V-model",
+        "validation",
+        "reliability",
+        "architecture",
+        "cross-functional collaboration"
+      ],
+      "de_emphasize": [
+        "low-level implementation details unless the job asks for them"
+      ]
+    },
+    {
+      "role_fit_profile_id": "ai_engineering_enablement",
+      "label": "AI Engineering Enablement",
+      "required_for_mvp": false,
+      "explanation_for_managers": "Uses AI-assisted development, developer productivity, tooling adoption, and verification automation evidence.",
+      "matching_job_titles": [
+        "AI Innovation Lead",
+        "Developer Productivity Lead",
+        "Technical Lead AI Enablement",
+        "AI Tools Adoption Lead"
+      ],
+      "priority_evidence_tags": [
+        "AI-assisted development",
+        "developer productivity",
+        "AI in V&V",
+        "compliance-aware AI",
+        "GitHub Copilot",
+        "Microsoft Copilot",
+        "VolvoGPT",
+        "tooling ownership"
+      ],
+      "de_emphasize": [
+        "detailed embedded delivery unless relevant",
+        "pure people management"
+      ]
+    },
+    {
+      "role_fit_profile_id": "technical_project_lead",
+      "label": "Technical Project Lead",
+      "required_for_mvp": false,
+      "explanation_for_managers": "Uses engineering-first delivery, technical coordination, resource planning, risk management, and cross-functional alignment evidence.",
+      "matching_job_titles": [
+        "Technical Project Lead",
+        "Engineering Project Manager",
+        "Delivery Lead",
+        "Project Manager Embedded Software"
+      ],
+      "priority_evidence_tags": [
+        "technical project management",
+        "resource planning",
+        "stakeholder negotiation",
+        "cross-functional coordination",
+        "delivery commitments",
+        "NPI governance"
+      ],
+      "de_emphasize": [
+        "pure administration",
+        "generic people management without technical substance"
+      ]
+    }
+  ]
+}

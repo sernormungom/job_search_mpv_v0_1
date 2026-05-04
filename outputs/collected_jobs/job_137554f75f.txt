@@ -1,0 +1,237 @@
+Source URL: https://app.verama.com/app/job-requests/79226
+Collected From: verama_browser_gothenburg
+Collected At: 2026-05-04T13:11:05+00:00
+Hem
+Uppdragsannonser
+Visa
+Ework+
+Tidsrapporter
+Help center
+Tillbaka till uppdrag
+Du kan inte ansöka själv. Be din Manager att ansöka.
+Quality Engineer – ConX Product Development
+JR-50475
+Publicerad den 28 apr 2026 av
+Volvo Personvagnar Aktiebolag (Volvo Cars)
+Roll
+Quality Engineering Lead
+Senioritetsnivå
+Senior
+Plats
+Göteborg (SE)
+Distansarbete
+0%
+Uppdragsperiod
+11 maj 2026
+05 mar 2027
+Ansökningstiden löper ut
+11 maj 2026 23:59 (7 dagar kvar)
+Uppdragsbeskrivning
+
+For our client Volvo Cars we are looking for a Quality Engineer – ConX Product Development.
+
+﻿
+
+Location: Gothenburg (Hybrid)
+
+Department: Software & Electronics / ConX
+
+Type: Full-time Assignment
+
+﻿
+
+About the Role
+
+We are seeking a Quality Engineering Lead to elevate software quality and delivery predictability within the ConX product area. This role is hands‑on and system‑level—far beyond coordination. You will own and drive quality outcomes across teams, suppliers, tooling, and ways of working (WoW), ensuring continuous improvement and reducing systemic risk across the product landscape.
+
+﻿
+
+Key Responsibilities
+
+1. Continuous Improvement & Ways of Working 
+
+Lead data‑driven quality improvements using the ConX Continuous Improvement WoW.
+
+- Identify, analyze, and drive improvement investigations.
+
+- Coordinate cross‑functional workgroups to actionable outcomes.
+
+- Improve test effectiveness, automation signal quality, and CI/CD feedback reliability.
+
+- Ensure findings enter and progress through the improvement backlog.
+
+﻿
+
+2. Targeted Quality Assurance (TQA)
+
+Address root causes of quality issues and structural gaps in testability, reliability, ownership, and technical debt.
+
+- Perform analysis using ConX’s TQA framework.
+
+- Break down issues into Root Cause Heatmaps and risk/gap clusters.
+
+- Document measures such as improved verification coverage, testability improvements, and ownership clarifications.
+
+- Define and support risk‑mitigation features in Jira.
+
+﻿
+
+3. Software Quality KPI Implementation & Follow‑up
+
+Ensure that SW Quality KPIs accurately reflect product health and customer impact.
+
+- Analyze KPI applicability across ConX product areas.
+
+- Define improvement actions and track KPI status.
+
+- Align KPI development closely with TQA outcomes.
+
+﻿
+
+4. Gap & Risk Analysis
+
+Expand quality analysis beyond formal TQA efforts.
+
+- Conduct fault‑clustering and defect‑pattern analysis in the codebase.
+
+- Identify code hotspots, code health improvement needs, and relevant metrics.
+
+- Detect ownership, process, or tooling gaps.
+
+- Feed results into Continuous Improvement or TQA improvement streams.
+
+﻿
+
+5. Coordination & Progress Management
+
+Ensure that all quality-related investigations and initiatives are aligned and efficient.
+
+- Maintain a unified improvement backlog.
+
+- Prevent duplicated efforts across overlapping topics.
+
+- Follow up on agreed improvements, escalate risks, and challenge priorities when needed.
+
+- Provide objective, data‑based recommendations for release readiness.
+
+﻿
+
+6. Application of Ways of Working
+
+Apply and reinforce existing WoW concepts in areas such as Maintainer & E2E Responsibility and QA Activity WoW.
+
+- Support teams in understanding and applying the WoW.
+
+- Contribute to improvements of WoW documentation and practices.
+
+﻿
+
+7. Participation in ConX Hubs
+
+Actively contribute to relevant Hubs in ConX’s Hub & Spoke model.
+
+- Support alignment on verification responsibilities, WoW topics, and quality/test strategies.
+
+- Help balance over‑tested or under‑tested areas.
+
+- Participate in defining or establishing new Hubs when required.
+
+﻿
+
+What You Bring
+
+- Strong background in software quality engineering, continuous improvement, and system-level quality ownership.
+
+- Experience with CI/CD, automation, defect analysis, and test strategy.
+
+- Ability to analyze complex quality issues and drive investigations to clear, actionable outcomes.
+
+- Skilled in cross-functional coordination and stakeholder alignment.
+
+- Familiarity with Confluence, Jira, and modern software engineering practices.
+
+﻿
+
+PLEASE NOTE! 
+
+Volvo Cars require that an adequate background check has been completed prior to the start of the assignment, meaning that you, as the supplier, must have conducted the requested level/-s of background check as soon as possible after your candidate has been chosen for the assignment. 
+
+If any deviations or discrepancies occur, the supplier should inform Ework and the candidate should not be moving forward in the procurement process. 
+
+﻿
+
+This particular assignment is marked as: Sensitive
+
+In the attached file/-s you will find info about the required background check/-s. 
+
+﻿
+
+Volvo Cars reserves the right to request evidence of completion of these checks according to their expectations for the duration of the contingent worker assignment at Volvo Cars. 
+
+﻿
+
+Ework offer to conduct necessary background check for a fee, please reach out for more information if interested. 
+
+Nödvändiga färdigheter
+Software Quality
+CI/CD
+Språk
+Engelska
+(Expert)
+Få betalt snabbt och enkelt!
+Oavsett kundens betalningsvillkor
+Läs mer
+Ytterligare detaljer
+Kund
+Volvo Personvagnar Aktiebolag (Volvo Cars)
+Publicerat datum
+28 apr 2026
+Antal jobbtitlar
+1
+Timmar per vecka
+40
+Rate type
+Hourly
+Bilagor
+Background check level 2.docx
+Background check level 1.docx
+Kontakt Ework Group AB
+JG
+Joakim Gunn
+joakim.gunn@eworkgroup.com
++46 707798936
+Inköpsprocessen hanteras av Ework Group AB
+SE556587870801
+Ework Group AB
+This request is managed by Ework Group, on behalf of the client. Applications should be sent to Ework Group by applying to this job ad only. Ework Group will handle all applications, questions about the requests and presentations of selected candidates to the client. Ework Group will be the contractual part towards both the supplier and the client and will be responsible for all correspondence regarding the contract; including terms and conditions.
+For the duration of this assignment Ework Services (0,9 %) will be deducted from the total amount invoiced.
+Volvo Cars
+Everything we do starts with people. Our purpose is to provide freedom to move, in a personal, sustainable and safe way. We are committed to simplifying our customers’ lives by offering better technology solutions that improve their impact on the world and bringing the most advanced mobility innovations to protect them, their loved ones and the people around them. Volvo Cars’ continued success is the result of a collaborative, diverse, and inclusive working environment. The people of Volvo Cars are committed to making a difference in our world. Today, we are one of the most well-known and respected car brands, with over 40,000 employees across the globe. We believe in bringing out the best in each other and harnessing the true power of people. At Volvo Cars your career is designed around your talents and aspirations so you can reach your full potential. Join us on a journey of a lifetime as we create safety, autonomous driving and electrification technologies of tomorrow.
+Visa profil
+Dela
+Spara uppdrag
+Plats
+Terms of use© 1987–2026 HERE
+Senast visade
+Quality Engineer – ConX Product Development
+Volvo Personvagnar Aktiebolag (Volvo Cars)
+Gothenburg (SE)
+AP/AR Manager
+Gothenburg (SE)
+Clay Modeller
+Gothenburg (SE)
+HR Business Partner
+Gothenburg (SE)
+Design Painter
+Gothenburg (SE)
+Hitta uppdrag
+Köpare av konsulttjänster
+Konsultbolag
+Om oss
+Blogg
+Kontakta oss / Support
+Användaråtkomstavtal
+Integritetspolicy
+Cookiepolicy
+©️ 2026 Ework Verama. Alla rättigheter förbehållna av Ework Group AB.
+På Ework Groups digitala plattform Verama, kopplar vi samman konsulter med kunder som söker efter talanger. Få intressanta konsultuppdrag, samarbeta mer effektivt och ta del av smarta lösningar som ger resultat.

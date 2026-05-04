@@ -1,0 +1,14 @@
+2026/05/04-15:16:19.807 c88 Reusing MANIFEST C:\Users\NorbertoMuñozGómez\Desktop\job_search_mvp_v0_1\prototype\browser_profiles\verama\Default\IndexedDB\https_app.verama.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/05/04-15:16:19.808 c88 Recovering log #50
+2026/05/04-15:16:19.809 c88 Reusing old log C:\Users\NorbertoMuñozGómez\Desktop\job_search_mvp_v0_1\prototype\browser_profiles\verama\Default\IndexedDB\https_app.verama.com_0.indexeddb.leveldb/000050.log 
+2026/05/04-15:16:19.810 c88 Delete type=2 #48
+2026/05/04-15:16:21.682 c88 Level-0 table #55: started
+2026/05/04-15:16:21.705 c88 Level-0 table #55: 517 bytes OK
+2026/05/04-15:16:21.707 c88 Delete type=0 #50
+2026/05/04-15:16:21.708 c88 Manual compaction at level-0 from '\x00\x13\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x14\x00\x00\x00' @ 0 : 0; will stop at '\x00\x13\x00\x00\x05' @ 370 : 1
+2026/05/04-15:16:21.708 c88 Compacting 1@0 + 1@1 files
+2026/05/04-15:16:21.753 c88 Generated table #56@0: 9 keys, 467 bytes
+2026/05/04-15:16:21.753 c88 Compacted 1@0 + 1@1 files => 467 bytes
+2026/05/04-15:16:21.762 c88 compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/05/04-15:16:21.762 c88 Delete type=2 #55
+2026/05/04-15:16:21.763 c88 Manual compaction at level-0 from '\x00\x13\x00\x00\x05' @ 370 : 1 .. '\x00\x14\x00\x00\x00' @ 0 : 0; will stop at (end)

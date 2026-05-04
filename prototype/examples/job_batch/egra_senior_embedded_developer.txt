@@ -1,0 +1,17 @@
+Source URL: https://careers.egra.com/jobs/5706871-senior-embedded-developer
+Senior Embedded Developer
+Egra
+Location: Gothenburg
+
+We are looking for a Senior Embedded Developer to join our team. You will work as a consultant in one of our customer's organizations.
+
+Assignment:
+Tell us your skills and dreams and we will present matching assignments.
+
+Requirements:
+- University degree
+- 5+ years experience of embedded development in C/C++
+- Yocto/Linux
+
+Company context:
+Egra are Tech & IT Consultants helping customers develop digital solutions. Other opportunities include Java, C#, C/C++, JavaScript, Integration, Agile Leaders, Business Analysts, DevOps, Android and iOS.

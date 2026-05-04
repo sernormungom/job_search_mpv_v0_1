@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "job-search-mvp"
+version = "0.1.0"
+description = "Local deterministic job-search and CV-generation prototype."
+requires-python = ">=3.10"
+dependencies = [
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+]
+browser = [
+  "playwright>=1.44",
+]
+
+[project.scripts]
+job-search-match = "job_search_mvp.matcher:main"
+job-search-batch = "job_search_mvp.run_job_batch:main"
+job-search-sources = "job_search_mvp.run_sources_to_review:main"
+job-search-tracker = "job_search_mvp.application_tracker:main"
+
+[tool.setuptools]
+packages = ["job_search_mvp"]
+
+[tool.setuptools.package-data]
+job_search_mvp = ["assets/*.png"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-p no:cacheprovider"

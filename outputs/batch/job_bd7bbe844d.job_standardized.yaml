@@ -1,0 +1,135 @@
+job_standardized:
+  job_id: job_bd7bbe844d
+  source:
+    site: manual_input
+    url: https://app.verama.com/app/job-requests/79317
+    scraped_at: '2026-05-04T13:16:23.402913+00:00'
+  language:
+    original: Swedish
+    standardized_output: English
+  identity:
+    original_title: Uppdragsannonser
+    normalized_title: Systems Engineer
+    company: null
+    location:
+      city: Gothenburg
+      country: Sweden
+      work_mode: remote
+    employment_type: unspecified
+  summary:
+    short_summary: 'Hem
+
+      Uppdragsannonser
+
+      Visa
+
+      Ework+
+
+      Tidsrapporter
+
+      Help center
+
+      Tillbaka till uppdrag
+
+      Du kan inte ansöka själv. Be din Manager att ansöka. Solution Architect
+
+      JR-51530
+
+      Publicerad den 30 apr 2026 av
+
+      Ework Group AB
+
+      Roll
+
+      IT Solution Architect
+
+      Senioritetsnivå
+
+      Expert
+
+      Plats
+
+      Göteborg (SE)
+
+      Distansarbete
+
+      0%
+
+      Uppdragsperiod
+
+      08 jun 2026
+
+      31 dec 2026
+
+      Ansökningstiden löper ut
+
+      07 maj 2026 23:59 (3 dagar kvar)
+
+      Uppdragsbeskrivning
+
+
+      For our client, we are looking for a Solution Architect.'
+  job_analysis:
+    role_archetype: Systems Engineer
+    seniority: senior
+    primary_technical_focus:
+    - verification and validation
+    secondary_technical_focus:
+    - Agile
+    - SAFe
+    - DevOps
+    leadership_expectations:
+    - technical ownership
+    - cross-functional collaboration
+    - stakeholder coordination
+    de_emphasized_or_not_required: []
+  explicit_terms:
+    languages:
+    - Python
+    - Java
+    tools: []
+    methods:
+    - Agile
+    - SAFe
+    - DevOps
+    standards: []
+    verification:
+    - verification
+    domains: []
+  normalized_requirements:
+    must_have:
+    - Communicate solutions to developers and clarify requirements by working with the Business Analysts and other
+      stakeholders.
+    - Assure technical solutions are made part of the long-term strategic development plan.
+    - Proactively driving the adoption of AI and emerging technologies within the domain.
+    - Your responsibilities can also include leading cross functional teams within architecture.
+    - Responsible for defining and championing the domain vision and jointly owning the domain roadmap in close
+      collaboration with Product Owners.
+    - Who are you?
+    - You have a broad architectural knowledge in the connectivity area. You have a proven record of working with
+      stakeholders internally as well as on the business side to discuss and understand the needs and translate
+      them into technical solutions. Also, you have a broad experience and knowledge of software development and
+      delivery of services. We also believe you have experience from leading change in WoW related to frameworks
+      and methods in the architecture area.
+    - 10+ years of IT experience, whereof 5+ years as a Solution Architect or similar
+    nice_to_have: []
+  blockers:
+    hard: []
+    soft: []
+  raw_text_excerpt: "Hem\nUppdragsannonser\nVisa\nEwork+\nTidsrapporter\nHelp center\nTillbaka till uppdrag\nDu\
+    \ kan inte ansöka själv. Be din Manager att ansöka.\nSolution Architect\nJR-51530\nPublicerad den 30 apr 2026\
+    \ av\nEwork Group AB\nRoll\nIT Solution Architect\nSenioritetsnivå\nExpert\nPlats\nGöteborg (SE)\nDistansarbete\n\
+    0%\nUppdragsperiod\n08 jun 2026\n31 dec 2026\nAnsökningstiden löper ut\n07 maj 2026 23:59 (3 dagar kvar)\nUppdragsbeskrivning\n\
+    \nFor our client, we are looking for a Solution Architect.\n\n\uFEFF\n\nMain responsibilities:\n\n• Work closely\
+    \ with Product Owners, Business Analysts, Solution Architects, Software Engineers and Enterprise Architects\
+    \ during early product phases to drive and specify architectural solutions.\n\n• Produce design artifacts including\
+    \ high-level and detailed design documents, database schemas, and system workflows.\n\n• Ensure security aspects\
+    \ are incorporated in proposed architectural solutions.\n\n• Communicate solutions to developers and clarify\
+    \ requirements by working with the Business Analysts and other stakeholders.\n\n• Assure technical solutions\
+    \ are made part of the long-term strategic development plan.\n\n• Proactively driving the adoption of AI and\
+    \ emerging technologies within the domain.\n\n• Your responsibilities can also include leading cross functional\
+    \ teams within architecture.\n\n• Responsible for defining and championing the domain vision and jointly owning\
+    \ the domain roadmap in close collaboration with Product Owners.\n\n\uFEFF\n\nWho are you?\n\nYou have a broad\
+    \ architectural knowledge in the connectivity area. You have a proven record of working with stakeholders internally\
+    \ as well as on the business side to discuss and understand the needs and translate them into technical solutions.\
+    \ Also, you have a broad experience and knowledge of software development and delivery of services. We als"

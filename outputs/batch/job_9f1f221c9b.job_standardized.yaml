@@ -1,0 +1,353 @@
+job_standardized:
+  job_id: job_9f1f221c9b
+  source:
+    site: manual_input
+    url: https://app.verama.com/app/job-requests?filtersConfig=%7B%22recommendedOnly%22%3Atrue%7D&tab=recommended
+    scraped_at: '2026-05-04T13:16:23.234099+00:00'
+  language:
+    original: English/unspecified
+    standardized_output: English
+  identity:
+    original_title: Uppdragsannonser
+    normalized_title: Software Engineer
+    company: null
+    location:
+      city: Gothenburg
+      country: Sweden
+      work_mode: remote
+    employment_type: unspecified
+  summary:
+    short_summary: 'Hem
+
+      Uppdragsannonser
+
+      Visa
+
+      Ework+
+
+      Tidsrapporter
+
+      Help center
+
+      Sök uppdrag efter titel eller nyckelord
+
+      Plats
+
+      Sök
+
+      På plats / Distans
+
+      Exklusiva uppdrag
+
+      Language
+
+      Seniority
+
+      Skills
+
+      Rensa allt
+
+      Lediga uppdrag: 10
+
+      Alla
+
+      Rekommenderade
+
+      Sparat
+
+      Gothenburg
+
+      Basic Software Engineer
+
+      JR-51606
+
+      InfiMotion Technology Europe AB
+
+      Gothenburg (SE)
+
+      Spara uppdrag
+
+      Dela
+
+      för 3 timmar sedan
+
+      DevOps Engineer för analysapplikationer
+
+      JR-51576
+
+      Svenska kraftnät
+
+      Sundbyberg (SE)
+
+      Spara uppdrag
+
+      Dela
+
+      för 4 dagar sedan
+
+      Embedded-utvecklare
+
+      JR-51564
+
+      Svenska kraftnät
+
+      Sundbyberg (SE)
+
+      Distansarbete
+
+      Spara uppdrag
+
+      Dela
+
+      för 4 dagar sedan
+
+      Senior DevOps / SRE Engineer
+
+      JR-51524
+
+      Ework Group AB
+
+      Gothenburg (SE)
+
+      Spara uppdrag
+
+      Dela
+
+      för 4 dagar sedan
+
+      Inf'
+  job_analysis:
+    role_archetype: Software Engineer
+    seniority: senior
+    primary_technical_focus:
+    - Software Engineer
+    secondary_technical_focus:
+    - DevOps
+    - embedded
+    leadership_expectations:
+    - cross-functional collaboration
+    de_emphasized_or_not_required: []
+  explicit_terms:
+    languages:
+    - Python
+    - Java
+    tools: []
+    methods:
+    - DevOps
+    standards: []
+    verification: []
+    domains:
+    - embedded
+  normalized_requirements:
+    must_have: []
+    nice_to_have: []
+  blockers:
+    hard: []
+    soft:
+    - Swedish may be preferred
+  raw_text_excerpt: 'Hem
+
+    Uppdragsannonser
+
+    Visa
+
+    Ework+
+
+    Tidsrapporter
+
+    Help center
+
+    Sök uppdrag efter titel eller nyckelord
+
+    Plats
+
+    Sök
+
+    På plats / Distans
+
+    Exklusiva uppdrag
+
+    Language
+
+    Seniority
+
+    Skills
+
+    Rensa allt
+
+    Lediga uppdrag: 10
+
+    Alla
+
+    Rekommenderade
+
+    Sparat
+
+    Gothenburg
+
+    Basic Software Engineer
+
+    JR-51606
+
+    InfiMotion Technology Europe AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 3 timmar sedan
+
+    DevOps Engineer för analysapplikationer
+
+    JR-51576
+
+    Svenska kraftnät
+
+    Sundbyberg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 4 dagar sedan
+
+    Embedded-utvecklare
+
+    JR-51564
+
+    Svenska kraftnät
+
+    Sundbyberg (SE)
+
+    Distansarbete
+
+    Spara uppdrag
+
+    Dela
+
+    för 4 dagar sedan
+
+    Senior DevOps / SRE Engineer
+
+    JR-51524
+
+    Ework Group AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 4 dagar sedan
+
+    Infotainment Software Developer
+
+    JR-51034
+
+    Volvo Personvagnar Aktiebolag (Volvo Cars)
+
+    Lund (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 5 dagar sedan
+
+    Engineering Lead - Direct Recruitment
+
+    JR-50799
+
+    Ework Group Oy
+
+    Espoo,Tampere (FI)
+
+    Spara uppdrag
+
+    Dela
+
+    för 5 dagar sedan
+
+    Senior Data Engineer - Python
+
+    JR-51450
+
+    Volvo Personvagnar Aktiebolag (Volvo Cars)
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 7 dagar sedan
+
+    Senior Software Engineer (Python, Java, IaC, AWS)
+
+    JR-51384
+
+    WirelessCar Sweden AB
+
+    Gothenburg (SE)
+
+    Spara uppdrag
+
+    Dela
+
+    för 10 dagar sedan
+
+    Windows Expert Developer
+
+    JR-51187
+
+    Ework Group Sp. z o.o.
+
+    Warsaw (PL)
+
+    190 PLN/h
+
+    Spara uppdrag
+
+    Dela
+
+    för 17 dagar sedan
+
+    Junior IT Tester
+
+    JR-51083
+
+    Ework Group Sp. z o.o.
+
+    Gdansk (PL)
+
+    Spara uppdrag
+
+    Dela
+
+    för 20 dagar sedan
+
+    Hitta uppdrag
+
+    Köpare av konsulttjänster
+
+    Konsultbolag
+
+    Om oss
+
+    Blogg
+
+    Kontakta oss / Support
+
+    Användaråtkomstavtal
+
+    Integritetspolicy
+
+    Cookiepolicy
+
+    ©️ 2026 Ework Verama. Alla rättigheter förbehållna av Ework Group AB.
+
+    På Ework Groups digitala plattform Verama, kopplar vi samman konsulter med kunder som söker efter talanger.
+    Få intressanta konsultuppdrag, samarbeta mer effe'

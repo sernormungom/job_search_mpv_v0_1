@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Job Review Queue</title>
+<style>
+  :root { --bg:#f6f6f6; --ink:#202124; --muted:#666; --line:#ddd; --keep:#0b7a3b; --maybe:#a06100; --reject:#9b1c1c; }
+  body { margin:0; font-family: Arial, Helvetica, sans-serif; color:var(--ink); background:var(--bg); }
+  header { padding:24px 32px; background:#9d1b86; color:white; }
+  header h1 { margin:0 0 6px 0; font-size:28px; }
+  header p { margin:0; opacity:.9; }
+  main { max-width:1120px; margin:24px auto; padding:0 16px 32px; }
+  .summary { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+  .pill { background:white; border:1px solid var(--line); border-radius:999px; padding:8px 12px; }
+  .card { display:grid; grid-template-columns:54px 1fr 150px; gap:16px; background:white; border:1px solid var(--line); border-left:8px solid #aaa; border-radius:14px; padding:16px; margin:14px 0; box-shadow:0 2px 8px rgba(0,0,0,.04); }
+  .card.keep { border-left-color:var(--keep); } .card.maybe { border-left-color:var(--maybe); } .card.reject { border-left-color:var(--reject); }
+  .rank { font-size:18px; font-weight:700; color:var(--muted); padding-top:4px; }
+  .topline { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
+  h2 { margin:0; font-size:20px; }
+  .score { background:#111; color:white; border-radius:999px; padding:8px 12px; font-weight:700; min-width:32px; text-align:center; }
+  .meta { color:var(--muted); margin:6px 0 10px; }
+  .badges { display:flex; flex-wrap:wrap; gap:7px; margin:10px 0; }
+  .badge { border:1px solid var(--line); border-radius:999px; padding:4px 9px; font-size:12px; background:#fafafa; }
+  .status { font-weight:700; text-transform:uppercase; }
+  p { margin:7px 0; line-height:1.35; }
+  .reason { color:#333; }
+  .decision label { display:block; font-size:12px; color:var(--muted); margin-bottom:5px; }
+  select { width:100%; padding:7px; border-radius:8px; border:1px solid var(--line); background:white; }
+  @media (max-width: 780px) { .card { grid-template-columns:1fr; } .decision { max-width:220px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Job Review Queue</h1>
+  <p>Generated from copied job descriptions. Review status is currently visual only; edit the CSV to persist decisions.</p>
+</header>
+<main>
+  <section class="summary">
+    <div class="pill"><strong>27</strong> jobs processed</div>
+    <div class="pill"><strong>22</strong> keep</div>
+    <div class="pill"><strong>3</strong> maybe</div>
+    <div class="pill"><strong>2</strong> reject</div>
+  </section>
+  
+        <article class="card keep">
+          <div class="rank">#1</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">83</span>
+            </div>
+            <div class="meta">
+              Software Engineer | Gothenburg | remote | <a href="https://app.verama.com/app/job-requests/79244" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 100</span>
+              <span class="badge">tools 100</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> DevOps, automotive</p>
+            <p><strong>Suggested role groups:</strong> VOLVO_2024_2026, GE_2005_2020, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 83: matched explicit job terms (DevOps, automotive) against evidence in VOLVO_2024_2026, GE_2005_2020, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#2</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">83</span>
+            </div>
+            <div class="meta">
+              Software Engineer | Gothenburg | hybrid | <a href="https://app.verama.com/app/job-requests/79226" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 100</span>
+              <span class="badge">tools 100</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> Jira, CI/CD, SAFe, verification, autonomous, automation</p>
+            <p><strong>Suggested role groups:</strong> VOLVO_2024_2026, ERICSSON_2021_2024, GE_2005_2020</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 83: matched explicit job terms (CI/CD, Jira, SAFe, automation, autonomous, verification) against evidence in VOLVO_2024_2026, ERICSSON_2021_2024, GE_2005_2020.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#3</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">83</span>
+            </div>
+            <div class="meta">
+              Embedded Software Engineer | Gothenburg | hybrid | <a href="https://app.verama.com/app/job-requests/79212" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 100</span>
+              <span class="badge">tools 100</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> Simulink, verification, testing, embedded</p>
+            <p><strong>Suggested role groups:</strong> GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 83: matched explicit job terms (Simulink, embedded, testing, verification) against evidence in GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#4</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">83</span>
+            </div>
+            <div class="meta">
+              Embedded Software Engineer | Gothenburg | hybrid | <a href="https://app.verama.com/app/job-requests/79388" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 100</span>
+              <span class="badge">tools 100</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> C++, C, Git, AUTOSAR, Agile, Scrum, DevOps, testing, embedded, industrial</p>
+            <p><strong>Suggested role groups:</strong> GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 83: matched explicit job terms (AUTOSAR, Agile, C, C++, DevOps, Git, Scrum, embedded, industrial, testing) against evidence in GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#5</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">83</span>
+            </div>
+            <div class="meta">
+              Systems Engineer | Gothenburg | hybrid | <a href="https://app.verama.com/app/job-requests/79322" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 100</span>
+              <span class="badge">tools 100</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> automotive, industrial</p>
+            <p><strong>Suggested role groups:</strong> GE_2005_2020, VOLVO_2024_2026, EQUINOX_2009</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 83: matched explicit job terms (automotive, industrial) against evidence in GE_2005_2020, VOLVO_2024_2026, EQUINOX_2009.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#6</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">83</span>
+            </div>
+            <div class="meta">
+              Systems Engineer | Gothenburg | remote | <a href="https://app.verama.com/app/job-requests/79242" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 100</span>
+              <span class="badge">tools 100</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> automotive</p>
+            <p><strong>Suggested role groups:</strong> VOLVO_2024_2026</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 83: matched explicit job terms (automotive) against evidence in VOLVO_2024_2026.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#7</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">83</span>
+            </div>
+            <div class="meta">
+              Software Engineer | Gothenburg | remote | <a href="https://app.verama.com/app/job-requests/79348" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 100</span>
+              <span class="badge">tools 100</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> verification, automotive, industrial</p>
+            <p><strong>Suggested role groups:</strong> GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 83: matched explicit job terms (automotive, industrial, verification) against evidence in GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#8</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">83</span>
+            </div>
+            <div class="meta">
+              Software Engineer | Gothenburg | remote | <a href="https://app.verama.com/app/job-requests/79245" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 100</span>
+              <span class="badge">tools 100</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> DevOps, automotive, industrial</p>
+            <p><strong>Suggested role groups:</strong> GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 83: matched explicit job terms (DevOps, automotive, industrial) against evidence in GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#9</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Test Developer for Automotive Software</h2>
+              <span class="score">81</span>
+            </div>
+            <div class="meta">
+              Embedded Software Engineer | Gothenburg | unspecified | <a href="https://careers.egra.com/jobs/5713854-test-developer-for-automotive-software" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 95</span>
+              <span class="badge">tools 92</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> C++, C, Git, Gerrit, Jenkins, CI/CD, testing, embedded, embedded systems, automotive, telecom, automation</p>
+            <p><strong>Suggested role groups:</strong> VOLVO_2024_2026, ERICSSON_2021_2024, GE_2005_2020</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 81: matched explicit job terms (C, C++, CI/CD, Gerrit, Git, Jenkins, automation, automotive, embedded, embedded systems, telecom, testing) against evidence in VOLVO_2024_2026, ERICSSON_2021_2024, GE_2005_2020.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#10</div>
+          <div class="main">
+            <div class="topline">
+              <h2>System Verification Engineer</h2>
+              <span class="score">81</span>
+            </div>
+            <div class="meta">
+              Embedded Software Engineer | Gothenburg | unspecified | <a href="https://careers.egra.com/jobs/4474683-system-verification-engineer" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 94</span>
+              <span class="badge">tools 90</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> C, MATLAB, unit testing, SIL, HIL, verification, testing, embedded, automotive</p>
+            <p><strong>Suggested role groups:</strong> GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 81: matched explicit job terms (C, HIL, MATLAB, SIL, automotive, embedded, testing, unit testing, verification) against evidence in GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#11</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">79</span>
+            </div>
+            <div class="meta">
+              Software Engineer | Gothenburg | remote | <a href="https://app.verama.com/app/job-requests/79405" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 100</span>
+              <span class="badge">tools 100</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 15</span>
+            </div>
+            <p><strong>Matched terms:</strong> DevOps, automotive</p>
+            <p><strong>Suggested role groups:</strong> VOLVO_2024_2026, GE_2005_2020, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  Swedish may be preferred</p>
+            <p class="reason">Score 79: matched explicit job terms (DevOps, automotive) against evidence in VOLVO_2024_2026, GE_2005_2020, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#12</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">79</span>
+            </div>
+            <div class="meta">
+              Software Engineer | Gothenburg | remote | <a href="https://app.verama.com/app/job-requests" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 100</span>
+              <span class="badge">tools 100</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 15</span>
+            </div>
+            <p><strong>Matched terms:</strong> Scrum, DevOps, automation</p>
+            <p><strong>Suggested role groups:</strong> VOLVO_2024_2026, ERICSSON_2021_2024, GE_2005_2020</p>
+            <p><strong>Risks:</strong>  Swedish may be preferred</p>
+            <p class="reason">Score 79: matched explicit job terms (DevOps, Scrum, automation) against evidence in VOLVO_2024_2026, ERICSSON_2021_2024, GE_2005_2020.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#13</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">79</span>
+            </div>
+            <div class="meta">
+              Software Engineer | Gothenburg | remote | <a href="https://app.verama.com/app/job-requests/79327" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 100</span>
+              <span class="badge">tools 100</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 15</span>
+            </div>
+            <p><strong>Matched terms:</strong> automotive</p>
+            <p><strong>Suggested role groups:</strong> VOLVO_2024_2026</p>
+            <p><strong>Risks:</strong>  Swedish may be preferred</p>
+            <p class="reason">Score 79: matched explicit job terms (automotive) against evidence in VOLVO_2024_2026.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#14</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">79</span>
+            </div>
+            <div class="meta">
+              Software Engineer | Gothenburg | remote | <a href="https://app.verama.com/app/job-requests?tab=all-jobs" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 100</span>
+              <span class="badge">tools 100</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 15</span>
+            </div>
+            <p><strong>Matched terms:</strong> Scrum, DevOps, automation</p>
+            <p><strong>Suggested role groups:</strong> VOLVO_2024_2026, ERICSSON_2021_2024, GE_2005_2020</p>
+            <p><strong>Risks:</strong>  Swedish may be preferred</p>
+            <p class="reason">Score 79: matched explicit job terms (DevOps, Scrum, automation) against evidence in VOLVO_2024_2026, ERICSSON_2021_2024, GE_2005_2020.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#15</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">78</span>
+            </div>
+            <div class="meta">
+              Systems Engineer | Gothenburg | hybrid | <a href="https://app.verama.com/app/job-requests/79391" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 88</span>
+              <span class="badge">tools 80</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> AUTOSAR, DevOps, validation, industrial</p>
+            <p><strong>Suggested role groups:</strong> GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 78: matched explicit job terms (AUTOSAR, DevOps, industrial, validation) against evidence in GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#16</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Senior Embedded Developer</h2>
+              <span class="score">77</span>
+            </div>
+            <div class="meta">
+              Embedded Software Engineer | Gothenburg | unspecified | <a href="https://careers.egra.com/jobs/5706871-senior-embedded-developer" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 85</span>
+              <span class="badge">tools 75</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> C++, C#, C, Agile, DevOps, embedded</p>
+            <p><strong>Suggested role groups:</strong> GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 77: matched explicit job terms (Agile, C, C#, C++, DevOps, embedded) against evidence in GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#17</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">76</span>
+            </div>
+            <div class="meta">
+              Systems Engineer | Gothenburg | remote | <a href="https://app.verama.com/app/job-requests/79243" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 80</span>
+              <span class="badge">tools 100</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> DevOps</p>
+            <p><strong>Suggested role groups:</strong> GE_2005_2020, ERICSSON_2021_2024, VOLVO_2024_2026</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 76: matched explicit job terms (DevOps) against evidence in GE_2005_2020, ERICSSON_2021_2024, VOLVO_2024_2026.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#18</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">76</span>
+            </div>
+            <div class="meta">
+              Embedded Software Engineer | Gothenburg | hybrid | <a href="https://app.verama.com/app/job-requests/79332" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 92</span>
+              <span class="badge">tools 86</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 15</span>
+            </div>
+            <p><strong>Matched terms:</strong> MATLAB, Simulink, SIL, testing, embedded, automotive</p>
+            <p><strong>Suggested role groups:</strong> GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  Swedish may be preferred</p>
+            <p class="reason">Score 76: matched explicit job terms (MATLAB, SIL, Simulink, automotive, embedded, testing) against evidence in GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#19</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">75</span>
+            </div>
+            <div class="meta">
+              AI Engineering Enablement Lead | Gothenburg | remote | <a href="https://app.verama.com/app/job-requests/79369" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 80</span>
+              <span class="badge">tools 67</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> root cause analysis, automation</p>
+            <p><strong>Suggested role groups:</strong> VOLVO_2024_2026, ERICSSON_2021_2024, EQUINOX_2009</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 75: matched explicit job terms (automation, root cause analysis) against evidence in VOLVO_2024_2026, ERICSSON_2021_2024, EQUINOX_2009.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#20</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">75</span>
+            </div>
+            <div class="meta">
+              Software Engineer | Gothenburg | hybrid | <a href="https://app.verama.com/app/job-requests?filtersConfig=%7B%22id%22%3A17883%2C%22signature%22%3A%22DbbWDnf26FAEZPkT7X%2F%2FIFnVV3T1oEykfCopJvFSdeVjZEoaSMun01qr8hEfIeLDvXU0e9KdCn32Ui7x%2Bgbatw%22%2C%22name%22%3A%22Gothenburg%22%2C%22frequency%22%3A%22NEVER%22%2C%22location%22%3A%7B%22name%22%3A%22Gothenburg%2C%20Sweden%22%2C%22country%22%3A%22Sweden%22%2C%22city%22%3A%22Gothenburg%22%2C%22locationId%22%3A%22here%3Acm%3Anamedplace%3A20298983%22%2C%22countryCode%22%3A%22SWE%22%7D%2C%22radius%22%3A30000%2C%22remote%22%3A%5B%7B%22code%22%3A%22PARTIALLY_REMOTE%22%2C%22parameter%22%3Anull%7D%2C%7B%22code%22%3A%22NO_REMOTE%22%2C%22parameter%22%3Anull%7D%5D%2C%22skillRoleCategories%22%3A%5B%5D%2C%22dedicated%22%3Afalse%2C%22originIds%22%3A%5B%5D%2C%22favouritesOnly%22%3Afalse%2C%22recommendedOnly%22%3Afalse%2C%22languages%22%3A%5B%5D%2C%22skillIds%22%3A%5B%5D%2C%22skills%22%3A%5B%5D%2C%22level%22%3A%5B%5D%7D&amp;tab=search-17883" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 80</span>
+              <span class="badge">tools 67</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> DevOps, automotive</p>
+            <p><strong>Suggested role groups:</strong> VOLVO_2024_2026, GE_2005_2020, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 75: matched explicit job terms (DevOps, automotive) against evidence in VOLVO_2024_2026, GE_2005_2020, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#21</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">71</span>
+            </div>
+            <div class="meta">
+              Software Engineer | Gothenburg | remote | <a href="https://app.verama.com/app/job-requests/79318" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 80</span>
+              <span class="badge">tools 67</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 15</span>
+            </div>
+            <p><strong>Matched terms:</strong> CI/CD, DevOps, testing, industrial</p>
+            <p><strong>Suggested role groups:</strong> GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  Swedish may be preferred</p>
+            <p class="reason">Score 71: matched explicit job terms (CI/CD, DevOps, industrial, testing) against evidence in GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card keep">
+          <div class="rank">#22</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">70</span>
+            </div>
+            <div class="meta">
+              Software Engineer | Gothenburg | remote | <a href="https://app.verama.com/app/job-requests/79319" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">keep</span>
+              <span class="badge">expertise 77</span>
+              <span class="badge">tools 62</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 15</span>
+            </div>
+            <p><strong>Matched terms:</strong> CI/CD, DevOps, root cause analysis, automotive, distributed systems</p>
+            <p><strong>Suggested role groups:</strong> VOLVO_2024_2026, ERICSSON_2021_2024, GE_2005_2020</p>
+            <p><strong>Risks:</strong>  Swedish may be preferred</p>
+            <p class="reason">Score 70: matched explicit job terms (CI/CD, DevOps, automotive, distributed systems, root cause analysis) against evidence in VOLVO_2024_2026, ERICSSON_2021_2024, GE_2005_2020.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card maybe">
+          <div class="rank">#23</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">67</span>
+            </div>
+            <div class="meta">
+              Software Engineer | Gothenburg | remote | <a href="https://app.verama.com/app/job-requests?filtersConfig=%7B%22recommendedOnly%22%3Atrue%7D&amp;tab=recommended" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">maybe</span>
+              <span class="badge">expertise 70</span>
+              <span class="badge">tools 50</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 15</span>
+            </div>
+            <p><strong>Matched terms:</strong> DevOps, embedded</p>
+            <p><strong>Suggested role groups:</strong> GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  Swedish may be preferred</p>
+            <p class="reason">Score 67: matched explicit job terms (DevOps, embedded) against evidence in GE_2005_2020, VOLVO_2024_2026, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card maybe">
+          <div class="rank">#24</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">67</span>
+            </div>
+            <div class="meta">
+              Systems Engineer | Gothenburg | remote | <a href="https://app.verama.com/app/job-requests/79317" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">maybe</span>
+              <span class="badge">expertise 60</span>
+              <span class="badge">tools 67</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> Agile, SAFe, DevOps, verification</p>
+            <p><strong>Suggested role groups:</strong> VOLVO_2024_2026, GE_2005_2020, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 67: matched explicit job terms (Agile, DevOps, SAFe, verification) against evidence in VOLVO_2024_2026, GE_2005_2020, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card maybe">
+          <div class="rank">#25</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">57</span>
+            </div>
+            <div class="meta">
+              Software Engineer | Gothenburg | hybrid | <a href="https://app.verama.com/app/job-requests/79372" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">maybe</span>
+              <span class="badge">expertise 30</span>
+              <span class="badge">tools 50</span>
+              <span class="badge">growth 73</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> CI/CD, testing</p>
+            <p><strong>Suggested role groups:</strong> VOLVO_2024_2026, GE_2005_2020, ERICSSON_2021_2024</p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 57: matched explicit job terms (CI/CD, testing) against evidence in VOLVO_2024_2026, GE_2005_2020, ERICSSON_2021_2024.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card reject">
+          <div class="rank">#26</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">52</span>
+            </div>
+            <div class="meta">
+              Systems Engineer | Gothenburg | remote | <a href="https://app.verama.com/app/job-requests/79237" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">reject</span>
+              <span class="badge">expertise 20</span>
+              <span class="badge">tools 0</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> </p>
+            <p><strong>Suggested role groups:</strong> </p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 52: limited explicit evidence matches found; review manually.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+        <article class="card reject">
+          <div class="rank">#27</div>
+          <div class="main">
+            <div class="topline">
+              <h2>Uppdragsannonser</h2>
+              <span class="score">51</span>
+            </div>
+            <div class="meta">
+              Software Engineer | Gothenburg | remote | <a href="https://app.verama.com/app/job-requests?filtersConfig=%7B%22favouritesOnly%22%3Atrue%7D&amp;tab=my-saved-jobs" target="_blank">source</a>
+            </div>
+            <div class="badges">
+              <span class="badge status">reject</span>
+              <span class="badge">expertise 20</span>
+              <span class="badge">tools 0</span>
+              <span class="badge">growth 72</span>
+              <span class="badge">risk 0</span>
+            </div>
+            <p><strong>Matched terms:</strong> </p>
+            <p><strong>Suggested role groups:</strong> </p>
+            <p><strong>Risks:</strong>  </p>
+            <p class="reason">Score 51: limited explicit evidence matches found; review manually.</p>
+          </div>
+          <div class="decision">
+            <label>Decision</label>
+            <select>
+              <option>new</option><option>keep</option><option>maybe</option><option>reject</option><option>prepare_cv</option><option>applied</option><option>archived</option>
+            </select>
+          </div>
+        </article>
+        
+</main>
+</body>
+</html>

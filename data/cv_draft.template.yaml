@@ -1,0 +1,25 @@
+{
+  "cv_draft": {
+    "draft_id": null,
+    "job_id": null,
+    "employee_id": "norberto_munoz",
+    "status": "awaiting_review",
+    "sections": {
+      "professional_summary": {
+        "text": null,
+        "evidence_links": []
+      },
+      "tech_competence": {
+        "Programming": [],
+        "Knowledge": [],
+        "Soft Skills": []
+      },
+      "experience": []
+    },
+    "validation": {
+      "unsupported_claims": [],
+      "missing_mandatory_terms": [],
+      "one_page_estimate": null
+    }
+  }
+}

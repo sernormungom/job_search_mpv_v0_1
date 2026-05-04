@@ -1,0 +1,36 @@
+{
+  "match_result": {
+    "job_id": null,
+    "employee_id": "norberto_munoz",
+    "overall_score": null,
+    "score_breakdown": {
+      "expertise_fit": null,
+      "explicit_tool_fit": null,
+      "domain_fit": null,
+      "growth_fit": null,
+      "interest_fit": null,
+      "practical_fit": null,
+      "risk_score": null
+    },
+    "decision": {
+      "recommended_status": null,
+      "reason": null
+    },
+    "matched_evidence": {
+      "explicit_tool_matches": [],
+      "domain_matches": [],
+      "responsibility_matches": [],
+      "leadership_matches": [],
+      "preference_matches": []
+    },
+    "risks": {
+      "hard_blockers": [],
+      "soft_risks": []
+    },
+    "recommendation_for_cv": {
+      "must_surface_terms": [],
+      "optional_terms": [],
+      "avoid_or_deemphasize": []
+    }
+  }
+}

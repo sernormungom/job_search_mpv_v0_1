@@ -1,0 +1,95 @@
+job_standardized:
+  job_id: job_f3a6757ddb
+  source:
+    site: manual_input
+    url: https://careers.egra.com/jobs/5706871-senior-embedded-developer
+    scraped_at: '2026-05-04T13:16:23.572716+00:00'
+  language:
+    original: English/unspecified
+    standardized_output: English
+  identity:
+    original_title: Senior Embedded Developer
+    normalized_title: Embedded Software Engineer
+    company: null
+    location:
+      city: Gothenburg
+      country: Sweden
+      work_mode: unspecified
+    employment_type: unspecified
+  summary:
+    short_summary: 'Senior Embedded Developer
+
+      Egra
+
+      Location: Gothenburg
+
+
+      We are looking for a Senior Embedded Developer to join our team. You will work as a consultant in one of our
+      customer''s organizations. Assignment:
+
+      Tell us your skills and dreams and we will present matching assignments.'
+  job_analysis:
+    role_archetype: Embedded Software Engineer
+    seniority: senior
+    primary_technical_focus:
+    - embedded software development
+    secondary_technical_focus:
+    - Agile
+    - DevOps
+    - embedded
+    leadership_expectations:
+    - stakeholder coordination
+    de_emphasized_or_not_required: []
+  explicit_terms:
+    languages:
+    - C++
+    - C#
+    - C
+    - Java
+    - JavaScript
+    tools: []
+    methods:
+    - Agile
+    - DevOps
+    standards: []
+    verification: []
+    domains:
+    - embedded
+  normalized_requirements:
+    must_have:
+    - University degree
+    - 5+ years experience of embedded development in C/C++
+    - Yocto/Linux
+    nice_to_have: []
+  blockers:
+    hard: []
+    soft: []
+  raw_text_excerpt: 'Senior Embedded Developer
+
+    Egra
+
+    Location: Gothenburg
+
+
+    We are looking for a Senior Embedded Developer to join our team. You will work as a consultant in one of our
+    customer''s organizations.
+
+
+    Assignment:
+
+    Tell us your skills and dreams and we will present matching assignments.
+
+
+    Requirements:
+
+    - University degree
+
+    - 5+ years experience of embedded development in C/C++
+
+    - Yocto/Linux
+
+
+    Company context:
+
+    Egra are Tech & IT Consultants helping customers develop digital solutions. Other opportunities include Java,
+    C#, C/C++, JavaScript, Integration, Agile Leaders, Business Analysts, DevOps, Android and iOS.'

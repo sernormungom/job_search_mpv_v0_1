@@ -1,0 +1,54 @@
+{
+  "job_standardized": {
+    "job_id": null,
+    "source": {
+      "site": null,
+      "url": null,
+      "scraped_at": null
+    },
+    "language": {
+      "original": null,
+      "standardized_output": "English"
+    },
+    "identity": {
+      "original_title": null,
+      "normalized_title": null,
+      "company": null,
+      "location": {
+        "city": null,
+        "country": null,
+        "work_mode": null
+      },
+      "employment_type": null
+    },
+    "summary": {
+      "short_summary": null
+    },
+    "job_analysis": {
+      "role_archetype": null,
+      "seniority": null,
+      "primary_technical_focus": [],
+      "secondary_technical_focus": [],
+      "leadership_expectations": [],
+      "de_emphasized_or_not_required": []
+    },
+    "explicit_terms": {
+      "languages": [],
+      "tools": [],
+      "platforms": [],
+      "methods": [],
+      "standards": [],
+      "verification": [],
+      "soft_skills": []
+    },
+    "normalized_requirements": {
+      "must_have": [],
+      "nice_to_have": [],
+      "responsibilities": []
+    },
+    "blockers": {
+      "hard": [],
+      "soft": []
+    }
+  }
+}

@@ -1,0 +1,132 @@
+job_standardized:
+  job_id: job_137554f75f
+  source:
+    site: manual_input
+    url: https://app.verama.com/app/job-requests/79226
+    scraped_at: '2026-05-04T13:16:22.634342+00:00'
+  language:
+    original: Swedish
+    standardized_output: English
+  identity:
+    original_title: Uppdragsannonser
+    normalized_title: Software Engineer
+    company: null
+    location:
+      city: Gothenburg
+      country: Sweden
+      work_mode: hybrid
+    employment_type: unspecified
+  summary:
+    short_summary: 'Hem
+
+      Uppdragsannonser
+
+      Visa
+
+      Ework+
+
+      Tidsrapporter
+
+      Help center
+
+      Tillbaka till uppdrag
+
+      Du kan inte ansöka själv. Be din Manager att ansöka. Quality Engineer – ConX Product Development
+
+      JR-50475
+
+      Publicerad den 28 apr 2026 av
+
+      Volvo Personvagnar Aktiebolag (Volvo Cars)
+
+      Roll
+
+      Quality Engineering Lead
+
+      Senioritetsnivå
+
+      Senior
+
+      Plats
+
+      Göteborg (SE)
+
+      Distansarbete
+
+      0%
+
+      Uppdragsperiod
+
+      11 maj 2026
+
+      05 mar 2027
+
+      Ansökningstiden löper ut
+
+      11 maj 2026 23:59 (7 dagar kvar)
+
+      Uppdragsbeskrivning
+
+
+      For our client Volvo Cars we are looking for a Quality Engineer – ConX Product Development.'
+  job_analysis:
+    role_archetype: Software Engineer
+    seniority: senior
+    primary_technical_focus:
+    - verification and validation
+    secondary_technical_focus:
+    - CI/CD
+    - SAFe
+    - Jira
+    - autonomous
+    - automation
+    leadership_expectations:
+    - technical ownership
+    - cross-functional collaboration
+    - stakeholder coordination
+    de_emphasized_or_not_required: []
+  explicit_terms:
+    languages: []
+    tools:
+    - Jira
+    methods:
+    - CI/CD
+    - SAFe
+    standards: []
+    verification:
+    - verification
+    domains:
+    - autonomous
+    - automation
+  normalized_requirements:
+    must_have:
+    - Participate in defining or establishing new Hubs when required.
+    - What You Bring
+    - Strong background in software quality engineering, continuous improvement, and system-level quality ownership.
+    - Experience with CI/CD, automation, defect analysis, and test strategy.
+    - Ability to analyze complex quality issues and drive investigations to clear, actionable outcomes.
+    - Skilled in cross-functional coordination and stakeholder alignment.
+    - Familiarity with Confluence, Jira, and modern software engineering practices.
+    - PLEASE NOTE!
+    nice_to_have: []
+  blockers:
+    hard: []
+    soft: []
+  raw_text_excerpt: "Hem\nUppdragsannonser\nVisa\nEwork+\nTidsrapporter\nHelp center\nTillbaka till uppdrag\nDu\
+    \ kan inte ansöka själv. Be din Manager att ansöka.\nQuality Engineer – ConX Product Development\nJR-50475\n\
+    Publicerad den 28 apr 2026 av\nVolvo Personvagnar Aktiebolag (Volvo Cars)\nRoll\nQuality Engineering Lead\n\
+    Senioritetsnivå\nSenior\nPlats\nGöteborg (SE)\nDistansarbete\n0%\nUppdragsperiod\n11 maj 2026\n05 mar 2027\n\
+    Ansökningstiden löper ut\n11 maj 2026 23:59 (7 dagar kvar)\nUppdragsbeskrivning\n\nFor our client Volvo Cars\
+    \ we are looking for a Quality Engineer – ConX Product Development.\n\n\uFEFF\n\nLocation: Gothenburg (Hybrid)\n\
+    \nDepartment: Software & Electronics / ConX\n\nType: Full-time Assignment\n\n\uFEFF\n\nAbout the Role\n\nWe\
+    \ are seeking a Quality Engineering Lead to elevate software quality and delivery predictability within the\
+    \ ConX product area. This role is hands‑on and system‑level—far beyond coordination. You will own and drive\
+    \ quality outcomes across teams, suppliers, tooling, and ways of working (WoW), ensuring continuous improvement\
+    \ and reducing systemic risk across the product landscape.\n\n\uFEFF\n\nKey Responsibilities\n\n1. Continuous\
+    \ Improvement & Ways of Working \n\nLead data‑driven quality improvements using the ConX Continuous Improvement\
+    \ WoW.\n\n- Identify, analyze, and drive improvement investigations.\n\n- Coordinate cross‑functional workgroups\
+    \ to actionable outcomes.\n\n- Improve test effectiveness, automation signal quality, and CI/CD feedback reliability.\n\
+    \n- Ensure findings enter and progress through the improvement backlog.\n\n\uFEFF\n\n2. Targeted Quality Assurance\
+    \ (TQA)\n\nAddress root causes of quality issues and structural gaps in testability, reliability, ownership,\
+    \ and technical debt.\n\n- Perform analysis using ConX’s TQA framework.\n\n- Break down issues into Root Cause\
+    \ Heatmaps and risk/gap clusters.\n\n- Document measu"

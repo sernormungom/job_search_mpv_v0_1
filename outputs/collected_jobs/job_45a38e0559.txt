@@ -1,0 +1,403 @@
+Source URL: https://app.verama.com/app/job-requests/79319
+Collected From: verama_browser_gothenburg
+Collected At: 2026-05-04T13:11:05+00:00
+Hem
+Uppdragsannonser
+Visa
+Ework+
+Tidsrapporter
+Help center
+Tillbaka till uppdrag
+Du kan inte ansöka själv. Be din Manager att ansöka.
+Senior DevOps / SRE Engineer
+JR-51524
+Publicerad den 30 apr 2026 av
+Ework Group AB
+Roll
+Devops Engineer
+Senioritetsnivå
+Senior
+Plats
+Göteborg (SE)
+Distansarbete
+0%
+Uppdragsperiod
+11 maj 2026
+31 dec 2026
+Ansökningstiden löper ut
+04 maj 2026 23:59
+Uppdragsbeskrivning
+
+For our client, we are looking for a Senior Devops / SRE Engineer.
+
+﻿
+
+We are seeking a Senior DevOps / SRE Technical Engineer to serve as a key technical owner for cloud
+
+infrastructure, observability, reliability engineering, and cloud cost optimization across AWS and GCP.
+
+﻿
+
+This role carries clear accountability and measurable outcomes in the following areas:
+
+1. End-to-end observability (design → implementation → continuous improvement)
+
+2. Systematic cloud cost optimization across AWS & GCP (FinOps)
+
+3. Production reliability governance and risk reduction
+
+4. Root cause analysis (RCA) and systemic improvement of major incidents
+
+﻿
+
+You will be expected not only to design but also to deliver, operate, and be assessed against concrete results.
+
+﻿
+
+Key Responsibilities
+
+1) End-to-End Observability
+
+What you will own:
+
+Independently design and implement a comprehensive end-to-end observability system covering:
+
+• Infrastructure (AWS/GCP, Kubernetes, network, storage)
+
+• Platform (message queues, databases, caches, API gateways)
+
+• Application layer (microservices, critical business flows)
+
+• Business layer (key business metrics)
+
+﻿
+
+You will be expected to produce:
+
+1.Unified Observability Architecture Document
+
+• Overall architecture diagram (Metrics + Logs + Traces)
+
+• Data flow diagram (collection → processing → storage → visualization)
+
+• Tooling selection and justification (e.g., Prometheus, Datadog, OpenTelemetry)
+
+﻿
+
+2.Standardized Observability Data Model
+
+• Unified metrics naming conventions
+
+• Standardized tracing model (Trace ID, Span, sampling strategy)
+
+• Structured logging standard (JSON schema)
+
+﻿
+
+3.Operational Dashboards
+
+• Infrastructure health dashboard
+
+• Platform services health dashboard
+
+• Business API check of KPI dashboard
+
+﻿
+
+4.Alerting System
+
+• Defined P0/P1/P2 alert levels
+
+• Alert noise reduction strategy
+
+• Automated alert routing by team/service
+
+﻿
+
+5.SLI / SLO / SLA Framework
+
+• At least 5 critical business SLOs defined and tracked
+
+• Clear error budget policy
+
+﻿
+
+﻿
+
+2) Cloud Cost Optimization – FinOps (Core Requirement)
+
+What you will own:
+
+Lead systematic cost optimization across AWS and GCP without compromising performance, reliability, or user
+
+experience.
+
+﻿
+
+You will implement:
+
+1.Unified Cost Visibility System
+
+• Combined AWS + GCP cost dashboards
+
+• Cost breakdown by:Team/Product/Service/Environment (Dev/Test/Stage/Prod)
+
+﻿
+
+2.Actionable Cost Optimization Plan
+
+• Compute (EKS/GKE, EC2/Compute Engine, Serverless)
+
+• Storage (S3/GCS tiering, lifecycle policies)
+
+• Databases (RDS/Cloud SQL sizing, connection pooling, caching)
+
+• Network costs (egress, cross-region traffic)
+
+﻿
+
+3.Cost Shift-Left Mechanisms
+
+• Cost checks integrated into CI/CD
+
+• Mandatory resource ownership and budget limits
+
+• Quarterly cost reviews
+
+﻿
+
+﻿
+
+3) Production Reliability & Incident Governance
+
+What you will own:
+
+Move from reactive “firefighting” to systematic reliability engineering.
+
+﻿
+
+Required Deliverables:
+
+1.Incident Management Framework
+
+• Standard P0/P1 incident response process
+
+• RCA template and follow-up tracking mechanism
+
+﻿
+
+2.Reliability Governance Framework
+
+• Error budget policy
+
+• Standardized canary/gradual rollout process
+
+• Automated rollback mechanisms
+
+﻿
+
+3.Risk Register
+
+• Identified systemic risks and technical debt
+
+• Prioritized remediation roadmap
+
+﻿
+
+﻿
+
+4) Kubernetes & Multi-Cloud Platform Optimization
+
+What you will deliver:
+
+• Optimize EKS/GKE cluster architecture
+
+• Improve stability (reduce OOMs, node instability, network issues)
+
+• Improve resource utilization
+
+﻿
+
+﻿
+
+Qualifications and skills required for the role
+
+Experience
+
+• 5+ years of DevOps / SRE / Cloud Platform experience
+
+• At least 3 years in a Staff/Principal or Tech Lead role
+
+• Experience operating large-scale distributed systems in production
+
+﻿
+
+Cloud Expertise
+
+• Deep expertise in both AWS and GCP
+
+• Ability to design cross-cloud architectures
+
+• Strong experience with Terraform / Pulumi / CDK
+
+﻿
+
+Observability Expertise
+
+• Proven experience designing and implementing observability from scratch
+
+• Deep hands-on experience with Prometheus/Grafana/Loki/Elastic/Kibana
+
+﻿
+
+Kubernetes
+
+• Deep understanding of Kubernetes internals (Scheduler, Controllers, etcd, CNI, CRI)
+
+• Experience managing large-scale production clusters
+
+﻿
+
+Programming
+
+• Proficiency in Java or Python/Go
+
+﻿
+
+Strong Plus
+
+• Google SRE background or deep SRE practice
+
+• Experience with Chaos Engineering
+
+• Proven FinOps success cases
+
+• Knowledge of eBPF and performance profiling
+
+• Open-source contributions
+
+• Experience designing multi-cloud disaster recovery (Active-Active or Active-Passive)
+
+• Fluency or professional working proficiency in Chinese (Mandarin) is a strong plus, facilitating
+
+collaboration with development teams in China.
+
+﻿
+
+Personal attributes
+
+﻿
+
+• Analytical Mindset: A methodical approach to troubleshooting "needle-in-a-haystack" problems and a
+
+proven track record in Root Cause Analysis.
+
+• Communication: Exceptional verbal and written English. The ability to explain technical failures to
+
+customers and management is critical.
+
+• Language Plus: Proficiency in Mandarin is a significant advantage for collaborating with global
+
+development teams.
+
+﻿
+
+﻿
+
+The assignment includes travel and on-call (an average of 4 weekday-evenings/nights and 1 weekend per month.)
+
+﻿
+
+﻿
+
+Please note! We offer continuously. That means that we sometimes remove the assignments before deadline. If you are interested we recommend that you apply immediately.
+
+PayExpress:
+
+We now offer a fast and smooth payment solution, so you don't have to wait through long payment periods. With us, you will receive your payment within 3-5 days after your timesheet has been approved. This benefit is included as standard in almost all our contracts with no extra work on your part. Read more on below link.https://knowledge.eworkgroup.com/payexpress-get-paid-within-days-not-months
+
+﻿
+
+Nödvändiga färdigheter
+SRE
+Kuberentes
+Devops
+Grafana
+Go
+Cloud platforms
+CDK
+AWS
+Terraform
+Python
+GCP
+Java
+Meriterande färdigheter
+FinOps
+Google SRE
+Choas Engineering
+Språk
+Kinesiska
+(Expert)
+Engelska
+(Expert)
+Få betalt snabbt och enkelt!
+Oavsett kundens betalningsvillkor
+Läs mer
+Ytterligare detaljer
+Kund
+Ework Group AB
+Publicerat datum
+30 apr 2026
+Antal jobbtitlar
+1
+Timmar per vecka
+40
+Rate type
+Hourly
+Kontakt Ework Group AB
+FM
+Filip Malmgren
+filip.malmgren@eworkgroup.com
++46 763019495
+For the duration of this assignment Ework Services (0,9 %) will be deducted from the total amount invoiced.
+Ework Group Sweden
+Ework Group is a market-leading and independent competence provider operating in Sweden, Denmark, Norway, Finland and Poland. We are bridging the gap between competence and assignments. Through a vast portfolio of service and product solutions, we make competence accessible to companies, as well as assignments accessible to professionals, in order to contribute to a more dynamic, well-functioning and future proof competence market. Ework Group was founded in Sweden in 2000 and is listed on Nasdaq Stockholm. We have framework agreements with over 170 leading organizations in both the private and public sector, and over 11,000 consultants on assignment. Consultant suppliers of all sizes use Ework as a vital source of assignment on a daily basis to boost their business. From the freelancer searching for the next assignment to advance the career, to the largest consultant firms looking to complement their own customer portfolio with a steady stream of assignments for their employees. As an independent competence provider we nurture the relationship with our clients and become experts in their business, culture and competence needs. We manage the whole recruitment process and source the consultants for our clients from the open market by posting the assignments publicly on Verama. Unbiased, we match the most suitable candidates based on competence, experience and personality fit, in relation to fair market rates. Ework make it easy for you find, sign, work and get paid on a contract. You will get support from our highly dedicated employees, all the way from the recruitment process, during the assignment and the transition into the next project. With efficient and digital processes and add-on services such as pre-payment, you will not find a more convenient way of working B2B.
+Visa profil
+Dela
+Spara uppdrag
+Plats
+Terms of use© 1987–2026 HERE
+Du kanske också gillar
+DevOps Engineer - AWS
+SKF Sverige AB
+Gothenburg (SE)
+DevOps Engineer för analysapplikationer
+Svenska kraftnät
+Sundbyberg (SE)
+Senior Software Engineer (Python, Java, IaC, AWS)
+WirelessCar Sweden AB
+Gothenburg (SE)
+Senast visade
+Senior DevOps / SRE Engineer
+Gothenburg (SE)
+Total Reward Expert
+SKF Sverige AB
+Gothenburg (SE)
+Teknikstöd och applikationskonsulter Unit4
+Gothenburg (SE)
+Function Developer - EATS & Combustion
+Aurobay Sweden AB
+Gothenburg (SE)
+AI Act compliance professional - Automotive
+Gothenburg (SE)
+Hitta uppdrag
+Köpare av konsulttjänster
+Konsultbolag
+Om oss
+Blogg
+Kontakta oss / Support
+Användaråtkomstavtal
+Integritetspolicy
+Cookiepolicy
+©️ 2026 Ework Verama. Alla rättigheter förbehållna av Ework Group AB.
+På Ework Groups digitala plattform Verama, kopplar vi samman konsulter med kunder som söker efter talanger. Få intressanta konsultuppdrag, samarbeta mer effektivt och ta del av smarta lösningar som ger resultat.

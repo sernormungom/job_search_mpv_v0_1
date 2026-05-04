@@ -1,0 +1,137 @@
+job_standardized:
+  job_id: job_1224248010
+  source:
+    site: manual_input
+    url: https://app.verama.com/app/job-requests/79372
+    scraped_at: '2026-05-04T13:16:22.508280+00:00'
+  language:
+    original: Swedish
+    standardized_output: English
+  identity:
+    original_title: Uppdragsannonser
+    normalized_title: Software Engineer
+    company: null
+    location:
+      city: Gothenburg
+      country: Sweden
+      work_mode: hybrid
+    employment_type: unspecified
+  summary:
+    short_summary: 'Hem
+
+      Uppdragsannonser
+
+      Visa
+
+      Ework+
+
+      Tidsrapporter
+
+      Help center
+
+      Tillbaka till uppdrag
+
+      Du kan inte ansöka själv. Be din Manager att ansöka. Senior ML/AI Engineer - Aurobay
+
+      JR-51347
+
+      Publicerad den 04 maj 2026 av
+
+      Aurobay Sweden AB
+
+      Roll
+
+      AI developer
+
+      Senioritetsnivå
+
+      Senior
+
+      Plats
+
+      Göteborg (SE)
+
+      Distansarbete
+
+      25%
+
+      Uppdragsperiod
+
+      11 maj 2026
+
+      31 maj 2027
+
+      Ansökningstiden löper ut
+
+      10 maj 2026 23:59 (6 dagar kvar)
+
+      Uppdragsbeskrivning
+
+
+      Our client is enhancing their data platform (Databricks) with AI capabilities and are looking for a senior
+      ML Engineer.'
+  job_analysis:
+    role_archetype: Software Engineer
+    seniority: senior
+    primary_technical_focus:
+    - verification and validation
+    - AI-enabled engineering
+    secondary_technical_focus:
+    - CI/CD
+    - computer vision
+    leadership_expectations:
+    - technical ownership
+    - cross-functional collaboration
+    - mentoring
+    - stakeholder coordination
+    de_emphasized_or_not_required: []
+  explicit_terms:
+    languages:
+    - Python
+    tools: []
+    methods:
+    - CI/CD
+    standards: []
+    verification:
+    - testing
+    domains:
+    - computer vision
+  normalized_requirements:
+    must_have:
+    - "Skill requirements\uFEFF"
+    - At least 5 years of experience building and maintaining production models and AI solutions
+    - Able to contribute to all parts of an AI solution
+    - Azure AI stack such as Azure AI services, Microsoft Foundry etc
+    - Strong Python skills
+    - Proficient in ML frameworks such as Tensorflow, PyTorch, MLlib and Scikit-Learn
+    - Hands on experience in designing and operating functions in Azure and Databricks
+    - Experienced with at least one MLOps tool (ideally MLFlow)
+    nice_to_have:
+    - Experience with RAG systems
+    - Agentic systems and RPA
+    - PySpark/Apache Spark
+    - Event driven systems or streaming data
+    - Experience mentoring junior ML and Data engineers
+    - We offer continuously. That means that we sometimes remove the assignments before deadline. If you are interested
+      we recommend that you apply immediately.
+  blockers:
+    hard: []
+    soft: []
+  raw_text_excerpt: "Hem\nUppdragsannonser\nVisa\nEwork+\nTidsrapporter\nHelp center\nTillbaka till uppdrag\nDu\
+    \ kan inte ansöka själv. Be din Manager att ansöka.\nSenior ML/AI Engineer - Aurobay\nJR-51347\nPublicerad den\
+    \ 04 maj 2026 av\nAurobay Sweden AB\nRoll\nAI developer\nSenioritetsnivå\nSenior\nPlats\nGöteborg (SE)\nDistansarbete\n\
+    25%\nUppdragsperiod\n11 maj 2026\n31 maj 2027\nAnsökningstiden löper ut\n10 maj 2026 23:59 (6 dagar kvar)\n\
+    Uppdragsbeskrivning\n\nOur client is enhancing their data platform (Databricks) with AI capabilities and are\
+    \ looking for a senior ML Engineer. The person they are seeking has experience from the whole ML chain including\
+    \ data → feature → model → deployment → monitoring.\n\nThe person does also have experience from cost consciousness\
+    \ – Dev, Deploy and Run vs. business value.\n\n\uFEFF\n\nSkill requirements\uFEFF\n\nAt least 5 years of experience\
+    \ building and maintaining production models and AI solutions\nAble to contribute to all parts of an AI solution\n\
+    Azure AI stack such as Azure AI services, Microsoft Foundry etc\nStrong Python skills\nProficient in ML frameworks\
+    \ such as Tensorflow, PyTorch, MLlib and Scikit-Learn \nHands on experience in designing and operating functions\
+    \ in Azure and Databricks\nExperienced with at least one MLOps tool (ideally MLFlow)\nStrong experience in one\
+    \ of NLP, computer vision, timeseries, anomaly detection with some experience in the others\nExperience with\
+    \ software engineering practices (version control, CI/CD, testing, etc.)\n\n\uFEFF\n\nNice to have:\n\nExperience\
+    \ with RAG systems\nAgentic systems and RPA\nPySpark/Apache Spark\nEvent driven systems or streaming data\n\
+    Experience mentoring junior ML and Data engineers\n\n\uFEFF\n\nWe offer continuously. That means that we sometimes\
+    \ remove the assignments before deadline. If you are interested we recommend that you apply immediately.\n\n\
+    \uFEFF\n\nPayExpress:\n"

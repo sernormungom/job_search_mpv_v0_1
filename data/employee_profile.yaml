@@ -1,0 +1,69 @@
+{
+  "employee": {
+    "employee_id": "norberto_munoz",
+    "display_name": "Norberto Munoz",
+    "location": {
+      "city": "Gothenburg",
+      "country": "Sweden"
+    },
+    "years_experience": "20+",
+    "preferred_languages": [
+      "English",
+      "Spanish"
+    ]
+  },
+  "professional_identity_facts": {
+    "seniority": "senior",
+    "stable_domains": [
+      "embedded software",
+      "control systems",
+      "automation",
+      "safety-critical and high-reliability systems",
+      "telecom systems",
+      "large-scale software platforms",
+      "AI-assisted engineering enablement"
+    ],
+    "leadership_modes": [
+      "hands-on technical delivery",
+      "technical leadership",
+      "cross-team coordination",
+      "mentoring and coaching",
+      "innovation leadership",
+      "light people management"
+    ]
+  },
+  "writing_constraints": {
+    "tone": [
+      "senior",
+      "concrete",
+      "technically grounded",
+      "credible",
+      "not exaggerated"
+    ],
+    "avoid_phrases": [
+      "results-driven professional",
+      "passionate about technology",
+      "fast-paced environment",
+      "cutting-edge solutions",
+      "leveraging synergies",
+      "thought leader",
+      "AI expert",
+      "digital transformation"
+    ],
+    "claim_policy": [
+      "every claim must be supported by selected experience evidence",
+      "do not invent clients, titles, dates, tools, certifications, or outcomes",
+      "prefer concrete engineering scope over generic value statements",
+      "generate the professional summary dynamically per job from selected evidence"
+    ]
+  },
+  "summary_policy": {
+    "maintained_manually": false,
+    "source": "generated_from_selected_evidence",
+    "avoid_over_anchoring": [
+      "safety-critical embedded software when the job is outside that field",
+      "autonomous systems when the job is outside autonomous or automotive work",
+      "people management when the role is primarily technical"
+    ]
+  }
+}

@@ -1,0 +1,121 @@
+job_standardized:
+  job_id: job_d35f7a05f7
+  source:
+    site: manual_input
+    url: https://app.verama.com/app/job-requests/79237
+    scraped_at: '2026-05-04T13:16:23.544023+00:00'
+  language:
+    original: Swedish
+    standardized_output: English
+  identity:
+    original_title: Uppdragsannonser
+    normalized_title: Systems Engineer
+    company: null
+    location:
+      city: Gothenburg
+      country: Sweden
+      work_mode: remote
+    employment_type: unspecified
+  summary:
+    short_summary: 'Hem
+
+      Uppdragsannonser
+
+      Visa
+
+      Ework+
+
+      Tidsrapporter
+
+      Help center
+
+      Tillbaka till uppdrag
+
+      Du kan inte ansöka själv. Be din Manager att ansöka. AP/AR Manager
+
+      JR-51494
+
+      Publicerad den 28 apr 2026 av
+
+      Ework Group AB
+
+      Roll
+
+      Finance Manager
+
+      Senioritetsnivå
+
+      Senior
+
+      Plats
+
+      Göteborg (SE)
+
+      Distansarbete
+
+      0%
+
+      Uppdragsperiod
+
+      01 jun 2026
+
+      18 dec 2026
+
+      Ansökningstiden löper ut
+
+      08 maj 2026 23:59 (4 dagar kvar)
+
+      Uppdragsbeskrivning
+
+
+      For our client we are looking for an AP/AR Manager.'
+  job_analysis:
+    role_archetype: Systems Engineer
+    seniority: senior
+    primary_technical_focus:
+    - Systems Engineer
+    secondary_technical_focus: []
+    leadership_expectations:
+    - technical ownership
+    - cross-functional collaboration
+    - mentoring
+    - stakeholder coordination
+    de_emphasized_or_not_required: []
+  explicit_terms:
+    languages: []
+    tools: []
+    methods: []
+    standards: []
+    verification: []
+    domains: []
+  normalized_requirements:
+    must_have:
+    - Good understanding of AR and AP processes and ability to translate them into efficient flows in SAP
+    - Master's degree in accounting
+    - Strong knowledge of accounting principles, local GAAP, and IFRS
+    - Deep knowledge of OtC- and PtP-processes
+    - Experience of working with Shared Service Centers
+    - Experience of change management
+    - Ability to identify process improvements and ensure regulatory compliance
+    - Software and IT
+    nice_to_have: []
+  blockers:
+    hard: []
+    soft: []
+  raw_text_excerpt: "Hem\nUppdragsannonser\nVisa\nEwork+\nTidsrapporter\nHelp center\nTillbaka till uppdrag\nDu\
+    \ kan inte ansöka själv. Be din Manager att ansöka.\nAP/AR Manager\nJR-51494\nPublicerad den 28 apr 2026 av\n\
+    Ework Group AB\nRoll\nFinance Manager\nSenioritetsnivå\nSenior\nPlats\nGöteborg (SE)\nDistansarbete\n0%\nUppdragsperiod\n\
+    01 jun 2026\n18 dec 2026\nAnsökningstiden löper ut\n08 maj 2026 23:59 (4 dagar kvar)\nUppdragsbeskrivning\n\n\
+    For our client we are looking for an AP/AR Manager.\n\nThis role acts as the responsible manager for AR service\
+    \ owners , AP service owners, AR lead, and SAP Change manager, as well as responsible for the partner (Shared\
+    \ Service Center) concerning SLAs, performance and governance.\n\nDescription:\nThe AP/AR Manager will mainly\
+    \ support the team and give them the coaching needed as well as guidance concerning the cooperation with the\
+    \ Shared Service Center. \n\nThe AP/AR Manager is also the spider in the net concerning improvement projects\
+    \ related to the SSC as well as operational issues that may occur.\nThe role includes giving a hand operationally\
+    \ if needed, as well as with guidance concerning efficient processes, and accounting principle guiding if needed.\n\
+    \n- Ensure a positive and collaborative team environment\n- Ensure that Accounts Payable (AP) and Accounts Receivable\
+    \ (AR) processes are executed in a timely manner\n- Ensure seamless AP/AR workflows between company entities\
+    \ and the Shared Services Center (SSC)\n\nRequirements\n- Good understanding of AR and AP processes and ability\
+    \ to translate them into efficient flows in SAP\n- Master's degree in accounting\n- Strong knowledge of accounting\
+    \ principles, local GAAP, and IFRS\n- Deep knowledge of OtC- and PtP-processes\n- Experience of working with\
+    \ Shared Service Centers\n- Experience of change management\n- Ability to identify process improveme"

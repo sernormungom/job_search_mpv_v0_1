@@ -1,0 +1,729 @@
+{
+  "experience_database": {
+    "employee_id": "norberto_munoz",
+    "version": "v0.1",
+    "design_notes": [
+      "Role groups represent real employment or assignment periods.",
+      "Blocks represent thematic evidence within each role group.",
+      "Evidence items are the atomic claims that matching and CV generation may use."
+    ],
+    "role_groups": [
+      {
+        "role_group_id": "VOLVO_2024_2026",
+        "company": "Mpya Sci & Tech / Volvo Group",
+        "display_role_title": "Senior Software Function Developer",
+        "time_range": "Oct 2024 - Apr 2026",
+        "recency_rank": 1,
+        "role_group_type": "recent_core",
+        "include_as_single_role_header": true,
+        "blocks": [
+          {
+            "block_id": "EB_VOLVO_EMBEDDED_DELIVERY",
+            "role_title": "Senior Software Function Developer",
+            "block_type": "technical_delivery",
+            "narrative_weight": "core",
+            "seniority": "senior",
+            "domains": [
+              "embedded systems",
+              "autonomous driving",
+              "safety-critical software",
+              "real-time systems"
+            ],
+            "industries": [
+              "automotive",
+              "heavy vehicles"
+            ],
+            "languages": [
+              "C",
+              "C#"
+            ],
+            "tools": [
+              "VS Code",
+              "Git",
+              "Bitbucket",
+              "Cygwin",
+              "AUTOSAR",
+              "AUTOSAR (DaVinci - Vector toolsuite)",
+              "Vector DaVinci Developer",
+              "SystemWeaver"
+            ],
+            "processes_standards": [
+              "V-model",
+              "ISO 26262",
+              "Agile",
+              "Scrum",
+              "SAFe",
+              "PI Planning",
+              "Jira"
+            ],
+            "verification_validation": [
+              "Unit Testing",
+              "SIL",
+              "CAN-based signal validation",
+              "fault tracing",
+              "root cause analysis",
+              "debugging",
+              "test automation",
+              "CI/CD integration"
+            ],
+            "collaboration_model": {
+              "development_style": [
+                "cross-functional",
+                "architecture-driven",
+                "safety-process governed",
+                "agile delivery",
+                "PI planning participant"
+              ],
+              "ai_assistance": {
+                "tools": [
+                  "GitHub Copilot",
+                  "VolvoGPT",
+                  "Microsoft Copilot"
+                ],
+                "usage_level": "orchestrated",
+                "intent": [
+                  "accelerate implementation",
+                  "support reasoning and exploration",
+                  "maintain compliance awareness"
+                ]
+              }
+            },
+            "evidence_items": [
+              {
+                "evidence_id": "VOLVO_DELIVERY_001",
+                "type": "bullet",
+                "text": "Developed safety-critical, fail-operational embedded software for autonomous enabled trucks under strict real-time and reliability constraints.",
+                "tags": [
+                  "embedded",
+                  "safety-critical",
+                  "autonomous",
+                  "fail-operational",
+                  "real-time"
+                ]
+              },
+              {
+                "evidence_id": "VOLVO_DELIVERY_002",
+                "type": "bullet",
+                "text": "Implemented redundant control logic and fault-handling mechanisms to ensure robust system behavior based on health and sensor data.",
+                "tags": [
+                  "control logic",
+                  "fault handling",
+                  "redundancy",
+                  "robustness"
+                ]
+              },
+              {
+                "evidence_id": "VOLVO_DELIVERY_003",
+                "type": "bullet",
+                "text": "Worked according to ISO 26262 and V-model processes, contributing to requirements refinement, design, implementation, and UT/SIL verification.",
+                "tags": [
+                  "ISO 26262",
+                  "V-model",
+                  "requirements",
+                  "SIL",
+                  "verification"
+                ]
+              },
+              {
+                "evidence_id": "VOLVO_DELIVERY_004",
+                "type": "bullet",
+                "text": "Integrated software into shared CI/CD pipelines, developed automated tests, and supported root-cause analysis of integration and production issues.",
+                "tags": [
+                  "CI/CD",
+                  "automated tests",
+                  "root-cause analysis",
+                  "integration"
+                ]
+              },
+              {
+                "evidence_id": "VOLVO_DELIVERY_005",
+                "type": "bullet",
+                "text": "Collaborated closely with system architects and test engineers to improve reliability, safety, and time-to-market.",
+                "tags": [
+                  "collaboration",
+                  "system architecture",
+                  "testing",
+                  "reliability"
+                ]
+              }
+            ]
+          },
+          {
+            "block_id": "EB_VOLVO_AI_INNOVATION",
+            "role_title": "Innovation Leader (AI Tooling)",
+            "block_type": "innovation_leadership",
+            "narrative_weight": "core",
+            "domains": [
+              "AI-assisted development",
+              "developer productivity",
+              "AI in verification and validation",
+              "compliance-aware AI adoption"
+            ],
+            "tools": [
+              "GitHub Copilot",
+              "Microsoft Copilot",
+              "VolvoGPT"
+            ],
+            "skills": [
+              "AI-assisted development",
+              "AI Based Automation of V&V",
+              "Developer enablement"
+            ],
+            "evidence_items": [
+              {
+                "evidence_id": "VOLVO_AI_001",
+                "type": "bullet",
+                "text": "Served as Innovation Leader across three teams, driving compliance and adoption of AI-assisted development tools.",
+                "tags": [
+                  "AI tooling adoption",
+                  "developer productivity",
+                  "compliance-aware AI",
+                  "cross-team leadership"
+                ]
+              },
+              {
+                "evidence_id": "VOLVO_AI_002",
+                "type": "bullet",
+                "text": "Coordinated cross-team initiative to apply AI-enabled automation to SIL and HIL testing.",
+                "tags": [
+                  "AI in V&V",
+                  "SIL",
+                  "HIL",
+                  "automation"
+                ]
+              },
+              {
+                "evidence_id": "VOLVO_AI_003",
+                "type": "bullet",
+                "text": "Supported onboarding, training, and coaching on effective and responsible AI usage.",
+                "tags": [
+                  "onboarding",
+                  "coaching",
+                  "responsible AI usage"
+                ]
+              },
+              {
+                "evidence_id": "VOLVO_AI_004",
+                "type": "bullet",
+                "text": "Fostered an innovation culture and supported patent development in collaboration with legal teams.",
+                "tags": [
+                  "innovation culture",
+                  "patent support",
+                  "legal collaboration"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "role_group_id": "ERICSSON_2021_2024",
+        "company": "Ericsson",
+        "display_role_title": "Software Engineer",
+        "time_range": "Oct 2021 - Aug 2024",
+        "recency_rank": 2,
+        "role_group_type": "recent_core",
+        "include_as_single_role_header": true,
+        "blocks": [
+          {
+            "block_id": "EB_ERICSSON_AUTOMATION",
+            "role_title": "Software Engineer",
+            "block_type": "technical_delivery",
+            "narrative_weight": "core",
+            "domains": [
+              "radio base systems",
+              "software solution development",
+              "automated setup",
+              "telecom platform",
+              "large-scale distributed systems"
+            ],
+            "languages": [
+              "C++",
+              "Bash"
+            ],
+            "tools": [
+              "Git",
+              "Gerrit",
+              "Eclipse",
+              "VS Code",
+              "Jenkins",
+              "Jira"
+            ],
+            "processes_standards": [
+              "Agile",
+              "DevOps"
+            ],
+            "verification_validation": [
+              "unit testing with Google Test",
+              "mocking frameworks with Google Mock",
+              "automated unit verification",
+              "system smoke testing",
+              "service-level validation",
+              "remote system verification"
+            ],
+            "evidence_items": [
+              {
+                "evidence_id": "ERICSSON_AUTOMATION_001",
+                "type": "responsibility",
+                "text": "Developed and integrated software enabling automated setup and configuration of complex radio base station systems.",
+                "tags": [
+                  "telecom systems",
+                  "automation",
+                  "system integration"
+                ]
+              },
+              {
+                "evidence_id": "ERICSSON_AUTOMATION_002",
+                "type": "responsibility",
+                "text": "Collaborated in Agile teams using C++, VS Code, Eclipse, Gerrit, Jira, and Jenkins.",
+                "tags": [
+                  "C++",
+                  "Agile",
+                  "Jira",
+                  "Jenkins",
+                  "Gerrit"
+                ]
+              },
+              {
+                "evidence_id": "ERICSSON_AUTOMATION_003",
+                "type": "responsibility",
+                "text": "Executed end-to-end development including design, implementation, testing, and system integration.",
+                "tags": [
+                  "end-to-end development",
+                  "testing",
+                  "system integration"
+                ]
+              },
+              {
+                "evidence_id": "ERICSSON_AUTOMATION_004",
+                "type": "responsibility",
+                "text": "Performed fault tracing and system-level debugging of distributed system failures.",
+                "tags": [
+                  "fault tracing",
+                  "system debugging",
+                  "distributed systems"
+                ]
+              },
+              {
+                "evidence_id": "ERICSSON_AUTOMATION_005",
+                "type": "responsibility",
+                "text": "Performed automated unit testing and remote system smoke testing to verify service deployment, enablement, and operational readiness across distributed nodes.",
+                "tags": [
+                  "Google Test",
+                  "Google Mock",
+                  "unit testing",
+                  "smoke testing",
+                  "remote verification"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "role_group_id": "GE_2005_2020",
+        "company": "General Electric",
+        "display_role_title": "Technical Software Lead / Software Team Manager / Project Manager / Embedded Control Software Engineer",
+        "time_range": "Sep 2005 - Dec 2020",
+        "recency_rank": 3,
+        "role_group_type": "foundational",
+        "include_as_single_role_header": true,
+        "foundational_for": [
+          "embedded control systems",
+          "safety-critical and regulated software",
+          "industrial control software",
+          "technical leadership",
+          "V&V",
+          "project leadership"
+        ],
+        "blocks": [
+          {
+            "block_id": "EB_GE_TECH_LEAD",
+            "role_title": "Technical Software Lead",
+            "time_range": "Jan 2014 - Dec 2020",
+            "block_type": "hybrid_technical_leadership",
+            "narrative_weight": "core",
+            "domains": [
+              "embedded control software",
+              "agency-certified environments",
+              "industrial and marine engines",
+              "system architecture"
+            ],
+            "languages_or_modeling": [
+              "Simulink",
+              "Beacon7",
+              "ToolBox",
+              "V&V(SIL/HIL/PIL/Field)"
+            ],
+            "tools": [
+              "SW Architect",
+              "Matlab",
+              "Neural Networks",
+              "model-based programming"
+            ],
+            "processes_standards": [
+              "Six Sigma DMAIC",
+              "Agile",
+              "DevOps",
+              "certified development processes",
+              "V-model execution",
+              "DNV certification-driven verification"
+            ],
+            "verification_validation": [
+              "Model-in-the-Loop using MATLAB Simulink",
+              "control logic and sequence validation",
+              "HMI integration and signal flow verification",
+              "interface and database signal verification",
+              "ECU-level integration testing",
+              "Hardware-in-the-Loop verification",
+              "end-to-end system validation on target engine hardware",
+              "certification-driven verification and acceptance testing",
+              "definition of test sequences and acceptance criteria"
+            ],
+            "evidence_items": [
+              {
+                "evidence_id": "GE_TECH_LEAD_001",
+                "type": "bullet",
+                "text": "Led technical development of embedded control software projects in agency-certified and regulated environments.",
+                "tags": [
+                  "technical leadership",
+                  "embedded control",
+                  "regulated environments"
+                ]
+              },
+              {
+                "evidence_id": "GE_TECH_LEAD_002",
+                "type": "bullet",
+                "text": "Designed and delivered tools to migrate control software applications from UX-Beacon7 to Windows-Simulink platforms.",
+                "tags": [
+                  "migration tools",
+                  "Simulink",
+                  "control software"
+                ]
+              },
+              {
+                "evidence_id": "GE_TECH_LEAD_003",
+                "type": "bullet",
+                "text": "Developed control logic for industrial and marine engines, including systems to purge coke formation and auto-tune CO-NOX emissions.",
+                "tags": [
+                  "control logic",
+                  "industrial engines",
+                  "marine engines",
+                  "emissions control"
+                ]
+              },
+              {
+                "evidence_id": "GE_TECH_LEAD_004",
+                "type": "bullet",
+                "text": "Guided architecture decisions, mentored engineers, and ensured delivery of robust, high-quality embedded solutions.",
+                "tags": [
+                  "architecture",
+                  "mentoring",
+                  "embedded solutions"
+                ]
+              },
+              {
+                "evidence_id": "GE_TECH_LEAD_005",
+                "type": "bullet",
+                "text": "Worked according to certified development processes, including formal requirements, V-model execution, and approved validation workflows.",
+                "tags": [
+                  "certified processes",
+                  "requirements",
+                  "V-model",
+                  "validation workflows"
+                ]
+              }
+            ]
+          },
+          {
+            "block_id": "EB_GE_TEAM_MANAGER",
+            "role_title": "Software Team Manager",
+            "time_range": "Jan 2011 - Jan 2014",
+            "block_type": "people_leadership",
+            "narrative_weight": "supporting",
+            "skills": [
+              "People management",
+              "Performance management",
+              "Resource planning",
+              "Conflict resolution"
+            ],
+            "evidence_items": [
+              {
+                "evidence_id": "GE_MANAGER_001",
+                "type": "bullet",
+                "text": "Led a software development team, managing resources, delivery commitments, and team objectives.",
+                "tags": [
+                  "people leadership",
+                  "resource planning",
+                  "delivery commitments"
+                ]
+              },
+              {
+                "evidence_id": "GE_MANAGER_002",
+                "type": "bullet",
+                "text": "Supported career development, performance appraisals, and conflict resolution.",
+                "tags": [
+                  "career development",
+                  "performance management",
+                  "conflict resolution"
+                ]
+              },
+              {
+                "evidence_id": "GE_MANAGER_003",
+                "type": "bullet",
+                "text": "Ensured alignment with organizational targets and compliance requirements.",
+                "tags": [
+                  "organizational alignment",
+                  "compliance"
+                ]
+              }
+            ]
+          },
+          {
+            "block_id": "EB_GE_SW_PROJECT_MANAGER",
+            "role_title": "Family Leader/Project Manager",
+            "time_range": "Sep 2009 - Jan 2011",
+            "block_type": "technical_project_leadership",
+            "narrative_weight": "core",
+            "skills": [
+              "Technical Project Management",
+              "Resource & Capacity Planning",
+              "Waterfall New Product Introduction",
+              "Six-Sigma DMAIC",
+              "Stakeholder Negotiation",
+              "Excel / MS Project",
+              "Cross-functional Coordination",
+              "Control Software Delivery",
+              "Engine Systems Integration"
+            ],
+            "evidence_items": [
+              {
+                "evidence_id": "GE_PM_001",
+                "type": "bullet",
+                "text": "Managed control software delivery for the LM6000 engine family within the GE-NPI framework.",
+                "tags": [
+                  "project management",
+                  "control software delivery",
+                  "NPI governance"
+                ]
+              },
+              {
+                "evidence_id": "GE_PM_002",
+                "type": "bullet",
+                "text": "Negotiated project scope, resources, and timelines with Engine Systems to align software milestones with program goals.",
+                "tags": [
+                  "stakeholder negotiation",
+                  "resource planning",
+                  "milestones"
+                ]
+              },
+              {
+                "evidence_id": "GE_PM_003",
+                "type": "bullet",
+                "text": "Led technical design reviews and tollgate presentations for the engine family portfolio.",
+                "tags": [
+                  "technical design reviews",
+                  "tollgate presentations",
+                  "portfolio coordination"
+                ]
+              },
+              {
+                "evidence_id": "GE_PM_004",
+                "type": "bullet",
+                "text": "Balanced team capacity and resource allocation to ensure consistent delivery across multiple concurrent projects.",
+                "tags": [
+                  "capacity planning",
+                  "resource allocation",
+                  "multi-project delivery"
+                ]
+              },
+              {
+                "evidence_id": "GE_PM_005",
+                "type": "bullet",
+                "text": "Coordinated with test cells and customer sites to secure hardware and facility availability for validation.",
+                "tags": [
+                  "validation planning",
+                  "customer sites",
+                  "test cells"
+                ]
+              }
+            ]
+          },
+          {
+            "block_id": "EB_GE_EMBEDDED_ENGINEER",
+            "role_title": "Embedded Control Software Engineer",
+            "time_range": "Sep 2005 - Jan 2011",
+            "block_type": "foundational_technical_delivery",
+            "narrative_weight": "core",
+            "domains": [
+              "embedded control",
+              "industrial systems",
+              "safety-critical environments"
+            ],
+            "languages": [
+              "Fortran",
+              "Beacon7",
+              "ToolBox",
+              "Unix",
+              "Perl"
+            ],
+            "tools": [
+              "Embedded control systems",
+              "Control theory",
+              "Architecture design",
+              "Input Signal Processing"
+            ],
+            "processes_standards": [
+              "Parametric model development",
+              "Turbo engine knowledge",
+              "Engine performance analysis"
+            ],
+            "verification_validation": [
+              "Unit testing",
+              "Software simulation",
+              "Hardware-in-the-loop testing",
+              "HIL / RIG testing",
+              "Cell testing"
+            ],
+            "evidence_items": [
+              {
+                "evidence_id": "GE_EMBEDDED_001",
+                "type": "bullet",
+                "text": "Developed embedded control software for industrial and marine turbine engines in regulated environments.",
+                "tags": [
+                  "embedded control",
+                  "turbine engines",
+                  "regulated environments"
+                ]
+              },
+              {
+                "evidence_id": "GE_EMBEDDED_002",
+                "type": "bullet",
+                "text": "Covered the full development lifecycle, from requirements and design to validation and customer deployment.",
+                "tags": [
+                  "full lifecycle",
+                  "requirements",
+                  "design",
+                  "validation",
+                  "deployment"
+                ]
+              },
+              {
+                "evidence_id": "GE_EMBEDDED_003",
+                "type": "bullet",
+                "text": "Performed validation activities including unit testing, software simulation, hardware-in-the-loop testing, and system performance analysis.",
+                "tags": [
+                  "unit testing",
+                  "software simulation",
+                  "HIL",
+                  "system performance analysis"
+                ]
+              },
+              {
+                "evidence_id": "GE_EMBEDDED_004",
+                "type": "bullet",
+                "text": "Supported validation in test cells and customer sites, ensuring robustness and stability of deployed solutions.",
+                "tags": [
+                  "test cells",
+                  "customer sites",
+                  "robustness",
+                  "deployed solutions"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "role_group_id": "ITESM_2009",
+        "company": "ITESM University",
+        "display_role_title": "Control and Robotics Teacher",
+        "time_range": "Jan 2009 - Jun 2009",
+        "recency_rank": 4,
+        "role_group_type": "supporting",
+        "include_as_single_role_header": true,
+        "blocks": [
+          {
+            "block_id": "EB_ACADEMIC_TEACHING",
+            "role_title": "Control and Robotics Teacher",
+            "block_type": "teaching_mentoring",
+            "narrative_weight": "supporting",
+            "skills": [
+              "robotics",
+              "control systems",
+              "teaching"
+            ],
+            "evidence_items": [
+              {
+                "evidence_id": "ITESM_TEACHING_001",
+                "type": "bullet",
+                "text": "Taught Introduction to Robotics and Controls.",
+                "tags": [
+                  "education",
+                  "robotics",
+                  "control systems"
+                ]
+              },
+              {
+                "evidence_id": "ITESM_TEACHING_002",
+                "type": "bullet",
+                "text": "Coached students to develop robotic applications using servos, sensors, and Raspberry Pi or Arduino controllers.",
+                "tags": [
+                  "mentoring",
+                  "robotics",
+                  "sensors",
+                  "Raspberry Pi",
+                  "Arduino"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "role_group_id": "EQUINOX_2009",
+        "company": "Equinox",
+        "display_role_title": "Automation Engineer",
+        "time_range": "Jan 2009 - Jun 2009",
+        "recency_rank": 5,
+        "role_group_type": "supporting",
+        "include_as_single_role_header": true,
+        "blocks": [
+          {
+            "block_id": "EB_EQUINOX_AUTOMATION",
+            "role_title": "Automation Engineer",
+            "block_type": "technical_delivery",
+            "narrative_weight": "supporting",
+            "skills": [
+              "PLC programming",
+              "STEP7",
+              "industrial automation"
+            ],
+            "evidence_items": [
+              {
+                "evidence_id": "EQUINOX_AUTOMATION_001",
+                "type": "bullet",
+                "text": "Purchased and assembled hardware for semi-automated production equipment.",
+                "tags": [
+                  "industrial automation",
+                  "hardware assembly"
+                ]
+              },
+              {
+                "evidence_id": "EQUINOX_AUTOMATION_002",
+                "type": "bullet",
+                "text": "Programmed and tested control software to automate product filling processes.",
+                "tags": [
+                  "PLC",
+                  "STEP7",
+                  "control software",
+                  "automation"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

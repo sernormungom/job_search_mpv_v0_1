@@ -1,0 +1,125 @@
+job_standardized:
+  job_id: job_7ea0ab54c8
+  source:
+    site: manual_input
+    url: https://careers.egra.com/jobs/5713854-test-developer-for-automotive-software
+    scraped_at: '2026-05-04T12:19:12.189146+00:00'
+  language:
+    original: English/unspecified
+    standardized_output: English
+  identity:
+    original_title: Test Developer for Automotive Software
+    normalized_title: Embedded Software Engineer
+    company: null
+    location:
+      city: Gothenburg
+      country: Sweden
+      work_mode: unspecified
+    employment_type: unspecified
+  summary:
+    short_summary: 'Test Developer for Automotive Software
+
+      Egra
+
+      Location: Gothenburg
+
+
+      We are looking for an experienced Test Developer to join our team. You will work as a consultant in one of
+      our customer''s organizations. Requirements:
+
+      - Experience in software testing and frameworks Pytest and Python 3.x
+
+      - Experience working with CAN, USB, Ethernet, WiFi and Telecom
+
+      - Strong in Python and C++ for developing automation scripts and test frameworks
+
+      - CI/CD, Jenkins and Git/Gerrit
+
+      - Experience of embedded systems and ECU testing
+
+      - Familiar with ASPICE standards
+
+
+      Company context:
+
+      Egra are Tech & IT Consultants helping customers develop digital solutions.'
+  job_analysis:
+    role_archetype: Embedded Software Engineer
+    seniority: senior
+    primary_technical_focus:
+    - embedded software development
+    - verification and validation
+    secondary_technical_focus:
+    - CI/CD
+    - Git
+    - Gerrit
+    - Jenkins
+    - embedded
+    - embedded systems
+    - automotive
+    - telecom
+    - automation
+    leadership_expectations:
+    - stakeholder coordination
+    de_emphasized_or_not_required: []
+  explicit_terms:
+    languages:
+    - C++
+    - C
+    - Python
+    tools:
+    - Git
+    - Gerrit
+    - Jenkins
+    methods:
+    - CI/CD
+    standards: []
+    verification:
+    - testing
+    domains:
+    - embedded
+    - embedded systems
+    - automotive
+    - telecom
+    - automation
+  normalized_requirements:
+    must_have:
+    - Experience in software testing and frameworks Pytest and Python 3.x
+    - Experience working with CAN, USB, Ethernet, WiFi and Telecom
+    - Strong in Python and C++ for developing automation scripts and test frameworks
+    - CI/CD, Jenkins and Git/Gerrit
+    - Experience of embedded systems and ECU testing
+    - Familiar with ASPICE standards
+    nice_to_have: []
+  blockers:
+    hard: []
+    soft: []
+  raw_text_excerpt: 'Test Developer for Automotive Software
+
+    Egra
+
+    Location: Gothenburg
+
+
+    We are looking for an experienced Test Developer to join our team. You will work as a consultant in one of our
+    customer''s organizations.
+
+
+    Requirements:
+
+    - Experience in software testing and frameworks Pytest and Python 3.x
+
+    - Experience working with CAN, USB, Ethernet, WiFi and Telecom
+
+    - Strong in Python and C++ for developing automation scripts and test frameworks
+
+    - CI/CD, Jenkins and Git/Gerrit
+
+    - Experience of embedded systems and ECU testing
+
+    - Familiar with ASPICE standards
+
+
+    Company context:
+
+    Egra are Tech & IT Consultants helping customers develop digital solutions. The role is based in Gothenburg.'
