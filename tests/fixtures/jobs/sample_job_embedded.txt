@@ -1,0 +1,17 @@
+Source URL: https://example.com/jobs/senior-embedded-developer
+Title: Senior Embedded Developer
+Company: Example AB
+Location: Gothenburg
+
+Full job description
+We are looking for a Senior Embedded Developer to join a safety-critical automotive team.
+
+Requirements:
+- Strong C++ and C programming skills
+- Experience with AUTOSAR, Vector DaVinci, Git, and Jenkins
+- CI/CD, verification and validation, SIL/HIL, and test automation
+- Embedded software development for real-time systems
+
+Nice to have:
+- Python, MATLAB, and Simulink
+- Experience working with cross-functional teams in Gothenburg

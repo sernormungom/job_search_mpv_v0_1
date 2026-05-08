@@ -1,8 +1,13 @@
-outputs/
+outputs/batch/*
+outputs/selected/*
+outputs/pytest_work/*
+outputs/application_tracker.csv
+outputs/application_tracker.html
 browser_profiles/*
 secrets/*
 sources/copied_jobs/*
 sources/collected_jobs/*
+job_search_mvp.egg-info/
 *.log
 __pycache__/
 .pytest_cache/

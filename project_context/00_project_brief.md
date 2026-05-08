@@ -82,7 +82,7 @@ Do not add new product features during this refactor unless explicitly requested
 - `outputs/selected/`: selected-job CV pipeline outputs.
 - `outputs/application_tracker.csv`: persistent tracker of review/application decisions.
 - `tests/`: pytest coverage for core behavior.
-- `prototype/`: older compatibility/example area; treat as legacy unless code/tests prove otherwise.
+- `prototype/`: removed legacy compatibility/example area; historical notes may still mention it.
 
 ## Data lifecycle categories
 

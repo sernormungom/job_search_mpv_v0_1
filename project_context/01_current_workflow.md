@@ -54,9 +54,9 @@ python -m jobsearch.pipeline.run_sources_to_review \
 
 What this orchestrates:
 
-1. `job_search_mvp.source_adapter` collects jobs from `data/job_sources.yaml`.
+1. `jobsearch.sources.source_adapter` collects jobs from `data/job_sources.yaml`.
 2. Jobs are deduplicated and written to `sources/collected_jobs/`.
-3. `job_search_mvp.run_job_batch` processes the collected folder.
+3. `jobsearch.pipeline.run_job_batch` processes the collected folder.
 4. If `--sync-tracker` is set, the review queue is merged into the persistent tracker.
 
 Expected important outputs:

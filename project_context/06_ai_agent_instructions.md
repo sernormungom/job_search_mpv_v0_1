@@ -1,4 +1,6 @@
-# Instructions for AI Coding Agents
+# Archived Instructions for AI Coding Agents
+
+Archival note: this file preserves older agent guidance and historical defaults. The active workflow guidance lives in `README.md` and the current `project_context/*.md` files.
 
 ## Read these first
 
@@ -86,7 +88,7 @@ Also inspect:
 - `tests/`
 - README references
 - imports from `job_search_mvp/`
-- files under `prototype/` that may still be used as examples or fixtures
+- historical files that used to live under `prototype/` before the wrapper tree was removed
 
 ## Before changing output paths
 
@@ -167,4 +169,4 @@ If tests fail, report the failing tests and do not hide the failure.
 3. Add a short "batch of 1" example.
 4. Add or confirm a smoke test for one-job batch processing.
 5. Clarify generated output vs persistent tracker state.
-6. Classify `prototype/` and duplicate package areas before deleting anything.
+6. Classify duplicate package areas and historical references before deleting anything.

@@ -11,26 +11,26 @@ artifact paths in a stable CSV file so those decisions survive reruns.
 Typical usage
 -------------
 1) Create or update tracker from a batch review queue:
-   python prototype/application_tracker.py sync \
+   python -m jobsearch.tracking.application_tracker sync \
      --review-queue outputs/batch/review_queue.csv \
      --tracker outputs/application_tracker.csv \
      --out-review-queue outputs/batch/review_queue.tracked.csv \
      --out-html outputs/application_tracker.html
 
 2) Mark a job for CV preparation:
-   python prototype/application_tracker.py set-status \
+   python -m jobsearch.tracking.application_tracker set-status \
      --tracker outputs/application_tracker.csv \
      --job-id job_ef3e435134 \
      --status prepare_cv \
      --notes "Strong verification and HIL/SIL fit"
 
 3) After running run_selected_cv_pipeline.py, attach generated artifact paths:
-   python prototype/application_tracker.py ingest-cv-report \
+   python -m jobsearch.tracking.application_tracker ingest-cv-report \
      --tracker outputs/application_tracker.csv \
      --cv-report outputs/selected/selected_cv_pipeline_report.csv
 
 4) Export a human-friendly HTML tracker:
-   python prototype/application_tracker.py export-html \
+   python -m jobsearch.tracking.application_tracker export-html \
      --tracker outputs/application_tracker.csv \
      --out-html outputs/application_tracker.html
 """

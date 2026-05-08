@@ -1,6 +1,6 @@
-"""Compatibility package matching the planned jobsearch module layout.
+"""Public wrapper package for the canonical jobsearch command surface.
 
-The implementation currently lives in job_search_mvp. These wrappers keep the
-handoff command shape working while preserving the tested prototype modules.
+This repo follows Option A from the refactor plan:
+- `job_search_mvp/` holds the implementation
+- `jobsearch/` is the public package and console-script surface
 """
-

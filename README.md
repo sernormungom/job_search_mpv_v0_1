@@ -26,7 +26,6 @@ outputs/batch/         Generated batch outputs (standardized/match/review queue)
 outputs/selected/      Generated selected-job CV artifacts
 outputs/application_tracker.csv  Persistent review/application history
 tests/                 Pytest coverage
-prototype/             Legacy compatibility/example area
 browser_profiles/      Local browser session state (do not commit)
 secrets/               Local secret/session files (do not commit)
 ```
@@ -208,19 +207,26 @@ Preferred command shape is `python -m jobsearch...`.
 Console scripts from `pyproject.toml` are also available:
 
 ```text
-job-search-match
 job-search-batch
 job-search-sources
 job-search-tracker
 job-search-selected-cv
 job-search-verama
 job-search-dashboard
-job-search-standardizer
 ```
 
 ## Legacy/developer commands (secondary)
 
-Single-job matcher/strategy/draft renderer commands still exist and may be useful for debugging/tests, but they are not the primary user workflow. Prefer the batch pipeline even for one job.
+The implementation package `job_search_mvp/` still contains lower-level modules and compatibility wrappers. They are useful for debugging and tests, but they are not the primary user workflow.
+
+Prefer the batch pipeline even for one job. If you do need a lower-level module for debugging, keep it as a local developer-only choice rather than the documented default.
+
+Typical debug-only examples:
+
+```bash
+job-search-match --job path/to/job.txt --data-dir data --out-dir outputs/debug
+job-search-standardizer --help
+```
 
 ## Important limitations
 

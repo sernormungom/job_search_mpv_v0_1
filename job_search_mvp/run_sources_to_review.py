@@ -41,7 +41,7 @@ def main() -> int:
     project_root = resolve_project_root(args.data_dir)
 
     run([
-        sys.executable, "-m", "job_search_mvp.source_adapter",
+        sys.executable, "-m", "jobsearch.sources.source_adapter",
         "--sources", args.sources,
         "--package-root", str(project_root),
         "--out-dir", args.collected_dir,
@@ -49,7 +49,7 @@ def main() -> int:
     ], cwd=project_root)
 
     run([
-        sys.executable, "-m", "job_search_mvp.run_job_batch",
+        sys.executable, "-m", "jobsearch.pipeline.run_job_batch",
         "--jobs-dir", args.collected_dir,
         "--data-dir", str(project_root),
         "--out-dir", args.batch_out,
@@ -60,7 +60,7 @@ def main() -> int:
         tracked_queue = Path(args.batch_out) / "review_queue.tracked.csv"
         tracker_html = Path(args.tracker).with_suffix(".html")
         run([
-            sys.executable, "-m", "job_search_mvp.application_tracker", "sync",
+            sys.executable, "-m", "jobsearch.tracking.application_tracker", "sync",
             "--review-queue", str(review_queue),
             "--tracker", args.tracker,
             "--out-review-queue", str(tracked_queue),

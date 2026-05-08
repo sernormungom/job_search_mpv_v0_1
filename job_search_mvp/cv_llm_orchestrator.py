@@ -280,6 +280,7 @@ def run_steps_1_to_6(*, strategy: Dict[str, Any], job_std: Dict[str, Any], emplo
         "tech_competence_generation",
     ]
     for step in step_names:
+        out["steps"].setdefault(step, {})
         cfg = cv_llm_routing.routed_step_config(policy, step=step, retry_count=0)
         if api_key:
             last_err = ""

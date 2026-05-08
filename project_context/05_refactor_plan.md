@@ -6,6 +6,8 @@ Simplify the project so the source-to-review batch workflow is the clear default
 
 The primary cleanup is conceptual and structural: make the project easy for a human or AI agent to understand without reading historical workflows first.
 
+For the broader target architecture, phase roadmap, risk register, and GPT/thinking-power guidance, see `project_context/08_complete_refactor_plan.md`.
+
 ## Refactor principles
 
 1. Preserve working behavior before deleting code.
@@ -19,6 +21,10 @@ The primary cleanup is conceptual and structural: make the project easy for a hu
 9. Do not add new features during stabilization unless explicitly requested.
 
 ## Phase 1: Baseline and classify
+
+Status in this repo:
+
+- completed
 
 ### Tasks
 
@@ -55,6 +61,10 @@ Do not delete anything in this phase.
 
 ## Phase 2: Define output and workspace lifecycle
 
+Status in this repo:
+
+- completed
+
 ### Goal
 
 Reduce confusion around current-cycle outputs, cache files, persistent tracker state, examples, fixtures, and local/session state.
@@ -77,6 +87,10 @@ Do not implement an automated cleanup command in this phase. Workspace cleanup i
 A future maintainer can tell whether a file is source, generated output, persistent history, fixture/example, or local state before moving or deleting it.
 
 ## Phase 3: README cleanup
+
+Status in this repo:
+
+- completed
 
 ### Goal
 
@@ -101,6 +115,10 @@ collect jobs -> batch process -> dashboard review -> selected CV generation
 ```
 
 ## Phase 4: Add/confirm smoke tests
+
+Status in this repo:
+
+- completed
 
 ### Goal
 
@@ -127,6 +145,10 @@ The project has a small test that proves the old single-job workflow can be repl
 
 ## Phase 5: Clean generated/local-state files
 
+Status in this repo:
+
+- completed
+
 ### Goal
 
 Separate source code, examples, generated output, persistent tracker state, and local state.
@@ -144,6 +166,10 @@ Separate source code, examples, generated output, persistent tracker state, and 
 A new clone should not contain confusing generated state unless it is clearly marked as sample/fixture data.
 
 ## Phase 6: Resolve package duplication
+
+Status in this repo:
+
+- completed with Option A
 
 ### Goal
 
@@ -168,6 +194,11 @@ Move implementation into `jobsearch/` and leave compatibility wrappers in `job_s
 
 Do not start with this phase. First clean README, lifecycle docs, and tests. Then choose one option intentionally.
 
+### Chosen path in this repo
+
+- Option A is the active direction: keep `job_search_mvp/` as the implementation package and `jobsearch/` as the public wrapper/package surface.
+- The refactor work so far has already aligned console scripts and docs to that shape.
+
 ## Phase 7: Archive or remove `prototype/`
 
 ### Goal
@@ -187,7 +218,15 @@ Remove duplicate historical implementation from the active tree if unused.
 
 The active project no longer looks like it has two or three competing implementations.
 
+Status in this repo:
+
+- completed by deleting the `prototype/` wrapper tree and moving the shared sample job into `tests/fixtures/jobs/`.
+
 ## Phase 8: Remove/deprecate old single-job docs and commands
+
+Status in this repo:
+
+- completed
 
 ### Goal
 
@@ -223,13 +262,13 @@ This is intentionally not part of the current stabilization refactor.
 
 ## Suggested execution order
 
-1. Phase 1: Baseline and classify.
-2. Phase 2: Define output and workspace lifecycle.
-3. Phase 3: README cleanup.
-4. Phase 4: Smoke tests.
-5. Phase 5: Generated/local-state cleanup.
-6. Phase 7: Prototype cleanup.
-7. Phase 6/8: Package and command-surface cleanup.
+1. Phase 1: Baseline and classify. Done.
+2. Phase 2: Define output and workspace lifecycle. Done.
+3. Phase 3: README cleanup. Done.
+4. Phase 4: Smoke tests. Done.
+5. Phase 5: Generated/local-state cleanup. Done.
+6. Phase 7: Prototype cleanup. Done.
+7. Phase 6/8: Package and command-surface cleanup. Done.
 
 ## Safe first AI-agent prompt
 

@@ -189,7 +189,7 @@ The biggest architecture issue is not algorithmic complexity. It is duplicated/h
 
 1. User-facing docs still emphasize older individual-job flows.
 2. `job_search_mvp/` and `jobsearch/` coexist.
-3. `prototype/` duplicates much of the active implementation.
+3. `prototype/` has been removed from the active tree; historical docs may still reference it.
 4. Generated outputs, source-cache files, persistent history, and local state can appear together in the repository snapshot.
 5. Weekly usage is not yet reflected strongly enough in folder/output conventions.
 

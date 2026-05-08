@@ -163,7 +163,7 @@ def _run_selected_cv_pipeline(tracker_path: Path, tracked_review_queue: Path, ba
     cmd = [
         sys.executable,
         "-m",
-        "job_search_mvp.run_selected_cv_pipeline",
+        "jobsearch.pipeline.run_selected_cv_pipeline",
         "--review-queue",
         str(tracked_review_queue),
         "--batch-dir",
@@ -229,7 +229,7 @@ def _run_single_job_cv_pipeline(
     cmd = [
         sys.executable,
         "-m",
-        "job_search_mvp.run_selected_cv_pipeline",
+        "jobsearch.pipeline.run_selected_cv_pipeline",
         "--review-queue",
         str(single_queue),
         "--batch-dir",

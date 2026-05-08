@@ -1,5 +1,7 @@
 # Legacy / Deprecation Candidates
 
+Archival note: this file captures historical cleanup candidates and provenance. It is not an active to-do list.
+
 This file lists likely legacy or confusing parts of the project. Do not delete anything solely because it appears here. First verify imports, tests, entry points, and actual usage.
 
 ## Guiding rule
@@ -55,7 +57,7 @@ These modules may still be valid helpers used by batch/selected-CV workflows, so
 
 ### 3. `prototype/` folder
 
-The `prototype/` folder appears to duplicate many implementation files:
+The `prototype/` folder duplicated many implementation files and has now been removed from the active tree:
 
 ```text
 prototype/application_tracker.py
@@ -73,10 +75,9 @@ prototype/verama_playwright_adapter.py
 
 Recommended action:
 
-1. Check whether anything imports from `prototype/`.
-2. Check whether tests use it.
-3. If unused, mark as archived or remove it from the active project tree.
-4. If useful as historical reference, move it outside the main code path or document it explicitly as legacy.
+1. Keep historical references only in archival docs like this one.
+2. Treat any remaining mentions as provenance, not active workflow guidance.
+3. Use `tests/fixtures/` for sample inputs that need to stay alive.
 
 ### 4. Duplicated package surfaces
 
@@ -182,7 +183,7 @@ Initial best-effort classification:
 | `job_search_mvp/streamlit_dashboard.py` | current/optional | Dashboard; optional UI. |
 | `job_search_mvp/verama_playwright_adapter.py` | optional | Browser source collection. Keep isolated. |
 | `jobsearch/` wrappers | helper/current | Preferred command shape, but mostly wrappers. |
-| `prototype/` | legacy/unknown | Verify before deletion. |
+| `prototype/` | removed | Historical reference only; no longer present in the active tree. |
 | `outputs/batch/` | generated | Active-cycle artifacts, not source truth. |
 | `outputs/selected/` | generated | Selected-job artifacts, not source truth. |
 | `outputs/application_tracker.csv` | persistent user history | Preserve unless explicitly reset. |

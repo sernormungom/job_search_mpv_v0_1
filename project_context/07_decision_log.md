@@ -1,4 +1,6 @@
-# Decision Log
+# Historical Decision Log
+
+Archival note: this file records past decisions for provenance. It is not the place to look for current workflow instructions.
 
 This file records project direction decisions so future maintainers and AI agents do not have to infer intent from historical code order.
 
