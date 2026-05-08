@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: job-search-mvp
+Version: 0.1.0
+Summary: Local deterministic job-search and CV-generation prototype.
+Requires-Python: >=3.10
+Requires-Dist: PyYAML>=6.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0; extra == "dev"
+Provides-Extra: browser
+Requires-Dist: playwright>=1.44; extra == "browser"
+Provides-Extra: ui
+Requires-Dist: streamlit>=1.36; extra == "ui"

@@ -1,0 +1,6 @@
+PyYAML>=6.0
+streamlit>=1.36
+
+# Optional browser adapter for Verama/Ework-style JavaScript/login portals.
+# After installing, run: python -m playwright install chromium
+playwright>=1.44

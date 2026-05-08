@@ -367,7 +367,12 @@ def build_strategy(job_std: Dict[str, Any], match_result: Dict[str, Any], exp: D
     mandatory_terms = extract_explicit_terms(job_std, match_result)
     role_group_scores = score_role_groups(match_result, role_groups)
     selected_rgids = select_role_groups(role_group_scores, role_groups, max_groups)
-    competence = classify_competence_terms(selected_rgids, role_groups, mandatory_terms)
+    supported_terms = set()
+    for rgid in selected_rgids:
+        for term in role_group_scores.get(rgid, {}).get("matched_terms", []):
+            supported_terms.add(norm(term))
+    supported_mandatory_terms = [term for term in mandatory_terms if norm(term) in supported_terms]
+    competence = classify_competence_terms(selected_rgids, role_groups, supported_mandatory_terms)
 
     selected_role_groups: List[Dict[str, Any]] = []
     experience_plan: List[Dict[str, Any]] = []
@@ -402,10 +407,6 @@ def build_strategy(job_std: Dict[str, Any], match_result: Dict[str, Any], exp: D
             "evidence_to_use": evidence_items,
         })
 
-    supported_terms = set()
-    for rgid in selected_rgids:
-        for term in role_group_scores.get(rgid, {}).get("matched_terms", []):
-            supported_terms.add(norm(term))
     missing_mandatory = [term for term in mandatory_terms if norm(term) not in supported_terms]
 
     strategy = {

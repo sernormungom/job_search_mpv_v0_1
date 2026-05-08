@@ -92,6 +92,10 @@ def test_tracker_sync_preserves_decisions_and_ingests_cv_report():
     assert updated["user_notes"] == "Strong fit"
     assert updated["priority"] == "high"
 
+    rows = application_tracker.sync_tracker(review_queue, tracker)
+    assert rows[0]["status"] == "prepare_cv"
+    assert rows[0]["user_notes"] == "Strong fit"
+
     write_csv(
         cv_report,
         [

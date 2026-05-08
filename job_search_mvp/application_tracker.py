@@ -72,6 +72,7 @@ TRACKER_FIELDS = [
     "input_file",
     "overall_score",
     "expertise_fit",
+    "role_fit",
     "tool_fit",
     "domain_fit",
     "growth_fit",
@@ -108,6 +109,7 @@ REFRESH_FROM_REVIEW = [
     "input_file",
     "overall_score",
     "expertise_fit",
+    "role_fit",
     "tool_fit",
     "domain_fit",
     "growth_fit",
@@ -280,6 +282,7 @@ def tracker_to_review_queue(tracker_rows: List[Dict[str, str]]) -> List[Dict[str
             "recommended_status": row.get("recommended_status", ""),
             "overall_score": row.get("overall_score", ""),
             "expertise_fit": row.get("expertise_fit", ""),
+            "role_fit": row.get("role_fit", ""),
             "tool_fit": row.get("tool_fit", ""),
             "domain_fit": row.get("domain_fit", ""),
             "growth_fit": row.get("growth_fit", ""),
@@ -305,7 +308,7 @@ def tracker_to_review_queue(tracker_rows: List[Dict[str, str]]) -> List[Dict[str
 
 def write_review_queue(path: Path, tracker_rows: List[Dict[str, str]]) -> None:
     fieldnames = [
-        "review_status", "recommended_status", "overall_score", "expertise_fit", "tool_fit", "domain_fit",
+        "review_status", "recommended_status", "overall_score", "expertise_fit", "role_fit", "tool_fit", "domain_fit",
         "growth_fit", "interest_fit", "practical_fit", "risk_score", "job_id", "input_file", "title",
         "normalized_title", "company", "city", "work_mode", "source_url", "matched_terms",
         "suggested_role_groups", "hard_blockers", "soft_risks", "reason",
@@ -348,6 +351,7 @@ def write_tracker_html(path: Path, rows: List[Dict[str, str]]) -> None:
               <span class="badge {status_badge_class(status)}">{html.escape(status)}</span>
             </div>
             <div class="meta">{html.escape(row.get('normalized_title',''))} | {html.escape(row.get('city',''))} | {html.escape(row.get('work_mode',''))} | {src_html}</div>
+            <p><strong>Fit:</strong> expertise {html.escape(row.get('expertise_fit',''))} | role {html.escape(row.get('role_fit',''))} | growth {html.escape(row.get('growth_fit',''))} | risk {html.escape(row.get('risk_score',''))}</p>
             <p><strong>Matched terms:</strong> {html.escape(row.get('matched_terms',''))}</p>
             <p><strong>Suggested role groups:</strong> {html.escape(row.get('suggested_role_groups',''))}</p>
             <p><strong>Notes:</strong> {html.escape(row.get('user_notes',''))}</p>

@@ -1,6 +1,6 @@
 import uuid
 
-from job_search_mvp import source_adapter
+from job_search_mvp import source_adapter, verama_playwright_adapter
 from job_search_mvp.paths import OUTPUTS_DIR
 
 
@@ -40,3 +40,43 @@ def test_local_folder_collection_deduplicates_by_normalized_source_url():
     output_file = out_dir / f"{rows[0]['job_id']}.txt"
     assert output_file.exists()
     assert "Collected From: copied" in output_file.read_text(encoding="utf-8")
+
+
+def test_verama_playwright_source_type_is_wired_into_collection(monkeypatch):
+    work_dir = OUTPUTS_DIR / "pytest_work" / "source_adapter" / uuid.uuid4().hex
+    out_dir = work_dir / "collected"
+
+    def fake_collect(source, root):
+        assert source["type"] == "verama_playwright"
+        assert root == work_dir
+        return [
+            {
+                "source_id": source["id"],
+                "source_type": source["type"],
+                "source_url": "https://app.verama.com/app/job-requests/123",
+                "title_hint": "Embedded Consultant",
+                "company_hint": "Example Client",
+                "text": "Embedded Consultant\nC++ and CI/CD work in Gothenburg.",
+                "origin": "https://app.verama.com/app/job-requests/123",
+            }
+        ]
+
+    monkeypatch.setattr(verama_playwright_adapter, "collect_verama_jobs", fake_collect)
+    rows = source_adapter.collect_jobs(
+        {
+            "sources": [
+                {
+                    "id": "verama_gothenburg",
+                    "type": "verama_playwright",
+                    "enabled": True,
+                    "url": "https://app.verama.com/app/job-requests",
+                }
+            ]
+        },
+        work_dir,
+        out_dir,
+    )
+
+    assert rows[0]["status"] == "collected"
+    assert rows[0]["source_type"] == "verama_playwright"
+    assert (out_dir / rows[0]["output_file"]).exists()

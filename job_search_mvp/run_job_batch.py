@@ -22,31 +22,56 @@ import argparse
 import csv
 import html
 import json
+import os
 import re
+import time
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
+from urllib.parse import urlparse
 
 from . import matcher
 from .paths import resolve_data_dir
+from .standardization.llm_standardizer import BUDGET_OPENAI_MODEL, parse_job_file, standardize_job_with_mode
+
+VERAMA_DETAIL_PATH_RE = re.compile(r"^/app/job-requests/\d+/?$")
 
 
-def read_job_file(path: Path) -> Tuple[str, str | None]:
-    text = path.read_text(encoding="utf-8")
-    source_url = None
-    body_lines: List[str] = []
-    metadata_prefixes = (
-        "source url", "collected from", "collected at", "source id",
-        "source type", "original filename", "source label"
-    )
-    for line in text.splitlines():
-        m = re.match(r"^\s*Source URL\s*:\s*(https?://\S+)\s*$", line, flags=re.I)
-        if m:
-            source_url = m.group(1)
-            continue
-        if any(line.lower().strip().startswith(prefix + ":") for prefix in metadata_prefixes):
-            continue
-        body_lines.append(line)
-    return "\n".join(body_lines).strip(), source_url
+def read_job_file(path: Path) -> Tuple[str, str | None, Dict[str, str]]:
+    metadata, body = parse_job_file(path)
+    source_url = metadata.get("source_url")
+    return body, source_url, metadata
+
+
+def is_probable_listing_page(source_url: str | None, job_text: str) -> bool:
+    if not source_url:
+        return False
+    parsed = urlparse(source_url)
+    host = (parsed.netloc or "").lower()
+    if "verama.com" not in host and "eworkgroup.com" not in host:
+        return False
+    if VERAMA_DETAIL_PATH_RE.match(parsed.path or ""):
+        return False
+    low = job_text.lower()
+    return "lediga uppdrag" in low or "rekommenderade" in low or "sök uppdrag" in low
+
+
+def apply_file_metadata(job_standardized: Dict[str, Any], metadata: Dict[str, str]) -> Dict[str, Any]:
+    js = job_standardized.get("job_standardized", {})
+    identity = js.setdefault("identity", {})
+    title = (metadata.get("title") or "").strip()
+    company = (metadata.get("company_client") or metadata.get("company") or "").strip()
+    location = (metadata.get("location") or "").strip()
+    if title and identity.get("original_title") in {"Full job description", "Hem", "Uppdragsannonser", "Unspecified role"}:
+        identity["original_title"] = title
+    elif title and not identity.get("original_title"):
+        identity["original_title"] = title
+    if company and not identity.get("company"):
+        identity["company"] = company
+    if location and not (identity.get("location") or {}).get("city"):
+        loc = identity.setdefault("location", {})
+        loc["city"] = "Gothenburg" if location.lower() in {"gothenburg", "göteborg"} else location
+        loc.setdefault("country", "Sweden")
+    return job_standardized
 
 
 def get_root(data: Dict[str, Any], key: str) -> Dict[str, Any]:
@@ -82,6 +107,7 @@ def summarize_row(input_file: Path, job_standardized: Dict[str, Any], match_resu
         "recommended_status": mr.get("decision", {}).get("recommended_status", "review"),
         "overall_score": mr.get("overall_score", 0),
         "expertise_fit": score_breakdown.get("expertise_fit", 0),
+        "role_fit": score_breakdown.get("role_fit", 0),
         "tool_fit": score_breakdown.get("tool_fit", 0),
         "domain_fit": score_breakdown.get("domain_fit", 0),
         "growth_fit": score_breakdown.get("growth_fit", 0),
@@ -106,7 +132,7 @@ def summarize_row(input_file: Path, job_standardized: Dict[str, Any], match_resu
 
 def write_review_csv(path: Path, rows: List[Dict[str, Any]]) -> None:
     fieldnames = [
-        "review_status", "recommended_status", "overall_score", "expertise_fit", "tool_fit", "domain_fit",
+        "review_status", "recommended_status", "overall_score", "expertise_fit", "role_fit", "tool_fit", "domain_fit",
         "growth_fit", "interest_fit", "practical_fit", "risk_score", "job_id", "input_file", "title",
         "normalized_title", "company", "city", "work_mode", "source_url", "matched_terms",
         "suggested_role_groups", "hard_blockers", "soft_risks", "reason",
@@ -148,6 +174,7 @@ def write_review_html(path: Path, rows: List[Dict[str, Any]]) -> None:
             <div class="badges">
               <span class="badge status">{html.escape(str(row.get('recommended_status', 'review')))}</span>
               <span class="badge">expertise {html.escape(str(row.get('expertise_fit', '')))}</span>
+              <span class="badge">role {html.escape(str(row.get('role_fit', '')))}</span>
               <span class="badge">tools {html.escape(str(row.get('tool_fit', '')))}</span>
               <span class="badge">growth {html.escape(str(row.get('growth_fit', '')))}</span>
               <span class="badge">risk {html.escape(str(row.get('risk_score', '')))}</span>
@@ -222,6 +249,14 @@ def main() -> int:
     parser.add_argument("--jobs-dir", required=True, help="Folder containing copied job descriptions as .txt files")
     parser.add_argument("--data-dir", default="data", help="Path to the data directory")
     parser.add_argument("--out-dir", default="outputs/batch", help="Directory for generated outputs")
+    parser.add_argument("--standardizer", choices=["deterministic", "llm", "hybrid"], default="deterministic", help="Job standardization mode")
+    parser.add_argument("--llm-provider", default="openai", help="LLM provider for --standardizer llm/hybrid")
+    parser.add_argument(
+        "--llm-model",
+        default=os.getenv("JOBSEARCH_LLM_MODEL", BUDGET_OPENAI_MODEL),
+        help=f"LLM model name for --standardizer llm/hybrid. Only {BUDGET_OPENAI_MODEL} is allowed for cost control.",
+    )
+    parser.add_argument("--llm-timeout-sec", type=int, default=60, help="LLM timeout in seconds")
     args = parser.parse_args()
 
     jobs_dir = Path(args.jobs_dir)
@@ -240,14 +275,40 @@ def main() -> int:
 
     rows: List[Dict[str, Any]] = []
     for job_file in job_files:
-        job_text, source_url = read_job_file(job_file)
+        job_text, source_url, metadata = read_job_file(job_file)
         if not job_text:
             print(f"Skipping empty job file: {job_file}")
             continue
-        job_standardized = matcher.standardize_job(job_text, source_url=source_url)
+        if is_probable_listing_page(source_url, job_text):
+            print(f"Skipping listing page (not a job detail): {job_file.name}")
+            continue
+        llm_validation = None
+        llm_raw = None
+        if args.standardizer == "deterministic":
+            job_standardized = matcher.standardize_job(job_text, source_url=source_url)
+            job_standardized = apply_file_metadata(job_standardized, metadata)
+        else:
+            std_result = standardize_job_with_mode(
+                job_text=job_text,
+                source_url=source_url,
+                metadata=metadata,
+                mode=args.standardizer,
+                provider=args.llm_provider,
+                model=args.llm_model,
+                timeout_sec=args.llm_timeout_sec,
+            )
+            job_standardized = std_result.job_standardized
+            job_standardized = apply_file_metadata(job_standardized, metadata)
+            llm_validation = std_result.validation_report
+            llm_raw = std_result.llm_raw
+            time.sleep(10)  # Rate limit delay
         match_result = matcher.match_job(job_standardized, evidence_index, aliases, prefs)
         job_id = job_standardized["job_standardized"]["job_id"]
         matcher.write_yaml(out_dir / f"{job_id}.job_standardized.yaml", job_standardized)
+        if llm_validation is not None:
+            matcher.write_yaml(out_dir / f"{job_id}.job_standardized.validation.yaml", llm_validation)
+        if llm_raw is not None:
+            matcher.write_yaml(out_dir / f"{job_id}.job_standardized.llm_raw.yaml", llm_raw)
         matcher.write_yaml(out_dir / f"{job_id}.match_result.yaml", match_result)
         rows.append(summarize_row(job_file, job_standardized, match_result))
         print(f"Processed {job_file.name}: {job_id} score={match_result['match_result']['overall_score']} status={match_result['match_result']['decision']['recommended_status']}")

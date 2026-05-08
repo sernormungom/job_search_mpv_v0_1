@@ -11,42 +11,45 @@ sources:
     label: Copied job ads
     type: local_folder
     enabled: true
-    path: prototype/examples/job_batch
+    path: sources/copied_jobs
     file_glob: "*.txt"
 
   - id: public_job_urls
     label: Public job URLs
     type: url_list
     enabled: false
-    urls:
-      # Example:
-      # - url: https://careers.example.com/jobs/12345-senior-embedded-developer
-      #   title_hint: Senior Embedded Developer
-      #   company_hint: Example AB
-      []
+    # Example:
+    # urls:
+    #   - url: https://careers.example.com/jobs/12345-senior-embedded-developer
+    #     title_hint: Senior Embedded Developer
+    #     company_hint: Example AB
+    urls: []
 
   - id: verama_manual_copy
     label: Verama/Ework manual copy folder
     type: local_folder
     enabled: false
-    path: prototype/examples/verama_manual_copy
+    path: sources/verama_manual
     file_glob: "*.txt"
     notes: >
       Verama/Ework uses a JavaScript application and may require login/session access.
       For the MVP, copy selected job details into .txt files in this folder. A future
       browser automation adapter can read this portal more directly.
 
-  - id: verama_browser_gothenburg
+  - id: verama_gothenburg
     label: Verama/Ework browser collector - Gothenburg
-    type: browser_verama
+    type: verama_playwright
     enabled: true
-    start_url: https://app.verama.com/app/job-requests
+    url: https://app.verama.com/app/job-requests
+    out_dir: sources/collected_jobs
     location: Gothenburg
     max_jobs: 25
-    headless: false
+    headed: true
+    login_if_needed: true
     wait_for_manual_filter: true
     strict_location: true
-    user_data_dir: outputs/browser_profiles/verama
+    strict_detail_pages: true
+    user_data_dir: browser_profiles/verama
     allowed_domains:
       - verama.com
       - eworkgroup.com
@@ -60,5 +63,5 @@ sources:
 deduplication:
   strategy: source_url_first_else_content_hash
   normalize_urls: true
-  output_dir: outputs/collected_jobs
-  manifest_file: outputs/collected_jobs/job_manifest.csv
+  output_dir: sources/collected_jobs
+  manifest_file: sources/collected_jobs/job_manifest.csv

@@ -26,5 +26,6 @@ def test_strategy_generator_selects_expected_role_groups_for_sample_job():
         "ERICSSON_2021_2024",
         "GE_2005_2020",
     ]
+    assert len(root["selected_role_groups"]) <= 3
     assert "C++" in root["mandatory_cv_terms"]
     assert root["selected_role_groups"][0]["selection_score"] == 69.6

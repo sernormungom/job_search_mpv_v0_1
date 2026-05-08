@@ -102,6 +102,17 @@ def get_nested(d: Dict[str, Any], *keys: str, default: Any = None) -> Any:
     return cur
 
 
+def unsupported_mandatory_terms(strategy: Dict[str, Any]) -> Set[str]:
+    missing = get_nested(
+        strategy,
+        "cv_strategy",
+        "validation",
+        "missing_supported_mandatory_terms_in_selected_roles",
+        default=[],
+    ) or []
+    return {norm(term) for term in missing}
+
+
 def find_job_id(strategy: Dict[str, Any]) -> str:
     return get_nested(strategy, "cv_strategy", "job_id", default="job_unknown")
 
@@ -157,7 +168,12 @@ def build_summary(employee: Dict[str, Any], strategy: Dict[str, Any]) -> Tuple[s
     focus = []
     focus.extend(get_nested(strategy, "cv_strategy", "job_positioning", "primary_technical_focus", default=[]) or [])
     focus.extend(get_nested(strategy, "cv_strategy", "job_positioning", "secondary_technical_focus", default=[]) or [])
-    mandatory = get_nested(strategy, "cv_strategy", "mandatory_cv_terms", default=[]) or []
+    unsupported = unsupported_mandatory_terms(strategy)
+    mandatory = [
+        term
+        for term in get_nested(strategy, "cv_strategy", "mandatory_cv_terms", default=[]) or []
+        if norm(term) not in unsupported
+    ]
     for term in mandatory:
         if norm(term) in {"c++", "c", "iso 26262", "ci/cd", "sil", "hil", "vector davinci", "autosar"}:
             focus.append(term)
@@ -199,12 +215,19 @@ def classify_term(term: str) -> str:
 
 def build_tech_competence(strategy: Dict[str, Any]) -> Dict[str, List[str]]:
     raw = get_nested(strategy, "cv_strategy", "tech_competence_inclusion", default={}) or {}
-    mandatory = get_nested(strategy, "cv_strategy", "mandatory_cv_terms", default=[]) or []
+    unsupported = unsupported_mandatory_terms(strategy)
+    mandatory = [
+        term
+        for term in get_nested(strategy, "cv_strategy", "mandatory_cv_terms", default=[]) or []
+        if norm(term) not in unsupported
+    ]
     columns: Dict[str, List[str]] = {"Programming": [], "Knowledge": [], "Soft Skills": []}
 
     # Start with strategy suggestions, but reclassify obvious misplaced terms.
     for _col, terms in raw.items():
         for term in terms or []:
+            if norm(term) in unsupported:
+                continue
             col = classify_term(str(term))
             columns[col].append(term)
 

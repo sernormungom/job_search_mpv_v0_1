@@ -18,15 +18,22 @@ dev = [
 browser = [
   "playwright>=1.44",
 ]
+ui = [
+  "streamlit>=1.36",
+]
 
 [project.scripts]
 job-search-match = "job_search_mvp.matcher:main"
 job-search-batch = "job_search_mvp.run_job_batch:main"
 job-search-sources = "job_search_mvp.run_sources_to_review:main"
 job-search-tracker = "job_search_mvp.application_tracker:main"
+job-search-selected-cv = "job_search_mvp.run_selected_cv_pipeline:main"
+job-search-verama = "job_search_mvp.verama_playwright_adapter:main"
+job-search-dashboard = "job_search_mvp.run_dashboard:main"
+job-search-standardizer = "job_search_mvp.standardization.llm_standardizer:main"
 
-[tool.setuptools]
-packages = ["job_search_mvp"]
+[tool.setuptools.packages.find]
+include = ["job_search_mvp*", "jobsearch*"]
 
 [tool.setuptools.package-data]
 job_search_mvp = ["assets/*.png"]

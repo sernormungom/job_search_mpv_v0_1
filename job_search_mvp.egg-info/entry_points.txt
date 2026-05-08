@@ -1,0 +1,8 @@
+[console_scripts]
+job-search-batch = job_search_mvp.run_job_batch:main
+job-search-dashboard = job_search_mvp.run_dashboard:main
+job-search-match = job_search_mvp.matcher:main
+job-search-selected-cv = job_search_mvp.run_selected_cv_pipeline:main
+job-search-sources = job_search_mvp.run_sources_to_review:main
+job-search-tracker = job_search_mvp.application_tracker:main
+job-search-verama = job_search_mvp.verama_playwright_adapter:main

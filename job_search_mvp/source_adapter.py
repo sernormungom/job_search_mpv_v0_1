@@ -8,7 +8,7 @@ deduplicated folder of .txt files that can be passed to run_job_batch.py.
 Supported source types in v0.1:
   - local_folder: copy .txt files from a folder, preserving Source URL headers
   - url_list: fetch simple public HTML/text URLs without login or JavaScript
-  - browser_verama: optional Playwright adapter for Verama/Ework-style portals
+  - verama_playwright / browser_verama: optional Playwright adapter for Verama/Ework-style portals
 
 The browser_verama adapter is isolated in verama_playwright_adapter.py so normal
 source collection does not require Playwright.
@@ -243,7 +243,7 @@ def iter_browser_verama(source: Dict[str, Any], root: Path) -> Iterable[Dict[str
     except Exception as exc:
         yield {
             "source_id": source.get("id", "verama_browser"),
-            "source_type": "browser_verama",
+            "source_type": source.get("type", "verama_playwright"),
             "source_url": source.get("start_url") or source.get("url") or "",
             "title_hint": "",
             "company_hint": "",
@@ -258,7 +258,7 @@ def iter_browser_verama(source: Dict[str, Any], root: Path) -> Iterable[Dict[str
     except Exception as exc:
         yield {
             "source_id": source.get("id", "verama_browser"),
-            "source_type": "browser_verama",
+            "source_type": source.get("type", "verama_playwright"),
             "source_url": source.get("start_url") or source.get("url") or "",
             "title_hint": "",
             "company_hint": "",
@@ -282,7 +282,7 @@ def collect_jobs(config: Dict[str, Any], package_root: Path, out_dir: Path) -> L
             iterator = iter_local_folder(source, package_root)
         elif source_type == "url_list":
             iterator = iter_url_list(source)
-        elif source_type == "browser_verama":
+        elif source_type in {"browser_verama", "verama_playwright"}:
             iterator = iter_browser_verama(source, package_root)
         else:
             print(f"[WARN] Unsupported source type {source_type!r} for {source.get('id')}", file=sys.stderr)

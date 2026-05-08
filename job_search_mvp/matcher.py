@@ -76,6 +76,50 @@ ROLE_ARCHETYPES: List[Tuple[str, List[str]]] = [
     ("Software Engineer", ["software engineer", "developer", "programming", "implementation"]),
 ]
 
+GENERIC_LOW_SIGNAL_TERMS = {
+    "automotive",
+    "industrial",
+    "automation",
+    "testing",
+    "verification",
+    "validation",
+    "agile",
+    "scrum",
+    "devops",
+}
+
+HIGH_SIGNAL_TERMS = {
+    "c++",
+    "c",
+    "python",
+    "matlab",
+    "simulink",
+    "autosar",
+    "vector",
+    "davinci",
+    "iso 26262",
+    "sil",
+    "hil",
+    "ci/cd",
+    "jenkins",
+    "git",
+    "gerrit",
+    "machine learning",
+    "computer vision",
+    "ai-assisted development",
+}
+
+LOW_FIT_TITLE_PATTERNS = [
+    "ap/ar",
+    "redovisning",
+    "accounting",
+    "accountant",
+    "interior component designer",
+    "samverkansledare",
+    "incident manager",
+    "application security architect",
+]
+
 
 def load_yaml(path: Path) -> Dict[str, Any]:
     """Load YAML/JSON for the prototype.
@@ -472,6 +516,10 @@ def infer_blockers(text: str) -> Dict[str, List[str]]:
 def match_job(job: Dict[str, Any], evidence_index: List[Dict[str, Any]], aliases: Dict[str, List[str]], prefs: Dict[str, Any]) -> Dict[str, Any]:
     js = job["job_standardized"]
     explicit_terms: Dict[str, List[str]] = js["explicit_terms"]
+    term_categories: Dict[str, str] = {}
+    for category, terms in explicit_terms.items():
+        for term in terms:
+            term_categories.setdefault(term, category)
     all_job_terms = list(dict.fromkeys([term for terms in explicit_terms.values() for term in terms]))
 
     matched_tools = []
@@ -506,32 +554,52 @@ def match_job(job: Dict[str, Any], evidence_index: List[Dict[str, Any]], aliases
                     }
                 )
 
-    unique_matched_terms = {m["job_term"].lower() for m in matched_tools}
-    explicit_count = max(1, len(all_job_terms))
-    tool_fit = round(100 * min(1.0, len(unique_matched_terms) / explicit_count))
+    unique_matched_terms = {m["job_term"].lower(): m for m in matched_tools}
+    total_term_weight = sum(term_weight(term, term_categories.get(term, "")) for term in all_job_terms) or 1.0
+    matched_term_weight = 0.0
+    for lower_term, match in unique_matched_terms.items():
+        category = term_categories.get(match["job_term"], "")
+        quality = 1.0 if match.get("match_type") == "exact" else 0.75
+        matched_term_weight += term_weight(lower_term, category) * quality
+    tool_fit = round(100 * min(1.0, matched_term_weight / total_term_weight))
 
     domain_terms = explicit_terms.get("domains", [])
     domain_matches = sorted({m["job_term"] for m in matched_tools if m["job_term"] in domain_terms})
-    domain_fit = round(100 * min(1.0, len(domain_matches) / max(1, len(domain_terms)))) if domain_terms else 50
+    if domain_terms:
+        domain_total = sum(term_weight(term, "domains") for term in domain_terms) or 1.0
+        domain_matched = sum(term_weight(term, "domains") for term in domain_matches)
+        domain_fit = round(100 * min(1.0, domain_matched / domain_total))
+    else:
+        domain_fit = 50
 
-    expertise_fit = round((tool_fit * 0.6) + (domain_fit * 0.4))
+    expertise_fit = round((tool_fit * 0.75) + (domain_fit * 0.25))
+    concrete_matches = [
+        match["job_term"]
+        for match in unique_matched_terms.values()
+        if term_categories.get(match["job_term"], "") in {"languages", "tools", "standards"}
+        or match["job_term"].lower() in HIGH_SIGNAL_TERMS
+    ]
+    if unique_matched_terms and not concrete_matches:
+        tool_fit = min(tool_fit, 58)
+        expertise_fit = min(expertise_fit, 58)
+    role_fit = score_role_fit(js, list(unique_matched_terms.keys()))
     growth_fit = score_growth_fit(js, prefs)
     interest_fit = score_interest_fit(js, prefs)
     practical_fit = score_practical_fit(js, prefs)
     risk_score = score_risk(js)
 
-    weights = prefs.get("career_preferences", prefs).get("scoring_weights", {})
     overall = round(
-        expertise_fit * float(weights.get("expertise_fit", 0.40))
-        + growth_fit * float(weights.get("growth_fit", 0.30))
-        + interest_fit * float(weights.get("interest_fit", 0.20))
-        + practical_fit * float(weights.get("practical_fit", 0.10))
-        - risk_score * 0.25
+        expertise_fit * 0.35
+        + role_fit * 0.25
+        + growth_fit * 0.20
+        + interest_fit * 0.10
+        + practical_fit * 0.10
+        - risk_score * 0.30
     )
     overall = max(0, min(100, overall))
 
     selected_role_groups = sorted(role_group_scores.items(), key=lambda kv: kv[1], reverse=True)[:3]
-    recommended_status = "keep" if overall >= 70 and not js["blockers"]["hard"] else "maybe" if overall >= 55 else "reject"
+    recommended_status = recommend_status(overall, role_fit, expertise_fit, js["blockers"].get("hard", []))
     if js["blockers"]["hard"]:
         recommended_status = "reject"
 
@@ -543,6 +611,7 @@ def match_job(job: Dict[str, Any], evidence_index: List[Dict[str, Any]], aliases
             "overall_score": overall,
             "score_breakdown": {
                 "expertise_fit": expertise_fit,
+                "role_fit": role_fit,
                 "tool_fit": tool_fit,
                 "domain_fit": domain_fit,
                 "growth_fit": growth_fit,
@@ -552,7 +621,7 @@ def match_job(job: Dict[str, Any], evidence_index: List[Dict[str, Any]], aliases
             },
             "decision": {
                 "recommended_status": recommended_status,
-                "reason": build_reason(js, overall, matched_tools, selected_role_groups),
+                "reason": build_reason(js, overall, expertise_fit, role_fit, risk_score, matched_tools, selected_role_groups),
             },
             "matched_evidence": {
                 "explicit_term_matches": matched_tools,
@@ -595,8 +664,10 @@ def score_growth_fit(js: Dict[str, Any], prefs: Dict[str, Any]) -> int:
     if hits:
         return min(100, 65 + hits * 8)
     # Embedded/systems technical depth still supports growth, but not as strongly as AI-growth themes.
-    if any(t in text for t in ["embedded", "verification", "automation", "technical lead", "systems"]):
+    if any(t in text for t in ["embedded", "software-in-the-loop", "hardware-in-the-loop", "autosar", "technical lead", "systems"]):
         return 72
+    if any(t in text for t in ["verification", "validation", "automation"]):
+        return 64
     return 55
 
 
@@ -630,12 +701,78 @@ def score_risk(js: Dict[str, Any]) -> int:
     return min(100, hard * 70 + soft * 15)
 
 
-def build_reason(js: Dict[str, Any], overall: int, matches: List[Dict[str, Any]], selected: List[Tuple[str, float]]) -> str:
-    terms = sorted({m["job_term"] for m in matches})[:12]
+def term_weight(term: str, category: str) -> float:
+    low = term.lower()
+    if low in HIGH_SIGNAL_TERMS:
+        return 1.45
+    if low in GENERIC_LOW_SIGNAL_TERMS:
+        return 0.35
+    if category in {"languages", "tools", "standards"}:
+        return 1.20
+    if category == "verification":
+        return 0.90
+    if category == "methods":
+        return 0.75
+    if category == "domains":
+        return 0.50
+    return 0.70
+
+
+def score_role_fit(js: Dict[str, Any], matched_terms: List[str]) -> int:
+    text = normalize(json.dumps(js, ensure_ascii=False))
+    title = normalize(js.get("identity", {}).get("original_title", ""))
+    normalized_title = normalize(js.get("identity", {}).get("normalized_title", ""))
+    archetype = normalize(js.get("job_analysis", {}).get("role_archetype", ""))
+    matched = {term.lower() for term in matched_terms}
+    high_signal_hits = sum(1 for term in matched if term in HIGH_SIGNAL_TERMS)
+
+    score = 52
+    if any(t in archetype + " " + normalized_title for t in ["embedded", "software engineer", "verification", "systems engineer", "technical lead"]):
+        score += 14
+    if any(t in text for t in ["machine learning", "computer vision", "ai-assisted development", "developer productivity"]):
+        score += 10
+    if high_signal_hits:
+        score += min(24, high_signal_hits * 6)
+    if any(pattern in title for pattern in LOW_FIT_TITLE_PATTERNS):
+        score -= 32
+    if "manager" in title and "engineer" not in title and "technical" not in text:
+        score -= 16
+    if high_signal_hits == 0 and not any(t in text for t in ["software", "embedded", "developer", "engineer", "ai", "machine learning", "verification"]):
+        score -= 20
+    return max(0, min(100, score))
+
+
+def recommend_status(overall: int, role_fit: int, expertise_fit: int, hard_blockers: List[str]) -> str:
+    if hard_blockers:
+        return "reject"
+    if overall >= 74 and role_fit >= 62 and expertise_fit >= 55:
+        return "keep"
+    if overall >= 58 and role_fit >= 42:
+        return "maybe"
+    return "reject"
+
+
+def build_reason(
+    js: Dict[str, Any],
+    overall: int,
+    expertise_fit: int,
+    role_fit: int,
+    risk_score: int,
+    matches: List[Dict[str, Any]],
+    selected: List[Tuple[str, float]],
+) -> str:
+    terms = sorted({m["job_term"] for m in matches}, key=lambda t: (-term_weight(t, ""), t.lower()))[:12]
+    high_signal = [t for t in terms if t.lower() in HIGH_SIGNAL_TERMS]
     rg = [x[0] for x in selected]
     if terms:
-        return f"Score {overall}: matched explicit job terms ({', '.join(terms)}) against evidence in {', '.join(rg)}."
-    return f"Score {overall}: limited explicit evidence matches found; review manually."
+        strongest = high_signal[:8] or terms[:8]
+        evidence = f" Evidence: {', '.join(rg)}." if rg else ""
+        risk = f" Risk score {risk_score}." if risk_score else ""
+        return (
+            f"Score {overall}: expertise {expertise_fit}, role fit {role_fit}."
+            f" Strongest supported terms: {', '.join(strongest)}.{evidence}{risk}"
+        )
+    return f"Score {overall}: expertise {expertise_fit}, role fit {role_fit}; limited explicit evidence matches found."
 
 
 def main() -> int:

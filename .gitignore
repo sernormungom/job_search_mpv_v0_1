@@ -1,0 +1,17 @@
+outputs/
+browser_profiles/*
+secrets/*
+sources/copied_jobs/*
+sources/verama_manual/*
+sources/collected_jobs/*
+*.log
+__pycache__/
+.pytest_cache/
+.venv/
+*.py[cod]
+
+!browser_profiles/.gitkeep
+!secrets/.gitkeep
+!sources/copied_jobs/.gitkeep
+!sources/verama_manual/.gitkeep
+!sources/collected_jobs/.gitkeep
