@@ -22,6 +22,7 @@ from .validation import merge_explicit_terms, validate_payload
 
 HEADER_FIELD_RE = re.compile(r"^\s*([A-Za-z /]+)\s*:\s*(.*?)\s*$")
 BUDGET_OPENAI_MODEL = "gpt-3.5-turbo"
+HYBRID_CONFIDENCE_THRESHOLD = 0.55
 
 
 @dataclass
@@ -30,6 +31,59 @@ class LLMStandardizationResult:
     llm_raw: Dict[str, Any] | None
     validation_report: Dict[str, Any]
     used_fallback: bool
+
+
+def deterministic_confidence_report(job_standardized: Dict[str, Any]) -> Dict[str, Any]:
+    root = job_standardized.get("job_standardized", job_standardized)
+    identity = root.get("identity", {}) or {}
+    normalized_requirements = root.get("normalized_requirements", {}) or {}
+    must_have = normalized_requirements.get("must_have", []) or []
+    nice_to_have = normalized_requirements.get("nice_to_have", []) or []
+    explicit_terms = root.get("explicit_terms", {}) or {}
+
+    signals = 0
+    penalties = 0
+    reasons: list[str] = []
+
+    title = (identity.get("original_title") or "").strip().lower()
+    if title and title not in {"unspecified role", "full job description", "hem", "uppdragsannonser"}:
+        signals += 1
+    else:
+        penalties += 1
+        reasons.append("title_weak")
+
+    if len(must_have) >= 2:
+        signals += 2
+    elif len(must_have) == 1:
+        signals += 1
+        reasons.append("must_have_sparse")
+    else:
+        penalties += 2
+        reasons.append("must_have_missing")
+
+    if len(nice_to_have) >= 1:
+        signals += 1
+    else:
+        penalties += 1
+        reasons.append("nice_to_have_missing")
+
+    explicit_term_count = sum(len(v or []) for v in explicit_terms.values() if isinstance(v, list))
+    if explicit_term_count >= 4:
+        signals += 1
+    else:
+        penalties += 1
+        reasons.append("explicit_terms_sparse")
+
+    denom = max(1, signals + penalties)
+    score = signals / denom
+    return {
+        "score": round(score, 3),
+        "signals": signals,
+        "penalties": penalties,
+        "reasons": reasons,
+        "threshold": HYBRID_CONFIDENCE_THRESHOLD,
+        "is_low_confidence": score < HYBRID_CONFIDENCE_THRESHOLD,
+    }
 
 
 def enforce_budget_openai_model(model: str) -> str:
@@ -209,12 +263,33 @@ def standardize_job_with_mode(
     deterministic = matcher.standardize_job(job_text, source_url=source_url)
     deterministic_terms = deterministic["job_standardized"].get("explicit_terms", {})
     job_id = deterministic["job_standardized"]["job_id"]
+    confidence = deterministic_confidence_report(deterministic)
 
     if mode == "deterministic":
         return LLMStandardizationResult(
             job_standardized=deterministic,
             llm_raw=None,
-            validation_report={"mode": "deterministic", "used_fallback": False, "errors": [], "warnings": []},
+            validation_report={
+                "mode": "deterministic",
+                "used_fallback": False,
+                "errors": [],
+                "warnings": [],
+                "deterministic_confidence": confidence,
+            },
+            used_fallback=False,
+        )
+
+    if mode == "hybrid" and not confidence["is_low_confidence"]:
+        return LLMStandardizationResult(
+            job_standardized=deterministic,
+            llm_raw=None,
+            validation_report={
+                "mode": mode,
+                "used_fallback": False,
+                "errors": [],
+                "warnings": ["LLM skipped: deterministic confidence is high enough."],
+                "deterministic_confidence": confidence,
+            },
             used_fallback=False,
         )
 
@@ -232,6 +307,7 @@ def standardize_job_with_mode(
                     "used_fallback": True,
                     "errors": ["OPENAI_API_KEY is not set"],
                     "warnings": [],
+                    "deterministic_confidence": confidence,
                 },
                 used_fallback=True,
             )
@@ -264,7 +340,13 @@ def standardize_job_with_mode(
             return LLMStandardizationResult(
                 job_standardized=deterministic,
                 llm_raw=llm_raw,
-                validation_report={"mode": mode, "used_fallback": True, "errors": errors, "warnings": warnings},
+                validation_report={
+                    "mode": mode,
+                    "used_fallback": True,
+                    "errors": errors,
+                    "warnings": warnings,
+                    "deterministic_confidence": confidence,
+                },
                 used_fallback=True,
             )
         raise RuntimeError("LLM payload validation failed: " + "; ".join(errors))
@@ -273,7 +355,13 @@ def standardize_job_with_mode(
     return LLMStandardizationResult(
         job_standardized=canonical,
         llm_raw=llm_raw,
-        validation_report={"mode": mode, "used_fallback": False, "errors": errors, "warnings": warnings},
+        validation_report={
+            "mode": mode,
+            "used_fallback": False,
+            "errors": errors,
+            "warnings": warnings,
+            "deterministic_confidence": confidence,
+        },
         used_fallback=False,
     )
 

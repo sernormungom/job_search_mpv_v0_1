@@ -63,6 +63,20 @@ def get_static(static_data: Dict[str, Any]) -> Dict[str, Any]:
     return static_data.get("consultancy_profile", static_data)
 
 
+def merge_profile(static_profile: Dict[str, Any], employee_profile: Dict[str, Any]) -> Dict[str, Any]:
+    """Prefer employee-owned CV profile fields, keep legacy fallback."""
+    merged = dict(static_profile or {})
+    cv_static = employee_profile.get("cv_static_profile", {}) if isinstance(employee_profile, dict) else {}
+    if not isinstance(cv_static, dict):
+        cv_static = {}
+
+    for key in ["language_skills", "education", "additional_courses_trainings_workshops"]:
+        value = cv_static.get(key)
+        if value:
+            merged[key] = value
+    return merged
+
+
 def ul(items: List[str], klass: str = "") -> str:
     if not items:
         return ""
@@ -266,8 +280,14 @@ def render_education_page(profile: Dict[str, Any]) -> str:
 """
 
 
-def render_html(draft: Dict[str, Any], exp_db: Dict[str, Any], static_data: Dict[str, Any], assets_dir: Path) -> str:
-    profile = get_static(static_data)
+def render_html(
+    draft: Dict[str, Any],
+    exp_db: Dict[str, Any],
+    static_data: Dict[str, Any],
+    employee_profile: Dict[str, Any],
+    assets_dir: Path,
+) -> str:
+    profile = merge_profile(get_static(static_data), employee_profile)
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -298,13 +318,14 @@ def main() -> None:
     draft = draft_yaml.get("cv_draft", draft_yaml)
     data_dir = resolve_data_dir(args.data_dir)
     exp_db = load_yaml(data_dir / "experience_database.yaml")
+    employee_profile = load_yaml(data_dir / "employee_profile.yaml")
     static_path = args.static_profile or (data_dir / "consultancy_static_profile.yaml")
     static_data = load_yaml(static_path) if static_path.exists() else {}
     assets_dir = args.assets_dir or default_assets_dir()
     args.out_dir.mkdir(parents=True, exist_ok=True)
     job_id = draft.get("job_id") or args.cv_draft.stem.replace(".cv_draft", "")
     out = args.out_dir / f"{job_id}.mpya_cv.html"
-    out.write_text(render_html(draft, exp_db, static_data, assets_dir), encoding="utf-8")
+    out.write_text(render_html(draft, exp_db, static_data, employee_profile, assets_dir), encoding="utf-8")
     print(f"Wrote {out}")
 
 

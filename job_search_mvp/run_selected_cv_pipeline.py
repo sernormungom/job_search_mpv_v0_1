@@ -26,7 +26,7 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Set
 
-from . import cv_draft_generator, mpya_cv_renderer, strategy_generator
+from . import cv_draft_generator, cv_llm_orchestrator, cv_llm_routing, mpya_cv_renderer, strategy_generator
 from .paths import default_assets_dir, resolve_data_dir
 
 
@@ -84,13 +84,60 @@ def generate_for_job(job_id: str, job_std_path: Path, match_path: Path, data_dir
     match_result = strategy_generator.load_yaml(match_path)
     exp = strategy_generator.load_yaml(data_dir / "experience_database.yaml")
     policy = strategy_generator.load_yaml(data_dir / "cv_generation_policy.yaml")
+    routing_plan = cv_llm_routing.build_routing_plan(policy)
 
     strategy = strategy_generator.build_strategy(job_std, match_result, exp, policy)
     strategy_path = out_dir / f"{job_id}.cv_strategy.yaml"
     strategy_generator.write_yaml(strategy_path, strategy)
 
     employee = cv_draft_generator.load_yaml(data_dir / "employee_profile.yaml")
+    llm_steps = cv_llm_orchestrator.run_steps_1_to_6(
+        strategy=strategy,
+        job_std=job_std,
+        employee=employee,
+        policy=policy,
+    )
+    llm_steps_path = out_dir / f"{job_id}.cv_llm_steps.yaml"
+    strategy_generator.write_yaml(llm_steps_path, {"cv_llm_steps": llm_steps})
+
     draft = cv_draft_generator.generate_draft(strategy, employee, job_std)
+    draft_root = draft.get("cv_draft", draft)
+    sections = draft_root.get("sections", {})
+    step5 = ((llm_steps.get("steps", {}) or {}).get("summary_adaptation", {}) or {}).get("result", {})
+    summary_text = step5.get("adapted_professional_summary")
+    if summary_text and isinstance(sections.get("professional_summary"), dict):
+        sections["professional_summary"]["text"] = str(summary_text)
+    step6 = ((llm_steps.get("steps", {}) or {}).get("experience_generation", {}) or {}).get("result", {})
+    llm_roles = step6.get("experience_sections", []) if isinstance(step6, dict) else []
+    if isinstance(llm_roles, list) and llm_roles:
+        role_map: Dict[str, Dict[str, Any]] = {}
+        for role in sections.get("experience", []) or []:
+            rgid = role.get("role_group_id")
+            if rgid:
+                role_map[str(rgid)] = role
+        for llm_role in llm_roles:
+            if not isinstance(llm_role, dict):
+                continue
+            rgid = str(llm_role.get("role_group_id", "") or "")
+            if not rgid or rgid not in role_map:
+                continue
+            bullets = []
+            for b in llm_role.get("bullets", []) or []:
+                text = str(b or "").strip()
+                if text:
+                    bullets.append({"text": text, "evidence_links": [], "source_block_id": None})
+            if bullets:
+                role_map[rgid]["bullets"] = bullets[:6]
+    step7 = ((llm_steps.get("steps", {}) or {}).get("tech_competence_generation", {}) or {}).get("result", {})
+    llm_tech = step7.get("tech_competence") if isinstance(step7, dict) else None
+    if isinstance(llm_tech, dict):
+        tech = sections.get("tech_competence", {})
+        for col in ["Programming", "Knowledge", "Soft Skills"]:
+            vals = llm_tech.get(col)
+            if isinstance(vals, list) and vals:
+                tech[col] = [str(v) for v in vals]
+        sections["tech_competence"] = tech
+
     draft_path = out_dir / f"{job_id}.cv_draft.yaml"
     draft_text_path = out_dir / f"{job_id}.cv_draft.txt"
     cv_draft_generator.write_yaml(draft_path, draft)
@@ -101,7 +148,10 @@ def generate_for_job(job_id: str, job_std_path: Path, match_path: Path, data_dir
     static_data = mpya_cv_renderer.load_yaml(static_path) if static_path.exists() else {}
     assets_dir = default_assets_dir()
     html_path = out_dir / f"{job_id}.mpya_cv.html"
-    html_path.write_text(mpya_cv_renderer.render_html(draft_root, exp, static_data, assets_dir), encoding="utf-8")
+    html_path.write_text(
+        mpya_cv_renderer.render_html(draft_root, exp, static_data, employee, assets_dir),
+        encoding="utf-8",
+    )
 
     selected = strategy.get("cv_strategy", {}).get("selected_role_groups", [])
     mandatory = strategy.get("cv_strategy", {}).get("mandatory_cv_terms", [])
@@ -112,8 +162,16 @@ def generate_for_job(job_id: str, job_std_path: Path, match_path: Path, data_dir
         "cv_draft_yaml": str(draft_path),
         "cv_draft_txt": str(draft_text_path),
         "mpya_cv_html": str(html_path),
+        "cv_llm_steps_yaml": str(llm_steps_path),
         "selected_role_groups": ", ".join([str(x.get("role_group_id", "")) for x in selected]),
         "mandatory_terms": ", ".join([str(x) for x in mandatory[:14]]),
+        "llm_text_source": "llm_or_fallback",
+        "llm_calls_used": ((llm_steps.get("usage", {}) or {}).get("llm_calls_used", 0)),
+        "llm_calls_budget": ((llm_steps.get("usage", {}) or {}).get("llm_calls_budget", 0)),
+        "llm_routing_total_max_output_tokens": routing_plan.get("estimated_total_max_output_tokens", 0),
+        "llm_routing_models": ", ".join(
+            f"{s.get('step')}:{s.get('model')}" for s in routing_plan.get("steps", []) if isinstance(s, dict)
+        ),
         "validation_status": "pass" if not validation.get("unsupported_claims") else "review",
         "one_page_estimate": validation.get("one_page_estimate", "unknown"),
     }
@@ -122,7 +180,9 @@ def generate_for_job(job_id: str, job_std_path: Path, match_path: Path, data_dir
 def write_report_csv(path: Path, rows: List[Dict[str, Any]]) -> None:
     fieldnames = [
         "job_id", "title", "company", "overall_score", "review_status", "selected_role_groups",
-        "mandatory_terms", "validation_status", "one_page_estimate", "cv_strategy", "cv_draft_yaml",
+        "mandatory_terms", "llm_routing_total_max_output_tokens", "llm_routing_models",
+        "llm_text_source", "llm_calls_used", "llm_calls_budget", "validation_status", "one_page_estimate",
+        "cv_strategy", "cv_llm_steps_yaml", "cv_draft_yaml",
         "cv_draft_txt", "mpya_cv_html",
     ]
     with path.open("w", encoding="utf-8-sig", newline="") as f:
@@ -205,6 +265,11 @@ def main() -> int:
     args.out_dir.mkdir(parents=True, exist_ok=True)
 
     report_rows: List[Dict[str, Any]] = []
+    policy = strategy_generator.load_yaml(data_dir / "cv_generation_policy.yaml")
+    routing_plan = cv_llm_routing.build_routing_plan(policy)
+    routing_plan_path = args.out_dir / "llm_routing.plan.yaml"
+    strategy_generator.write_yaml(routing_plan_path, {"llm_routing_plan": routing_plan})
+    print(f"Wrote {routing_plan_path}")
     for row in selected:
         job_id = row.get("job_id", "").strip()
         if not job_id:

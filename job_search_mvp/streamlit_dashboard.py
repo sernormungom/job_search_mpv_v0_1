@@ -15,13 +15,15 @@ import argparse
 import subprocess
 import sys
 from pathlib import Path
-from typing import Dict, List, Sequence
+from typing import Any, Dict, List, Sequence
 
 try:
     from . import application_tracker
+    from . import matcher
 except ImportError:
     # Streamlit may execute this file without package context.
     from job_search_mvp import application_tracker
+    from job_search_mvp import matcher
 
 
 def _find_review_queues(outputs_dir: Path) -> List[Path]:
@@ -116,6 +118,29 @@ def _rows_for_table(rows: List[Dict[str, str]]) -> List[Dict[str, str]]:
         }
         for row in ranked
     ]
+
+
+def _read_must_have_requirements(batch_dir: Path, job_id: str) -> List[str]:
+    job_standardized_path = batch_dir / f"{job_id}.job_standardized.yaml"
+    if not job_standardized_path.exists():
+        return []
+    data: Dict[str, Any] = matcher.load_yaml(job_standardized_path)
+    root = data.get("job_standardized", data)
+    normalized = root.get("normalized_requirements", {})
+    must_have = normalized.get("must_have", [])
+    if not isinstance(must_have, list):
+        return []
+    return [str(item).strip() for item in must_have if str(item).strip()]
+
+
+def _read_job_description(batch_dir: Path, job_id: str) -> str:
+    job_standardized_path = batch_dir / f"{job_id}.job_standardized.yaml"
+    if not job_standardized_path.exists():
+        return ""
+    data: Dict[str, Any] = matcher.load_yaml(job_standardized_path)
+    root = data.get("job_standardized", data)
+    description = root.get("job_description", "")
+    return str(description).strip() if description is not None else ""
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -313,18 +338,46 @@ def main() -> int:
 
         table_rows = _rows_for_table(filtered_rows)
         st.dataframe(table_rows, use_container_width=True, hide_index=True, height=380)
+
+        filtered_job_ids = [row.get("job_id", "") for row in filtered_rows if row.get("job_id", "")]
+        if filtered_job_ids:
+            current_selected_job_id = st.session_state.get("selected_job_id", "")
+            if current_selected_job_id not in filtered_job_ids:
+                st.session_state["selected_job_id"] = filtered_job_ids[0]
+        else:
+            st.session_state["selected_job_id"] = ""
+
         options = [f"{row['job_id']} | {row.get('title', '')[:70]}" for row in filtered_rows]
-        selected = st.selectbox("Select job", options=options, index=0 if options else None)
+        selected_index = 0
+        if options and st.session_state.get("selected_job_id"):
+            for idx, row in enumerate(filtered_rows):
+                if row.get("job_id") == st.session_state["selected_job_id"]:
+                    selected_index = idx
+                    break
+        selected = st.selectbox("Select job", options=options, index=selected_index if options else None)
+        if selected:
+            st.session_state["selected_job_id"] = selected.split("|", 1)[0].strip()
 
     with right:
         if not filtered_rows:
             st.info("No jobs match current filters.")
             return 0
-        selected_job_id = selected.split("|", 1)[0].strip() if selected else filtered_rows[0]["job_id"]
+        selected_job_id = st.session_state.get("selected_job_id") or (selected.split("|", 1)[0].strip() if selected else filtered_rows[0]["job_id"])
         row = next((r for r in filtered_rows if r.get("job_id") == selected_job_id), filtered_rows[0])
+        selected_job_id = row.get("job_id", selected_job_id)
+        st.session_state["selected_job_id"] = selected_job_id
 
         st.subheader(row.get("title", "Untitled role"))
         st.caption(f"{row.get('normalized_title', '')} | {row.get('city', '')} | {row.get('work_mode', '')}")
+
+        current_index = next((idx for idx, item in enumerate(filtered_rows) if item.get("job_id") == selected_job_id), 0)
+        nav_prev, nav_next = st.columns(2)
+        if nav_prev.button("Previous job", use_container_width=True, disabled=current_index <= 0):
+            st.session_state["selected_job_id"] = filtered_rows[current_index - 1].get("job_id", selected_job_id)
+            st.rerun()
+        if nav_next.button("Next job", use_container_width=True, disabled=current_index >= len(filtered_rows) - 1):
+            st.session_state["selected_job_id"] = filtered_rows[current_index + 1].get("job_id", selected_job_id)
+            st.rerun()
 
         s1, s2, s3, s4, s5 = st.columns(5)
         s1.metric("Overall", row.get("overall_score", ""))
@@ -335,8 +388,19 @@ def main() -> int:
 
         st.markdown("**Match terms**")
         st.write(row.get("matched_terms", ""))
-        st.markdown("**Suggested role groups**")
-        st.write(row.get("suggested_role_groups", ""))
+        st.markdown("**Job description**")
+        job_description = _read_job_description(batch_dir, selected_job_id)
+        if job_description:
+            st.write(job_description)
+        else:
+            st.caption("No job description found in job_standardized.yaml for this job.")
+        st.markdown("**Must have**")
+        must_have_lines = _read_must_have_requirements(batch_dir, selected_job_id)
+        if must_have_lines:
+            for line in must_have_lines:
+                st.markdown(f"- {line}")
+        else:
+            st.caption("No must-have requirements found in job_standardized.yaml for this job.")
         st.markdown("**Reason**")
         st.write(row.get("match_reason", ""))
 

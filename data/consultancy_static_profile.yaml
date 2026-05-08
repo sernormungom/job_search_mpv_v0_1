@@ -6,29 +6,3 @@ consultancy_profile:
     name: "Patrik Artman"
     email: "patrik.artman@mpyascitech.com"
     mobile: "073390835"
-  language_skills:
-    - "English: native"
-    - "Spanish: native"
-    - "Swedish: excellent written and spoken"
-  education:
-    - degree: "PhD and DEA in Advanced Automation and Robotics"
-      institution: "Universidad Politécnica de Cataluña"
-      period: "2001 - 2007"
-      details:
-        - "Thesis: Multistage scenario optimization procedure to plan annualized working hours with uncertainty factors."
-    - degree: "BEng in Electronic engineering"
-      institution: "Instituto Tecnólogico de Celaya"
-      period: "1995 - 2006"
-      details:
-        - "Thesis: Object oriented application to control home devices using the PC parallel port."
-  additional_courses_trainings_workshops:
-    - "Building Essential Leadership Skills (General Electric leadership program)"
-    - "Clear Leadership"
-    - "Interpersonal communication and leadership"
-    - "Deep Learning Specialization"
-    - "Data Science in Python"
-    - "Human Performance, Training and Nutrition (University of Queretaro)"
-    - "Radio Base Station Software Architecture Description"
-    - "C++"
-    - "Effective meetings"
-    - "XCODE/SWIFT programming"

@@ -88,3 +88,32 @@ def test_matcher_preserves_explicit_terms_and_uses_aliases():
         item["job_term"] == "CI/CD" and item["match_type"] == "alias/supporting"
         for item in matches
     )
+
+
+def test_standardize_job_extracts_swedish_requirements_sections():
+    job_text = """
+Uppdragsbeskrivning:
+Vi söker en embedded utvecklare för ett team i Göteborg.
+
+Krav:
+- Minst 5 års erfarenhet av C++
+- Erfarenhet av AUTOSAR och Git
+
+Meriterande:
+- Erfarenhet av Python
+- Kunskap om CI/CD
+""".strip()
+
+    job_standardized = matcher.standardize_job(job_text)
+    root = job_standardized["job_standardized"]
+    req = root["normalized_requirements"]
+
+    assert root["language"]["original"] == "Swedish"
+    assert req["must_have"] == [
+        "Minst 5 års erfarenhet av C++",
+        "Erfarenhet av AUTOSAR och Git",
+    ]
+    assert req["nice_to_have"] == [
+        "Erfarenhet av Python",
+        "Kunskap om CI/CD",
+    ]

@@ -80,6 +80,85 @@
         "no excluded or de-emphasized topic dominates the CV",
         "final draft appears one-page feasible"
       ]
+    },
+    "llm_routing": {
+      "step_order": [
+        "job_understanding",
+        "persona_selection",
+        "experience_weighting",
+        "summary_adaptation",
+        "experience_generation",
+        "tech_competence_generation"
+      ],
+      "steps": {
+        "job_understanding": {
+          "model": "gpt-5.4-mini",
+          "reasoning_effort": "medium",
+          "max_input_tokens": 5000,
+          "max_output_tokens": 500,
+          "temperature": 0.1,
+          "fallback_model": "gpt-5.4-mini",
+          "fallback_reasoning_effort": "low"
+        },
+        "persona_selection": {
+          "model": "gpt-5.4",
+          "reasoning_effort": "medium",
+          "max_input_tokens": 6000,
+          "max_output_tokens": 400,
+          "temperature": 0.1,
+          "fallback_model": "gpt-5.4-mini",
+          "fallback_reasoning_effort": "low"
+        },
+        "experience_weighting": {
+          "model": "gpt-5.5",
+          "reasoning_effort": "high",
+          "max_input_tokens": 9000,
+          "max_output_tokens": 1200,
+          "temperature": 0.1,
+          "fallback_model": "gpt-5.4",
+          "fallback_reasoning_effort": "medium"
+        },
+        "summary_adaptation": {
+          "model": "gpt-5.4",
+          "reasoning_effort": "medium",
+          "max_input_tokens": 7000,
+          "max_output_tokens": 350,
+          "temperature": 0.2,
+          "fallback_model": "gpt-5.4-mini",
+          "fallback_reasoning_effort": "low"
+        },
+        "experience_generation": {
+          "model": "gpt-5.4",
+          "reasoning_effort": "medium",
+          "max_input_tokens": 9000,
+          "max_output_tokens": 1200,
+          "temperature": 0.2,
+          "fallback_model": "gpt-5.4-mini",
+          "fallback_reasoning_effort": "low"
+        },
+        "tech_competence_generation": {
+          "model": "gpt-5.4-mini",
+          "reasoning_effort": "low",
+          "max_input_tokens": 5000,
+          "max_output_tokens": 300,
+          "temperature": 0.1,
+          "fallback_model": "gpt-5.4-mini",
+          "fallback_reasoning_effort": "low"
+        }
+      }
+    },
+    "llm_execution": {
+      "enabled": true,
+      "max_calls_per_job": 8,
+      "max_retries_per_step": 1,
+      "retry_with_compact_output": true
+    },
+    "size_budgets": {
+      "professional_summary_max_words": 85,
+      "experience_max_bullets_per_top_role": 6,
+      "experience_max_bullets_per_support_role": 4,
+      "experience_max_words_per_bullet": 34,
+      "tech_competence_max_items_per_column": 10
     }
   }
 }

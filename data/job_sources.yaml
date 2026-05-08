@@ -3,7 +3,6 @@
 # This first source layer is intentionally conservative:
 # - local_folder sources are the safest and most reliable for copied job ads
 # - url_list sources can fetch simple public pages, but not JavaScript/login apps
-# - Verama/Ework-style portals should initially be handled by manual copy/export
 #   until a browser automation adapter is added.
 
 sources:
@@ -24,17 +23,6 @@ sources:
     #     title_hint: Senior Embedded Developer
     #     company_hint: Example AB
     urls: []
-
-  - id: verama_manual_copy
-    label: Verama/Ework manual copy folder
-    type: local_folder
-    enabled: false
-    path: sources/verama_manual
-    file_glob: "*.txt"
-    notes: >
-      Verama/Ework uses a JavaScript application and may require login/session access.
-      For the MVP, copy selected job details into .txt files in this folder. A future
-      browser automation adapter can read this portal more directly.
 
   - id: verama_gothenburg
     label: Verama/Ework browser collector - Gothenburg

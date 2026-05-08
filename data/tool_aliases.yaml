@@ -2,10 +2,13 @@
   "tool_aliases": {
     "C++": {
       "exact_terms": [
-        "C++"
+        "C++",
+        "C plus plus"
       ],
       "supporting_terms": [
-        "C++ development"
+        "C++ development",
+        "C++ utveckling",
+        "utveckling i C++"
       ]
     },
     "CI/CD": {
@@ -18,7 +21,11 @@
         "shared CI/CD pipelines",
         "automated tests",
         "DevOps",
-        "CI/CD integration"
+        "CI/CD integration",
+        "byggpipeline",
+        "deploypipeline",
+        "kontinuerlig integration",
+        "kontinuerlig leverans"
       ]
     },
     "Jira": {
@@ -30,7 +37,9 @@
         "Scrum",
         "SAFe",
         "PI Planning",
-        "issue tracking"
+        "issue tracking",
+        "ärendehantering",
+        "ärenden"
       ]
     },
     "Vector": {
@@ -42,7 +51,8 @@
       "supporting_terms": [
         "AUTOSAR",
         "AUTOSAR (DaVinci - Vector toolsuite)",
-        "Vector toolsuite"
+        "Vector toolsuite",
+        "verktygssvit"
       ]
     },
     "AUTOSAR": {
@@ -52,7 +62,8 @@
       "supporting_terms": [
         "Vector DaVinci Developer",
         "DaVinci",
-        "embedded automotive platform"
+        "embedded automotive platform",
+        "inbyggda fordonssystem"
       ]
     },
     "V&V": {
@@ -71,7 +82,9 @@
         "service-level validation",
         "test automation",
         "Hardware-in-the-Loop",
-        "Model-in-the-Loop"
+        "Model-in-the-Loop",
+        "verifiering och validering",
+        "testautomatisering"
       ]
     },
     "AI-assisted development": {
@@ -84,7 +97,9 @@
         "VolvoGPT",
         "Volvo GPT",
         "developer productivity",
-        "AI Based Automation of V&V"
+        "AI Based Automation of V&V",
+        "AI-stodd utveckling",
+        "AI-stodd verifikation"
       ]
     },
     "Agile": {
@@ -95,7 +110,9 @@
         "Scrum",
         "SAFe",
         "PI Planning",
-        "Jira"
+        "Jira",
+        "Agilt",
+        "agila arbetssatt"
       ]
     }
   }

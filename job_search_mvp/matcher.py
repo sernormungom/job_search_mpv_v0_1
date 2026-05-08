@@ -118,6 +118,148 @@ LOW_FIT_TITLE_PATTERNS = [
     "samverkansledare",
     "incident manager",
     "application security architect",
+    "data analysis engineer",
+    "power electronics",
+    "electrical system architect",
+    "electronics engineer",
+    "clay modeller",
+    "compliance professional",
+]
+
+OFF_DIRECTION_PATTERNS = [
+    "electrical",
+    "electronics",
+    "power electronics",
+    "compliance",
+    "data analysis",
+    "analyst",
+    "clay modeller",
+]
+
+SOFTWARE_DIRECTION_SIGNALS = [
+    "software engineer",
+    "embedded",
+    "verification",
+    "validation",
+    "developer productivity",
+    "ai-assisted development",
+    "machine learning",
+    "computer vision",
+    "technical lead",
+    "devops",
+    "ci/cd",
+]
+
+CANONICAL_SECTION_HEADERS: Dict[str, List[str]] = {
+    "job_description": [
+        "job description",
+        "position description",
+        "role description",
+        "about the role",
+        "responsibilities",
+        "arbetsbeskrivning",
+        "uppdragsbeskrivning",
+        "uppdraget",
+        "arbetsuppgifter",
+        "om rollen",
+    ],
+    "requirements_must_have": [
+        "requirements",
+        "must have",
+        "required",
+        "mandatory",
+        "qualifications",
+        "minimum requirements",
+        "krav",
+        "obligatoriska krav",
+        "skallkrav",
+        "måste ha",
+    ],
+    "requirements_nice_to_have": [
+        "nice to have",
+        "preferred",
+        "desirable",
+        "plus",
+        "bonus",
+        "meriterande",
+        "önskvärt",
+        "bra att ha",
+    ],
+}
+
+MUST_HAVE_MARKERS = [
+    "requirements",
+    "must have",
+    "required",
+    "mandatory",
+    "minimum requirements",
+    "qualifications",
+    "krav",
+    "obligatoriska krav",
+    "skallkrav",
+    "måste",
+]
+
+NICE_TO_HAVE_MARKERS = [
+    "desirable",
+    "nice to have",
+    "nice",
+    "meriterande",
+    "plus",
+    "preferred",
+    "önskvärt",
+    "bra att ha",
+]
+
+SWEDISH_LANGUAGE_MARKERS = [
+    "arbetsuppgifter",
+    "krav",
+    "meriterande",
+    "erfarenhet av",
+    "vi söker",
+    "göteborg",
+    "ansökan",
+    "uppdragsbeskrivning",
+]
+
+ENGLISH_LANGUAGE_MARKERS = [
+    "job description",
+    "requirements",
+    "qualifications",
+    "nice to have",
+    "about the role",
+    "we are looking for",
+    "application",
+]
+
+SWEDISH_MUST_HAVE_MARKERS = [
+    "krav",
+    "obligatoriska krav",
+    "skallkrav",
+    "måste",
+]
+
+SWEDISH_NICE_TO_HAVE_MARKERS = [
+    "meriterande",
+    "önskvärt",
+    "bra att ha",
+]
+
+ENGLISH_MUST_HAVE_MARKERS = [
+    "requirements",
+    "must have",
+    "required",
+    "mandatory",
+    "minimum requirements",
+    "qualifications",
+]
+
+ENGLISH_NICE_TO_HAVE_MARKERS = [
+    "desirable",
+    "nice to have",
+    "nice",
+    "plus",
+    "preferred",
 ]
 
 
@@ -395,8 +537,64 @@ def infer_role_archetype(text: str) -> str:
 
 
 def infer_language(text: str) -> str:
-    swedish_markers = ["arbetsuppgifter", "krav", "meriterande", "erfarenhet av", "vi söker", "göteborg", "ansökan"]
-    return "Swedish" if any(m in text.lower() for m in swedish_markers) else "English/unspecified"
+    low = text.lower()
+    swedish_hits = sum(1 for marker in SWEDISH_LANGUAGE_MARKERS if marker in low)
+    english_hits = sum(1 for marker in ENGLISH_LANGUAGE_MARKERS if marker in low)
+    if swedish_hits > english_hits:
+        return "Swedish"
+    if english_hits > swedish_hits:
+        return "English"
+    return "English/unspecified"
+
+
+def requirement_markers_for_language(language: str) -> Tuple[List[str], List[str]]:
+    low = language.lower()
+    if low == "swedish":
+        must = SWEDISH_MUST_HAVE_MARKERS + MUST_HAVE_MARKERS
+        nice = SWEDISH_NICE_TO_HAVE_MARKERS + NICE_TO_HAVE_MARKERS
+        return list(dict.fromkeys(must)), list(dict.fromkeys(nice))
+    if low == "english":
+        must = ENGLISH_MUST_HAVE_MARKERS + MUST_HAVE_MARKERS
+        nice = ENGLISH_NICE_TO_HAVE_MARKERS + NICE_TO_HAVE_MARKERS
+        return list(dict.fromkeys(must)), list(dict.fromkeys(nice))
+    return MUST_HAVE_MARKERS, NICE_TO_HAVE_MARKERS
+
+
+def normalize_header(text: str) -> str:
+    low = text.lower().strip(" \t:-*#")
+    low = re.sub(r"[^\w\såäö/+-]", " ", low)
+    return re.sub(r"\s+", " ", low).strip()
+
+
+def header_to_canonical(line: str) -> str | None:
+    candidate = normalize_header(line)
+    if not candidate:
+        return None
+    for canonical, headers in CANONICAL_SECTION_HEADERS.items():
+        for header in headers:
+            h = normalize_header(header)
+            if candidate == h or candidate.startswith(h + " "):
+                return canonical
+    return None
+
+
+def extract_canonical_sections(text: str) -> Dict[str, List[str]]:
+    sections: Dict[str, List[str]] = {key: [] for key in CANONICAL_SECTION_HEADERS.keys()}
+    active: str | None = None
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        header = header_to_canonical(line)
+        if header is not None:
+            active = header
+            continue
+        if active is None:
+            continue
+        cleaned = line.strip(" -•\t")
+        if len(cleaned) > 2:
+            sections[active].append(cleaned)
+    return sections
 
 
 def standardize_job(job_text: str, source_url: str | None = None) -> Dict[str, Any]:
@@ -404,6 +602,21 @@ def standardize_job(job_text: str, source_url: str | None = None) -> Dict[str, A
     role_archetype = infer_role_archetype(job_text)
     title = infer_title(job_text)
     short_summary = " ".join([s.strip() for s in re.split(r"(?<=[.!?])\s+", job_text.strip())[:3]])
+    detected_language = infer_language(job_text)
+    must_markers, nice_markers = requirement_markers_for_language(detected_language)
+    canonical_sections = extract_canonical_sections(job_text)
+    must_have = dedupe_lines(
+        canonical_sections.get("requirements_must_have", [])
+        + extract_requirement_lines(job_text, must_markers)
+    )
+    nice_to_have = dedupe_lines(
+        canonical_sections.get("requirements_nice_to_have", [])
+        + extract_requirement_lines(job_text, nice_markers)
+    )
+    job_description_lines = dedupe_lines(canonical_sections.get("job_description", []))
+    job_description = " ".join(job_description_lines).strip()
+    if not job_description:
+        job_description = short_summary[:1200]
     return {
         "job_standardized": {
             "job_id": make_job_id(job_text, source_url),
@@ -413,7 +626,7 @@ def standardize_job(job_text: str, source_url: str | None = None) -> Dict[str, A
                 "scraped_at": dt.datetime.now(dt.timezone.utc).isoformat(),
             },
             "language": {
-                "original": infer_language(job_text),
+                "original": detected_language,
                 "standardized_output": "English",
             },
             "identity": {
@@ -424,6 +637,7 @@ def standardize_job(job_text: str, source_url: str | None = None) -> Dict[str, A
                 "employment_type": "unspecified",
             },
             "summary": {"short_summary": short_summary[:700]},
+            "job_description": job_description[:1200],
             "job_analysis": {
                 "role_archetype": role_archetype,
                 "seniority": infer_seniority(job_text),
@@ -434,8 +648,8 @@ def standardize_job(job_text: str, source_url: str | None = None) -> Dict[str, A
             },
             "explicit_terms": explicit,
             "normalized_requirements": {
-                "must_have": extract_requirement_lines(job_text, ["requirements", "krav", "must", "required"]),
-                "nice_to_have": extract_requirement_lines(job_text, ["desirable", "nice", "meriterande", "plus", "preferred"]),
+                "must_have": must_have[:8],
+                "nice_to_have": nice_to_have[:8],
             },
             "blockers": infer_blockers(job_text),
             "raw_text_excerpt": job_text[:1800],
@@ -485,7 +699,9 @@ def extract_requirement_lines(text: str, markers: List[str]) -> List[str]:
         if not line:
             continue
         low = line.lower()
-        if any(m in low for m in markers):
+        marker_hit = any(m in low for m in markers)
+        is_header_like = low.endswith(":") or (len(line) <= 60 and line == line.strip())
+        if marker_hit and (is_header_like or active):
             active = True
             if len(line) > 15 and not low.endswith(":"):
                 selected.append(line)
@@ -499,6 +715,21 @@ def extract_requirement_lines(text: str, markers: List[str]) -> List[str]:
         if len(selected) >= 8:
             break
     return selected[:8]
+
+
+def dedupe_lines(lines: List[str]) -> List[str]:
+    out: List[str] = []
+    seen = set()
+    for line in lines:
+        cleaned = line.strip()
+        if len(cleaned) <= 2:
+            continue
+        key = normalize(cleaned)
+        if key in seen:
+            continue
+        out.append(cleaned)
+        seen.add(key)
+    return out
 
 
 def infer_blockers(text: str) -> Dict[str, List[str]]:
@@ -589,17 +820,23 @@ def match_job(job: Dict[str, Any], evidence_index: List[Dict[str, Any]], aliases
     risk_score = score_risk(js)
 
     overall = round(
-        expertise_fit * 0.35
-        + role_fit * 0.25
+        expertise_fit * 0.30
+        + role_fit * 0.30
         + growth_fit * 0.20
-        + interest_fit * 0.10
-        + practical_fit * 0.10
-        - risk_score * 0.30
+        + interest_fit * 0.15
+        + practical_fit * 0.05
+        - risk_score * 0.35
     )
     overall = max(0, min(100, overall))
 
     selected_role_groups = sorted(role_group_scores.items(), key=lambda kv: kv[1], reverse=True)[:3]
-    recommended_status = recommend_status(overall, role_fit, expertise_fit, js["blockers"].get("hard", []))
+    recommended_status = recommend_status(
+        overall,
+        role_fit,
+        expertise_fit,
+        interest_fit,
+        js["blockers"].get("hard", []),
+    )
     if js["blockers"]["hard"]:
         recommended_status = "reject"
 
@@ -673,10 +910,19 @@ def score_growth_fit(js: Dict[str, Any], prefs: Dict[str, Any]) -> int:
 
 def score_interest_fit(js: Dict[str, Any], prefs: Dict[str, Any]) -> int:
     text = normalize(json.dumps(js, ensure_ascii=False))
+    title = normalize(js.get("identity", {}).get("original_title", ""))
+    normalized_title = normalize(js.get("identity", {}).get("normalized_title", ""))
+    title_text = f"{title} {normalized_title}"
     cp = prefs.get("career_preferences", prefs)
     preferred = cp.get("work_preferences", {}).get("role_shape", {}).get("preferred", [])
     avoid = cp.get("work_preferences", {}).get("role_shape", {}).get("avoid", []) + cp.get("target_roles", {}).get("avoid", [])
-    score = 60 + sum(7 for t in preferred if t.lower() in text) - sum(15 for t in avoid if t.lower() in text)
+    score = 58 + sum(6 for t in preferred if t.lower() in text) - sum(14 for t in avoid if t.lower() in text)
+    if any(pattern in title_text for pattern in OFF_DIRECTION_PATTERNS):
+        score -= 26
+    if any(signal in text for signal in SOFTWARE_DIRECTION_SIGNALS):
+        score += 10
+    if ("architect" in title_text or "lead" in title_text) and "software" not in text and "technical" not in text:
+        score -= 10
     return max(0, min(100, score))
 
 
@@ -685,14 +931,14 @@ def score_practical_fit(js: Dict[str, Any], prefs: Dict[str, Any]) -> int:
     city = (loc.get("city") or "").lower()
     mode = (loc.get("work_mode") or "").lower()
     if city == "gothenburg" and mode in ["hybrid", "remote", "unspecified"]:
-        return 95
-    if city == "gothenburg":
-        return 90
-    if mode == "remote":
         return 85
+    if city == "gothenburg":
+        return 80
+    if mode == "remote":
+        return 75
     if not city:
-        return 60
-    return 45
+        return 55
+    return 40
 
 
 def score_risk(js: Dict[str, Any]) -> int:
@@ -742,12 +988,18 @@ def score_role_fit(js: Dict[str, Any], matched_terms: List[str]) -> int:
     return max(0, min(100, score))
 
 
-def recommend_status(overall: int, role_fit: int, expertise_fit: int, hard_blockers: List[str]) -> str:
+def recommend_status(
+    overall: int,
+    role_fit: int,
+    expertise_fit: int,
+    interest_fit: int,
+    hard_blockers: List[str],
+) -> str:
     if hard_blockers:
         return "reject"
-    if overall >= 74 and role_fit >= 62 and expertise_fit >= 55:
+    if overall >= 76 and role_fit >= 60 and expertise_fit >= 55 and interest_fit >= 50:
         return "keep"
-    if overall >= 58 and role_fit >= 42:
+    if overall >= 58 and role_fit >= 45 and interest_fit >= 35:
         return "maybe"
     return "reject"
 
