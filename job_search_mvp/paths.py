@@ -16,7 +16,6 @@ DATA_FILE_NAMES = {
     "cv_generation_policy.yaml",
     "employee_profile.yaml",
     "experience_database.yaml",
-    "job_sources.yaml",
     "tool_aliases.yaml",
 }
 

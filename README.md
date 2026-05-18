@@ -57,12 +57,23 @@ python -m jobsearch.pipeline.run_sources_to_review \
   --sync-tracker
 ```
 
+To start a fresh cycle and remove the previous generated positions first, add:
+
+```bash
+python -m jobsearch.pipeline.run_sources_to_review \
+  --sources job_sources.yaml \
+  --data-dir . \
+  --sync-tracker \
+  --reset-cycle-artifacts
+```
+
 What it does:
 
-1. Collects jobs from configured/manual sources.
-2. Deduplicates into `sources/collected_jobs/`.
-3. Runs batch matching.
-4. Optionally syncs queue rows into persistent tracker (`--sync-tracker`).
+1. Clears the previous generated cycle artifacts first when `--reset-cycle-artifacts` is used.
+2. Collects jobs from configured/manual sources.
+3. Deduplicates into `sources/collected_jobs/`.
+4. Runs batch matching.
+5. Optionally syncs queue rows into persistent tracker (`--sync-tracker`).
 
 Key outputs:
 
@@ -214,6 +225,8 @@ job-search-selected-cv
 job-search-verama
 job-search-dashboard
 ```
+
+`job-search-sources` accepts the same opt-in reset flag as the module form.
 
 ## Legacy/developer commands (secondary)
 

@@ -20,6 +20,7 @@ from pathlib import Path
 from typing import List
 
 from .paths import resolve_project_root
+from .workspace_cleanup import reset_search_cycle_artifacts
 
 
 def run(cmd: List[str], cwd: Path) -> None:
@@ -36,9 +37,19 @@ def main() -> int:
     parser.add_argument("--batch-out", default="outputs/batch", help="Batch matcher output folder")
     parser.add_argument("--tracker", default="outputs/application_tracker.csv", help="Persistent tracker CSV")
     parser.add_argument("--sync-tracker", action="store_true", help="Also sync the review queue into the tracker")
+    parser.add_argument(
+        "--reset-cycle-artifacts",
+        action="store_true",
+        help="Delete previous generated cycle artifacts (sources/collected_jobs, outputs/batch, outputs/selected) before running",
+    )
     args = parser.parse_args()
 
     project_root = resolve_project_root(args.data_dir)
+    if args.reset_cycle_artifacts:
+        summary = reset_search_cycle_artifacts(project_root=project_root)
+        print("\nReset previous cycle artifacts")
+        print(f"Removed: {', '.join(summary['removed']) if summary['removed'] else '(none)'}")
+        print(f"Missing: {', '.join(summary['missing']) if summary['missing'] else '(none)'}")
 
     run([
         sys.executable, "-m", "jobsearch.sources.source_adapter",

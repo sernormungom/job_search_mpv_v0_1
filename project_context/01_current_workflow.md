@@ -25,7 +25,15 @@ The normal usage pattern is weekly or periodic:
 3. Keep long-lived decisions in `outputs/application_tracker.csv`.
 4. Do not mix old positions into the active review queue unless that is intentional.
 
-A future cleanup feature may reset or archive previous cycle artifacts before a new search. That feature is intentionally not part of the current refactor.
+The search-cycle reset feature clears only generated position artifacts from the previous cycle by default:
+
+- `sources/collected_jobs/`
+- `outputs/batch/`
+- `outputs/selected/`
+
+It should preserve persistent history and maintained source/config files by default, especially `outputs/application_tracker.csv`, `outputs/application_tracker.html`, `data/*.yaml`, and manually maintained job inputs such as `sources/copied_jobs/`.
+
+The reset should be explicit and opt-in, not automatic on every run.
 
 ## Step 0: Install for development
 
@@ -52,12 +60,23 @@ python -m jobsearch.pipeline.run_sources_to_review \
   --sync-tracker
 ```
 
+To start a fresh search cycle and clear the previous generated positions first, add the explicit reset flag:
+
+```bash
+python -m jobsearch.pipeline.run_sources_to_review \
+  --sources job_sources.yaml \
+  --data-dir . \
+  --sync-tracker \
+  --reset-cycle-artifacts
+```
+
 What this orchestrates:
 
-1. `jobsearch.sources.source_adapter` collects jobs from `data/job_sources.yaml`.
-2. Jobs are deduplicated and written to `sources/collected_jobs/`.
-3. `jobsearch.pipeline.run_job_batch` processes the collected folder.
-4. If `--sync-tracker` is set, the review queue is merged into the persistent tracker.
+1. If `--reset-cycle-artifacts` is set, previous generated cycle artifacts are removed before collection starts.
+2. `jobsearch.sources.source_adapter` collects jobs from `data/job_sources.yaml`.
+3. Jobs are deduplicated and written to `sources/collected_jobs/`.
+4. `jobsearch.pipeline.run_job_batch` processes the collected folder.
+5. If `--sync-tracker` is set, the review queue is merged into the persistent tracker.
 
 Expected important outputs:
 

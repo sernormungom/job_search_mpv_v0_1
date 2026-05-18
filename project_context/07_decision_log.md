@@ -74,6 +74,37 @@ The current priority is stabilization and documentation clarity. Adding cleanup 
 - AI agents should not add cleanup commands during stabilization without explicit instruction.
 - The refactor should still classify files so future cleanup is safer.
 
+## 2026-05-18: Search-cycle reset should delete only generated position artifacts by default
+
+### Decision
+
+The requested search-cycle reset feature should remove only generated current-cycle position artifacts by default:
+
+- `sources/collected_jobs/`
+- `outputs/batch/`
+- `outputs/selected/`
+
+It should preserve persistent history and maintained source/config files by default, especially:
+
+- `outputs/application_tracker.csv`
+- `outputs/application_tracker.html`
+- `data/*.yaml`
+- manually maintained source folders such as `sources/copied_jobs/`
+
+The feature should be explicit and opt-in, not automatic on normal pipeline runs.
+
+### Rationale
+
+The user wants a clean starting point for a new workflow run without carrying previous positions into the active queue. At the same time, the project already distinguishes generated cycle artifacts from persistent decision history. Preserving the tracker by default avoids accidental loss of application history while still solving the "start fresh" problem.
+
+### Consequences
+
+- Cleanup behavior should be introduced behind an explicit CLI flag or dedicated command.
+- Implementation should use a strict allowlist of removable paths rather than broad pattern deletion.
+- Cleanup should validate that every target resolves inside the project root before deleting.
+- Documentation should describe the reset as "clear previous generated positions/artifacts" rather than "wipe workspace."
+- A separate explicit reset path would be required if the user ever wants to delete tracker history too.
+
 ## 2026-05-08: `project_context/` is the source of truth for maintainers and AI agents
 
 ### Decision
