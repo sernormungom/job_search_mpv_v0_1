@@ -7,8 +7,6 @@
       ],
       "supporting_terms": [
         "C++ development",
-        "C++ utveckling",
-        "utveckling i C++"
       ]
     },
     "CI/CD": {
@@ -24,8 +22,6 @@
         "CI/CD integration",
         "byggpipeline",
         "deploypipeline",
-        "kontinuerlig integration",
-        "kontinuerlig leverans"
       ]
     },
     "Jira": {
@@ -38,8 +34,6 @@
         "SAFe",
         "PI Planning",
         "issue tracking",
-        "ärendehantering",
-        "ärenden"
       ]
     },
     "Vector": {
@@ -52,7 +46,6 @@
         "AUTOSAR",
         "AUTOSAR (DaVinci - Vector toolsuite)",
         "Vector toolsuite",
-        "verktygssvit"
       ]
     },
     "AUTOSAR": {
@@ -63,7 +56,6 @@
         "Vector DaVinci Developer",
         "DaVinci",
         "embedded automotive platform",
-        "inbyggda fordonssystem"
       ]
     },
     "V&V": {
@@ -83,8 +75,6 @@
         "test automation",
         "Hardware-in-the-Loop",
         "Model-in-the-Loop",
-        "verifiering och validering",
-        "testautomatisering"
       ]
     },
     "AI-assisted development": {
@@ -98,8 +88,6 @@
         "Volvo GPT",
         "developer productivity",
         "AI Based Automation of V&V",
-        "AI-stodd utveckling",
-        "AI-stodd verifikation"
       ]
     },
     "Agile": {
@@ -111,8 +99,6 @@
         "SAFe",
         "PI Planning",
         "Jira",
-        "Agilt",
-        "agila arbetssatt"
       ]
     }
   }

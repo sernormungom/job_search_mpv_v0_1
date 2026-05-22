@@ -327,11 +327,19 @@ def main() -> int:
     left, right = st.columns([1.1, 1.9], gap="large")
     with left:
         st.subheader("Filters")
+        hide_reviewed = st.checkbox(
+            "Hide already reviewed",
+            value=True,
+            help="When enabled, only jobs with status 'new' are shown.",
+        )
+        default_statuses = ["new"] if hide_reviewed else ["new", "keep", "maybe", "prepare_cv", "cv_ready"]
         selected_statuses = st.multiselect(
             "Status",
             options=list(application_tracker.VALID_STATUSES),
-            default=["new", "keep", "maybe", "prepare_cv", "cv_ready"],
+            default=default_statuses,
         )
+        if hide_reviewed:
+            selected_statuses = ["new"]
         search_query = st.text_input("Search", placeholder="Title, city, tags, URL...")
         filtered_rows = [r for r in rows if _matches_filters(r, selected_statuses, search_query)]
         st.caption(f"{len(filtered_rows)} jobs after filtering")

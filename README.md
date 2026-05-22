@@ -122,6 +122,12 @@ set JOBSEARCH_LLM_MODEL=gpt-3.5-turbo
 
 Current guardrail: OpenAI calls are budget-constrained to the configured model in code.
 
+Hybrid/LLM behavior details:
+
+1. Token-saving reuse: if `outputs/batch/<job_id>.job_standardized.yaml` already exists and contains LLM enrichment, batch processing reuses it and skips a new LLM call.
+2. Swedish override (content-aware): in `hybrid` mode, LLM is forced when the core job description content is Swedish.
+3. Swedish posting chrome does not force LLM: Swedish labels/metadata around the posting (for example `Publicerad den`, `Roll`, `Senioritetsnivå`, `Distansarbete`) are treated as source-site wrapper text, not decisive job-language evidence.
+
 Batch outputs:
 
 ```text

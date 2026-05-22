@@ -24,6 +24,15 @@ sources:
     #     company_hint: Example AB
     urls: []
 
+  - id: saab_public_jobs
+    label: Saab Public Jobs - Gothenburg
+    type: saab_public
+    enabled: true
+    url: https://www.saab.com/career/job-opportunities
+    location: Göteborg
+    company_hint: Saab
+    max_jobs: 60
+
   - id: verama_gothenburg
     label: Verama/Ework browser collector - Gothenburg
     type: verama_playwright

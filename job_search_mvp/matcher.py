@@ -262,6 +262,27 @@ ENGLISH_NICE_TO_HAVE_MARKERS = [
     "preferred",
 ]
 
+POSTING_CHROME_MARKERS = [
+    "publicerad den",
+    "roll",
+    "senioritetsnivå",
+    "distansarbete",
+    "uppdragsperiod",
+    "ansökningstiden löper ut",
+    "antal ansökningar",
+    "ansök",
+]
+
+DESCRIPTION_SECTION_MARKERS = [
+    "uppdragsbeskrivning",
+    "job description",
+    "about the role",
+    "key responsibilities",
+    "required experience",
+    "requirements",
+    "qualifications",
+]
+
 
 def load_yaml(path: Path) -> Dict[str, Any]:
     """Load YAML/JSON for the prototype.
@@ -547,6 +568,37 @@ def infer_language(text: str) -> str:
     return "English/unspecified"
 
 
+def _core_content_text(text: str) -> str:
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    low_lines = [line.lower() for line in lines]
+    start_idx = 0
+    for i, line in enumerate(low_lines):
+        if any(marker in line for marker in DESCRIPTION_SECTION_MARKERS):
+            start_idx = i + 1
+            break
+
+    kept: List[str] = []
+    for line in low_lines[start_idx:]:
+        if any(marker in line for marker in POSTING_CHROME_MARKERS):
+            continue
+        kept.append(line)
+
+    if not kept:
+        kept = low_lines
+    return "\n".join(kept)
+
+
+def infer_content_language(text: str) -> str:
+    core = _core_content_text(text)
+    swedish_hits = sum(1 for marker in SWEDISH_LANGUAGE_MARKERS if marker in core)
+    english_hits = sum(1 for marker in ENGLISH_LANGUAGE_MARKERS if marker in core)
+    if swedish_hits > english_hits:
+        return "Swedish"
+    if english_hits > swedish_hits:
+        return "English"
+    return "English/unspecified"
+
+
 def requirement_markers_for_language(language: str) -> Tuple[List[str], List[str]]:
     low = language.lower()
     if low == "swedish":
@@ -602,7 +654,7 @@ def standardize_job(job_text: str, source_url: str | None = None) -> Dict[str, A
     role_archetype = infer_role_archetype(job_text)
     title = infer_title(job_text)
     short_summary = " ".join([s.strip() for s in re.split(r"(?<=[.!?])\s+", job_text.strip())[:3]])
-    detected_language = infer_language(job_text)
+    detected_language = infer_content_language(job_text)
     must_markers, nice_markers = requirement_markers_for_language(detected_language)
     canonical_sections = extract_canonical_sections(job_text)
     must_have = dedupe_lines(

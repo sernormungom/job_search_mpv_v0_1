@@ -41,6 +41,7 @@ import argparse
 import csv
 import html
 import sys
+import urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterable, List
@@ -158,17 +159,52 @@ def normalize_status(status: str | None) -> str:
     return s if s in VALID_STATUSES else "new"
 
 
+def canonical_source_url(url: str | None) -> str:
+    """Normalize source URL so equivalent links can be deduplicated in tracker sync."""
+    raw = (url or "").strip()
+    if not raw:
+        return ""
+    parsed = urllib.parse.urlsplit(raw)
+    query = urllib.parse.parse_qsl(parsed.query, keep_blank_values=True)
+    remove_prefixes = ("utm_",)
+    remove_exact = {"fbclid", "gclid", "mc_cid", "mc_eid"}
+    clean_query = [(k, v) for k, v in query if not k.startswith(remove_prefixes) and k not in remove_exact]
+    return urllib.parse.urlunsplit(
+        (
+            parsed.scheme.lower(),
+            parsed.netloc.lower(),
+            parsed.path.rstrip("/"),
+            urllib.parse.urlencode(clean_query),
+            "",
+        )
+    )
+
+
 def sync_tracker(review_queue: Path, tracker_path: Path) -> List[Dict[str, str]]:
     now = utc_now()
     review_rows = read_csv(review_queue)
     tracker_rows = read_csv(tracker_path)
     tracker = by_job_id(tracker_rows)
+    tracker_by_url: Dict[str, Dict[str, str]] = {}
+    for row in tracker.values():
+        src_key = canonical_source_url(row.get("source_url"))
+        if src_key and src_key not in tracker_by_url:
+            tracker_by_url[src_key] = row
 
     for review in review_rows:
         job_id = (review.get("job_id") or "").strip()
         if not job_id:
             continue
         existing = tracker.get(job_id)
+        review_src_key = canonical_source_url(review.get("source_url"))
+        if existing is None and review_src_key:
+            existing = tracker_by_url.get(review_src_key)
+            if existing is not None:
+                previous_id = (existing.get("job_id") or "").strip()
+                if previous_id and previous_id in tracker and previous_id != job_id:
+                    del tracker[previous_id]
+                existing["job_id"] = job_id
+                tracker[job_id] = existing
         if existing is None:
             existing = {field: "" for field in TRACKER_FIELDS}
             existing["job_id"] = job_id
@@ -186,6 +222,9 @@ def sync_tracker(review_queue: Path, tracker_path: Path) -> List[Dict[str, str]]
         existing["match_reason"] = review.get("reason", existing.get("match_reason", ""))
         existing["last_seen_at"] = now
         existing["status"] = normalize_status(existing.get("status"))
+        src_key = canonical_source_url(existing.get("source_url"))
+        if src_key:
+            tracker_by_url[src_key] = existing
 
     rows = sorted(
         tracker.values(),

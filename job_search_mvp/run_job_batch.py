@@ -74,6 +74,11 @@ def apply_file_metadata(job_standardized: Dict[str, Any], metadata: Dict[str, st
     return job_standardized
 
 
+def is_llm_standardized(job_standardized: Dict[str, Any]) -> bool:
+    js = job_standardized.get("job_standardized", {}) or {}
+    return bool(js.get("llm_enrichment"))
+
+
 def get_root(data: Dict[str, Any], key: str) -> Dict[str, Any]:
     return data.get(key, data)
 
@@ -288,20 +293,47 @@ def main() -> int:
             job_standardized = matcher.standardize_job(job_text, source_url=source_url)
             job_standardized = apply_file_metadata(job_standardized, metadata)
         else:
-            std_result = standardize_job_with_mode(
-                job_text=job_text,
-                source_url=source_url,
-                metadata=metadata,
-                mode=args.standardizer,
-                provider=args.llm_provider,
-                model=args.llm_model,
-                timeout_sec=args.llm_timeout_sec,
-            )
-            job_standardized = std_result.job_standardized
-            job_standardized = apply_file_metadata(job_standardized, metadata)
-            llm_validation = std_result.validation_report
-            llm_raw = std_result.llm_raw
-            time.sleep(10)  # Rate limit delay
+            predicted_job_id = matcher.make_job_id(job_text, source_url=source_url)
+            existing_std_path = out_dir / f"{predicted_job_id}.job_standardized.yaml"
+            existing_validation_path = out_dir / f"{predicted_job_id}.job_standardized.validation.yaml"
+            existing_llm_raw_path = out_dir / f"{predicted_job_id}.job_standardized.llm_raw.yaml"
+            reused_cached_llm = False
+
+            if existing_std_path.exists():
+                existing_std = matcher.load_yaml(existing_std_path)
+                if is_llm_standardized(existing_std):
+                    job_standardized = apply_file_metadata(existing_std, metadata)
+                    reused_cached_llm = True
+                    if existing_validation_path.exists():
+                        llm_validation = matcher.load_yaml(existing_validation_path)
+                        llm_validation["cache_reused"] = True
+                    else:
+                        llm_validation = {
+                            "mode": args.standardizer,
+                            "used_fallback": False,
+                            "errors": [],
+                            "warnings": ["Reused existing LLM-standardized output; no new LLM call made."],
+                            "cache_reused": True,
+                        }
+                    if existing_llm_raw_path.exists():
+                        llm_raw = matcher.load_yaml(existing_llm_raw_path)
+                    print(f"Reused cached LLM-standardized output for {job_file.name}: {predicted_job_id}")
+
+            if not reused_cached_llm:
+                std_result = standardize_job_with_mode(
+                    job_text=job_text,
+                    source_url=source_url,
+                    metadata=metadata,
+                    mode=args.standardizer,
+                    provider=args.llm_provider,
+                    model=args.llm_model,
+                    timeout_sec=args.llm_timeout_sec,
+                )
+                job_standardized = std_result.job_standardized
+                job_standardized = apply_file_metadata(job_standardized, metadata)
+                llm_validation = std_result.validation_report
+                llm_raw = std_result.llm_raw
+                time.sleep(10)  # Rate limit delay
         match_result = matcher.match_job(job_standardized, evidence_index, aliases, prefs)
         job_id = job_standardized["job_standardized"]["job_id"]
         matcher.write_yaml(out_dir / f"{job_id}.job_standardized.yaml", job_standardized)

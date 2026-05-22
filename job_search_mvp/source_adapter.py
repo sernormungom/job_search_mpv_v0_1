@@ -24,6 +24,7 @@ import html
 import json
 import re
 import sys
+import unicodedata
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -111,6 +112,15 @@ def clean_text(text: str) -> str:
     text = re.sub(r"\n[ \t]+", "\n", text)
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip()
+
+
+def fold_text(text: str) -> str:
+    """ASCII-friendly lowercase fold for robust text matching."""
+    if not text:
+        return ""
+    normalized = unicodedata.normalize("NFKD", text)
+    ascii_only = normalized.encode("ascii", "ignore").decode("ascii")
+    return ascii_only.lower().strip()
 
 
 def read_source_url_from_text(text: str) -> Optional[str]:
@@ -237,6 +247,95 @@ def iter_url_list(source: Dict[str, Any]) -> Iterable[Dict[str, Any]]:
             }
 
 
+def iter_saab_public(source: Dict[str, Any]) -> Iterable[Dict[str, Any]]:
+    """Collect Saab job detail pages by expanding the public listing page."""
+    base_url = str(source.get("base_url") or "https://www.saab.com").rstrip("/")
+    listing_url = source.get("url") or source.get("listing_url") or f"{base_url}/career/job-opportunities"
+    location_filter = fold_text(str(source.get("location") or ""))
+    max_jobs = int(source.get("max_jobs") or 0)
+
+    try:
+        req = urllib.request.Request(
+            str(listing_url),
+            headers={
+                "User-Agent": "Mozilla/5.0 JobSearchAutomationPrototype/0.1",
+                "Accept": "text/html,text/plain;q=0.9,*/*;q=0.8",
+            },
+        )
+        with urllib.request.urlopen(req, timeout=30.0) as resp:
+            listing_html = resp.read().decode("utf-8", errors="replace")
+        listing_html = html.unescape(listing_html)
+    except (urllib.error.URLError, TimeoutError, RuntimeError) as exc:
+        yield {
+            "source_id": source.get("id", "saab_public"),
+            "source_type": "saab_public",
+            "source_url": str(listing_url),
+            "title_hint": "Saab job opportunities",
+            "company_hint": "Saab",
+            "text": "",
+            "origin": str(listing_url),
+            "error": f"Cannot fetch Saab listing page: {exc}",
+        }
+        return
+
+    item_pattern = re.compile(r'<div class="item">(.*?)</div>\s*</div>\s*<div class="item-listing__job-end-date">', re.I | re.S)
+    link_pattern = re.compile(r'href="(/career/job-opportunities/[^"]+)"', re.I)
+    loc_pattern = re.compile(r'<div class="location">\s*([^<]+)\s*</div>', re.I)
+    title_pattern = re.compile(r'>([^<>]+)<span class="icon">', re.I)
+
+    seen_links: set[str] = set()
+    items: List[Tuple[str, Optional[str], str]] = []
+
+    for block in item_pattern.findall(listing_html):
+        link_m = link_pattern.search(block)
+        if not link_m:
+            continue
+        rel = link_m.group(1).strip()
+        full_url = urllib.parse.urljoin(base_url + "/", rel.lstrip("/"))
+
+        location_m = loc_pattern.search(block)
+        item_location = (location_m.group(1).strip() if location_m else "")
+        if location_filter and location_filter not in fold_text(item_location):
+            continue
+
+        if full_url in seen_links:
+            continue
+        seen_links.add(full_url)
+
+        title_m = title_pattern.search(block)
+        title_hint = clean_text(title_m.group(1)) if title_m else None
+        items.append((full_url, title_hint, item_location))
+
+    if max_jobs > 0:
+        items = items[:max_jobs]
+
+    for job_url, title_hint, item_location in items:
+        try:
+            text, page_title = fetch_url(job_url)
+            if len(text) < 200:
+                raise RuntimeError("Fetched Saab job page text is too short.")
+            yield {
+                "source_id": source.get("id", "saab_public"),
+                "source_type": "saab_public",
+                "source_url": job_url,
+                "title_hint": title_hint or page_title,
+                "company_hint": source.get("company_hint") or "Saab",
+                "text": text,
+                "origin": f"{listing_url} -> {job_url} ({item_location})",
+            }
+        except (urllib.error.URLError, TimeoutError, RuntimeError) as exc:
+            yield {
+                "source_id": source.get("id", "saab_public"),
+                "source_type": "saab_public",
+                "source_url": job_url,
+                "title_hint": title_hint,
+                "company_hint": source.get("company_hint") or "Saab",
+                "text": "",
+                "origin": job_url,
+                "error": str(exc),
+            }
+
+
 def iter_browser_verama(source: Dict[str, Any], root: Path) -> Iterable[Dict[str, Any]]:
     try:
         from .verama_playwright_adapter import collect_verama_jobs
@@ -282,6 +381,8 @@ def collect_jobs(config: Dict[str, Any], package_root: Path, out_dir: Path) -> L
             iterator = iter_local_folder(source, package_root)
         elif source_type == "url_list":
             iterator = iter_url_list(source)
+        elif source_type == "saab_public":
+            iterator = iter_saab_public(source)
         elif source_type in {"browser_verama", "verama_playwright"}:
             iterator = iter_browser_verama(source, package_root)
         else:

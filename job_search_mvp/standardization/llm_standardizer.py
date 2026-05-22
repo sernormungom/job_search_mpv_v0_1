@@ -264,6 +264,10 @@ def standardize_job_with_mode(
     deterministic_terms = deterministic["job_standardized"].get("explicit_terms", {})
     job_id = deterministic["job_standardized"]["job_id"]
     confidence = deterministic_confidence_report(deterministic)
+    core_language = (
+        (deterministic.get("job_standardized", {}).get("language", {}) or {}).get("original", "") or ""
+    ).strip().lower()
+    force_llm_for_language = core_language == "swedish"
 
     if mode == "deterministic":
         return LLMStandardizationResult(
@@ -279,7 +283,7 @@ def standardize_job_with_mode(
             used_fallback=False,
         )
 
-    if mode == "hybrid" and not confidence["is_low_confidence"]:
+    if mode == "hybrid" and not confidence["is_low_confidence"] and not force_llm_for_language:
         return LLMStandardizationResult(
             job_standardized=deterministic,
             llm_raw=None,
@@ -289,6 +293,10 @@ def standardize_job_with_mode(
                 "errors": [],
                 "warnings": ["LLM skipped: deterministic confidence is high enough."],
                 "deterministic_confidence": confidence,
+                "language_override": {
+                    "core_language": core_language or "unknown",
+                    "forced_llm": False,
+                },
             },
             used_fallback=False,
         )
@@ -308,6 +316,10 @@ def standardize_job_with_mode(
                     "errors": ["OPENAI_API_KEY is not set"],
                     "warnings": [],
                     "deterministic_confidence": confidence,
+                    "language_override": {
+                        "core_language": core_language or "unknown",
+                        "forced_llm": bool(force_llm_for_language),
+                    },
                 },
                 used_fallback=True,
             )
@@ -346,6 +358,10 @@ def standardize_job_with_mode(
                     "errors": errors,
                     "warnings": warnings,
                     "deterministic_confidence": confidence,
+                    "language_override": {
+                        "core_language": core_language or "unknown",
+                        "forced_llm": bool(force_llm_for_language),
+                    },
                 },
                 used_fallback=True,
             )
@@ -361,6 +377,10 @@ def standardize_job_with_mode(
             "errors": errors,
             "warnings": warnings,
             "deterministic_confidence": confidence,
+            "language_override": {
+                "core_language": core_language or "unknown",
+                "forced_llm": bool(force_llm_for_language),
+            },
         },
         used_fallback=False,
     )
