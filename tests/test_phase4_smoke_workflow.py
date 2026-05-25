@@ -354,3 +354,91 @@ def test_dashboard_single_job_cv_helper_updates_tracker_status(monkeypatch):
     assert row["decision_reason"] == "Dashboard trigger"
     assert row["cv_strategy_path"].endswith("job_dash_1.cv_strategy.yaml")
     assert row["mpya_cv_html_path"].endswith("job_dash_1.mpya_cv.html")
+
+
+def test_dashboard_job_context_replaces_raw_scrape_summary_with_review_summary():
+    work_dir = make_work_dir("phase4_dashboard_context")
+    batch_dir = work_dir / "batch"
+    batch_dir.mkdir()
+    job_id = "job_context_1"
+    run_job_batch.matcher.write_yaml(
+        batch_dir / f"{job_id}.job_standardized.yaml",
+        {
+            "job_standardized": {
+                "job_id": job_id,
+                "language": {"original": "Swedish", "standardized_output": "English"},
+                "identity": {
+                    "original_title": "Systemintegrator IBM ACE",
+                    "normalized_title": "System Integration Consultant",
+                    "company": "Polismyndigheten",
+                    "location": {"city": "Gothenburg", "work_mode": "on-site"},
+                },
+                "summary": {
+                    "short_summary": "Source URL: https://example.test\nCollected From: verama\nSystemintegrator IBM ACE",
+                },
+                "job_description": "Develop integrations on IBM ACE for a public-sector integration platform.",
+                "job_analysis": {
+                    "primary_technical_focus": ["IBM ACE"],
+                    "secondary_technical_focus": ["public-sector integrations"],
+                },
+                "normalized_requirements": {
+                    "responsibilities": ["Develop complex integrations on IBM ACE."],
+                    "must_have": ["Minimum 1 year of experience in integration development with IBM ACE"],
+                    "nice_to_have": ["Experience in the public sector"],
+                },
+                "blockers": {"hard": [], "soft": ["Swedish may be preferred"]},
+                "llm_enrichment": {
+                    "identity_extra": {
+                        "assignment_period": {"start": "2026-08-01", "end": "2027-06-01"},
+                        "application_deadline": "2026-05-28",
+                        "remote_percentage": 0,
+                    },
+                    "tags": {"language_requirement": ["Swedish"]},
+                },
+            }
+        },
+    )
+
+    context = streamlit_dashboard._read_job_context(batch_dir, job_id)
+
+    assert "Source URL" not in context["summary"]
+    assert "System Integration Consultant role for Polismyndigheten" in context["summary"]
+    assert context["responsibilities"] == ["Develop complex integrations on IBM ACE."]
+    assert context["assignment_period"]["start"] == "2026-08-01"
+    assert context["application_deadline"] == "2026-05-28"
+
+
+def test_dashboard_review_brief_is_conservative_for_specific_tool_requirements():
+    row = {
+        "recommended_status": "reject",
+        "overall_score": "50",
+        "expertise_fit": "30",
+        "role_fit": "66",
+        "tool_fit": "23",
+        "growth_fit": "72",
+        "practical_fit": "40",
+        "risk_score": "15",
+        "matched_terms": "integration",
+        "hard_blockers": "",
+        "soft_risks": "Swedish may be preferred",
+    }
+    context = {
+        "must_have": ["Minimum 1 year of experience in integration development with IBM ACE"],
+        "hard_blockers": [],
+        "soft_blockers": [],
+        "identity": {"location": {"work_mode": "on-site"}},
+        "remote_percentage": 0,
+        "language": {"original": "Swedish", "standardized_output": "English"},
+        "llm_enrichment": {"tags": {"language_requirement": ["Swedish"]}},
+    }
+
+    assert streamlit_dashboard._classify_requirement_fit(
+        "Minimum 1 year of experience in integration development with IBM ACE",
+        ["integration"],
+    ) == "no direct evidence"
+
+    brief = streamlit_dashboard._build_review_brief(row, context)
+
+    assert brief["decision_hint"].startswith("Likely reject")
+    assert any("Weak direct tool fit" in concern for concern in brief["concerns"])
+    assert any("IBM ACE" in concern for concern in brief["concerns"])

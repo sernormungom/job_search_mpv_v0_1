@@ -120,6 +120,236 @@ def _rows_for_table(rows: List[Dict[str, str]]) -> List[Dict[str, str]]:
     ]
 
 
+def _clean_list(value: Any) -> List[str]:
+    if not isinstance(value, list):
+        return []
+    out: List[str] = []
+    seen = set()
+    for item in value:
+        text = str(item).strip()
+        key = text.lower()
+        if text and key not in seen:
+            seen.add(key)
+            out.append(text)
+    return out
+
+
+def _dedupe_texts(items: Sequence[str]) -> List[str]:
+    out: List[str] = []
+    seen = set()
+    for item in items:
+        text = str(item).strip()
+        key = text.lower()
+        if text and key not in seen:
+            seen.add(key)
+            out.append(text)
+    return out
+
+
+def _split_compact_list(value: str) -> List[str]:
+    return [part.strip() for part in str(value or "").split(",") if part.strip()]
+
+
+def _looks_like_raw_scrape_summary(summary: str) -> bool:
+    low = summary.lower()
+    chrome_markers = [
+        "source url:",
+        "collected from:",
+        "collected at:",
+        "publicerad den",
+        "ansökningstiden löper ut",
+    ]
+    return len(summary) > 520 or any(marker in low for marker in chrome_markers)
+
+
+def _build_fallback_summary(context: Dict[str, Any]) -> str:
+    identity = context.get("identity", {}) or {}
+    location = identity.get("location", {}) or {}
+    title = identity.get("normalized_title") or identity.get("original_title") or "This role"
+    company = identity.get("company") or "the client"
+    city = location.get("city") or ""
+    work_mode = location.get("work_mode") or ""
+    focus = context.get("primary_focus") or context.get("secondary_focus") or []
+    responsibilities = context.get("responsibilities") or []
+
+    place_bits = [str(bit) for bit in [city, work_mode] if bit]
+    place = f" in {' / '.join(place_bits)}" if place_bits else ""
+    focus_text = f", focused on {', '.join(focus[:3])}" if focus else ""
+    responsibility_text = f". Main work: {responsibilities[0]}" if responsibilities else ""
+    return f"{title} role for {company}{place}{focus_text}{responsibility_text}.".strip()
+
+
+def _read_job_context(batch_dir: Path, job_id: str) -> Dict[str, Any]:
+    job_standardized_path = batch_dir / f"{job_id}.job_standardized.yaml"
+    context: Dict[str, Any] = {
+        "job_id": job_id,
+        "summary": "",
+        "role_goal": "",
+        "business_context": "",
+        "job_description": "",
+        "responsibilities": [],
+        "must_have": [],
+        "nice_to_have": [],
+        "hard_blockers": [],
+        "soft_blockers": [],
+        "primary_focus": [],
+        "secondary_focus": [],
+        "language": {},
+        "identity": {},
+        "llm_enrichment": {},
+    }
+    if not job_standardized_path.exists():
+        return context
+
+    data: Dict[str, Any] = matcher.load_yaml(job_standardized_path)
+    root = data.get("job_standardized", data)
+    summary = root.get("summary", {}) or {}
+    analysis = root.get("job_analysis", {}) or {}
+    normalized = root.get("normalized_requirements", {}) or {}
+    blockers = root.get("blockers", {}) or {}
+    enrichment = root.get("llm_enrichment", {}) or {}
+    identity = root.get("identity", {}) or {}
+
+    context.update(
+        {
+            "summary": str(summary.get("short_summary") or "").strip(),
+            "role_goal": str(summary.get("role_goal") or enrichment.get("summary_extra", {}).get("role_goal") or "").strip(),
+            "business_context": str(
+                summary.get("business_context") or enrichment.get("summary_extra", {}).get("business_context") or ""
+            ).strip(),
+            "job_description": str(root.get("job_description") or "").strip(),
+            "responsibilities": _clean_list(normalized.get("responsibilities")),
+            "must_have": _clean_list(normalized.get("must_have")),
+            "nice_to_have": _clean_list(normalized.get("nice_to_have")),
+            "hard_blockers": _clean_list(blockers.get("hard")),
+            "soft_blockers": _clean_list(blockers.get("soft")),
+            "primary_focus": _clean_list(analysis.get("primary_technical_focus")),
+            "secondary_focus": _clean_list(analysis.get("secondary_technical_focus")),
+            "language": root.get("language", {}) or {},
+            "identity": identity,
+            "llm_enrichment": enrichment,
+        }
+    )
+
+    identity_extra = enrichment.get("identity_extra", {}) or {}
+    if identity_extra:
+        context["assignment_period"] = identity_extra.get("assignment_period") or {}
+        context["application_deadline"] = identity_extra.get("application_deadline") or ""
+        context["remote_percentage"] = identity_extra.get("remote_percentage")
+    if _looks_like_raw_scrape_summary(context["summary"]):
+        context["summary"] = ""
+    if not context["summary"]:
+        context["summary"] = _build_fallback_summary(context)
+    return context
+
+
+def _classify_requirement_fit(requirement: str, matched_terms: Sequence[str]) -> str:
+    req = requirement.lower()
+    matched = [term.lower() for term in matched_terms if term]
+    specific_terms = [
+        "ibm ace",
+        "dynamics 365",
+        "autosar",
+        "iso 26262",
+        "matlab",
+        "simulink",
+        "jenkins",
+        "gerrit",
+        "github",
+        "bitbucket",
+        "c++",
+        "c#",
+        "python",
+    ]
+    required_specific = [term for term in specific_terms if term in req]
+    if required_specific and not any(term in matched for term in required_specific):
+        return "no direct evidence"
+    if any(term and term in req for term in matched):
+        return "covered by matched evidence"
+    if any(word in req for word in ["communication", "collaborat", "stakeholder", "swedish", "english"]):
+        return "possible partial fit"
+    if any(word in req for word in ["experience", "minimum", "year", "years", "documented"]):
+        return "no direct evidence"
+    return "needs human check"
+
+
+def _build_review_brief(row: Dict[str, str], context: Dict[str, Any]) -> Dict[str, List[str] | str]:
+    signals: List[str] = []
+    concerns: List[str] = []
+    matched_terms = _split_compact_list(row.get("matched_terms", ""))
+    hard = _split_compact_list(row.get("hard_blockers", "")) + context.get("hard_blockers", [])
+    soft = _split_compact_list(row.get("soft_risks", "")) + context.get("soft_blockers", [])
+
+    expertise = application_tracker.safe_int(row.get("expertise_fit"))
+    role_fit = application_tracker.safe_int(row.get("role_fit"))
+    tool_fit = application_tracker.safe_int(row.get("tool_fit"))
+    growth_fit = application_tracker.safe_int(row.get("growth_fit"))
+    practical_fit = application_tracker.safe_int(row.get("practical_fit"))
+    risk_score = application_tracker.safe_int(row.get("risk_score"))
+
+    if matched_terms:
+        signals.append("Matched evidence: " + ", ".join(matched_terms[:5]))
+    if expertise >= 75:
+        signals.append(f"Strong expertise score ({expertise})")
+    if role_fit >= 75:
+        signals.append(f"Role shape appears aligned ({role_fit})")
+    if growth_fit >= 75:
+        signals.append(f"Good growth score ({growth_fit})")
+    if context.get("business_context"):
+        signals.append(str(context["business_context"]))
+
+    if hard:
+        concerns.extend(f"Hard blocker: {item}" for item in hard[:3])
+    if soft:
+        concerns.extend(f"Soft risk: {item}" for item in soft[:3])
+    if expertise < 50:
+        concerns.append(f"Low expertise score ({expertise})")
+    if tool_fit < 50:
+        concerns.append(f"Weak direct tool fit ({tool_fit})")
+    if practical_fit < 50:
+        concerns.append(f"Practical fit may be difficult ({practical_fit})")
+    if risk_score >= 20:
+        concerns.append(f"Elevated risk score ({risk_score})")
+
+    identity = context.get("identity", {}) or {}
+    location = identity.get("location", {}) or {}
+    work_mode = str(location.get("work_mode") or row.get("work_mode") or "").lower()
+    remote_percentage = context.get("remote_percentage")
+    if work_mode in {"on-site", "onsite"} or remote_percentage == 0:
+        concerns.append("Onsite or 0% remote requirement")
+
+    language_values = " ".join(str(v) for v in (context.get("language", {}) or {}).values()).lower()
+    tags = context.get("llm_enrichment", {}).get("tags", {}) or {}
+    language_requirements = " ".join(_clean_list(tags.get("language_requirement"))).lower()
+    if "swedish" in language_values or "swedish" in language_requirements:
+        concerns.append("Swedish language requirement or Swedish source context")
+
+    direct_missing = []
+    for requirement in context.get("must_have", [])[:5]:
+        if _classify_requirement_fit(requirement, matched_terms) == "no direct evidence":
+            direct_missing.append(requirement)
+    if direct_missing:
+        concerns.append("Must-have without direct matched evidence: " + direct_missing[0])
+
+    if hard or application_tracker.normalize_status(row.get("recommended_status")) == "reject":
+        decision_hint = "Likely reject unless the human reviewer sees strong external evidence."
+    elif concerns and signals:
+        decision_hint = "Review carefully: there are useful signals, but also concrete concerns."
+    elif signals:
+        decision_hint = "Promising enough for keep/maybe review."
+    else:
+        decision_hint = "Needs human inspection; the machine evidence is thin."
+
+    concerns = _dedupe_texts(concerns)
+    signals = _dedupe_texts(signals)
+
+    return {
+        "signals": signals[:5],
+        "concerns": concerns[:8],
+        "decision_hint": decision_hint,
+    }
+
+
 def _read_must_have_requirements(batch_dir: Path, job_id: str) -> List[str]:
     job_standardized_path = batch_dir / f"{job_id}.job_standardized.yaml"
     if not job_standardized_path.exists():
@@ -387,30 +617,90 @@ def main() -> int:
             st.session_state["selected_job_id"] = filtered_rows[current_index + 1].get("job_id", selected_job_id)
             st.rerun()
 
+        context = _read_job_context(batch_dir, selected_job_id)
+        review_brief = _build_review_brief(row, context)
+
         s1, s2, s3, s4, s5 = st.columns(5)
         s1.metric("Overall", row.get("overall_score", ""))
         s2.metric("Expertise", row.get("expertise_fit", ""))
         s3.metric("Role Fit", row.get("role_fit", ""))
-        s4.metric("Growth", row.get("growth_fit", ""))
+        s4.metric("Tool Fit", row.get("tool_fit", ""))
         s5.metric("Risk", row.get("risk_score", ""))
 
-        st.markdown("**Match terms**")
-        st.write(row.get("matched_terms", ""))
-        st.markdown("**Job description**")
-        job_description = _read_job_description(batch_dir, selected_job_id)
-        if job_description:
-            st.write(job_description)
-        else:
-            st.caption("No job description found in job_standardized.yaml for this job.")
-        st.markdown("**Must have**")
-        must_have_lines = _read_must_have_requirements(batch_dir, selected_job_id)
+        st.markdown("**Decision brief**")
+        st.write(context.get("summary") or "No summary available.")
+        hint = str(review_brief.get("decision_hint") or "")
+        if hint:
+            st.info(hint)
+
+        meta_bits = []
+        assignment = context.get("assignment_period") or {}
+        if assignment.get("start") or assignment.get("end"):
+            meta_bits.append(f"Assignment: {assignment.get('start') or '?'} to {assignment.get('end') or '?'}")
+        if context.get("application_deadline"):
+            meta_bits.append(f"Deadline: {context.get('application_deadline')}")
+        if context.get("role_goal"):
+            meta_bits.append(f"Goal: {context.get('role_goal')}")
+        if meta_bits:
+            st.caption(" | ".join(meta_bits))
+
+        fit_left, fit_right = st.columns(2)
+        with fit_left:
+            st.markdown("**Useful signals**")
+            signals = review_brief.get("signals", [])
+            if signals:
+                for signal in signals:
+                    st.markdown(f"- {signal}")
+            else:
+                st.caption("No strong positive signals found in the current machine evidence.")
+        with fit_right:
+            st.markdown("**Concerns**")
+            concerns = review_brief.get("concerns", [])
+            if concerns:
+                for concern in concerns:
+                    st.markdown(f"- {concern}")
+            else:
+                st.caption("No obvious blockers or major risks found.")
+
+        st.markdown("**Must-have fit**")
+        must_have_lines = context.get("must_have", [])
+        matched_terms = _split_compact_list(row.get("matched_terms", ""))
         if must_have_lines:
             for line in must_have_lines:
-                st.markdown(f"- {line}")
+                st.markdown(f"- **{_classify_requirement_fit(line, matched_terms)}:** {line}")
         else:
             st.caption("No must-have requirements found in job_standardized.yaml for this job.")
-        st.markdown("**Reason**")
-        st.write(row.get("match_reason", ""))
+
+        st.markdown("**Responsibilities**")
+        responsibilities = context.get("responsibilities", [])
+        if responsibilities:
+            for line in responsibilities:
+                st.markdown(f"- {line}")
+        else:
+            st.caption("No responsibilities found in job_standardized.yaml for this job.")
+
+        with st.expander("Nice-to-have requirements", expanded=False):
+            nice_to_have = context.get("nice_to_have", [])
+            if nice_to_have:
+                for line in nice_to_have:
+                    st.markdown(f"- {line}")
+            else:
+                st.caption("No nice-to-have requirements found.")
+
+        with st.expander("Matcher details", expanded=False):
+            st.markdown("**Matched terms**")
+            st.write(row.get("matched_terms", "") or "No matched terms.")
+            st.markdown("**Suggested evidence groups**")
+            st.write(row.get("suggested_role_groups", "") or "No suggested role groups.")
+            st.markdown("**Reason**")
+            st.write(row.get("match_reason", "") or "No matcher reason available.")
+
+        with st.expander("Full job description", expanded=False):
+            job_description = context.get("job_description") or _read_job_description(batch_dir, selected_job_id)
+            if job_description:
+                st.write(job_description)
+            else:
+                st.caption("No job description found in job_standardized.yaml for this job.")
 
         if row.get("source_url"):
             st.link_button("Open Source Job", row["source_url"], use_container_width=False)

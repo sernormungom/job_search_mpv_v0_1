@@ -1,0 +1,34 @@
+flowchart LR
+    Consultant[Consultant]
+    TalentAdvisor[Talent Advisor]
+    HiringManager[Hiring Manager / Customer Reviewer]
+    SalesManager[Sales / Account Manager<br/>Future]
+
+    Platform[Consultant Opportunity Matching Platform]
+
+    JobBoards[Job Boards]
+    LinkedIn[LinkedIn]
+    Email[Email System]
+    OneDrive[OneDrive]
+    Portals[Client Procurement Portals<br/>Future]
+    LLM[LLM Provider]
+    Docs[Document Generation / Export]
+    SecureSite[Secure Candidate Publication Site<br/>Future]
+    CRM[CRM System<br/>Future]
+    ATS[ATS / Recruitment System<br/>Future]
+
+    Consultant -->|Maintains profile, reviews opportunities, approves material| Platform
+    TalentAdvisor -->|Collects opportunities, reviews matches, tracks applications, approves submissions| Platform
+    HiringManager -->|Reviews approved candidate material and provides feedback| Platform
+    SalesManager -->|Provides internal leads and client opportunity information| Platform
+
+    Platform -->|Imports or receives opportunities| JobBoards
+    Platform -->|Uses job posts and recruiter information| LinkedIn
+    Platform -->|Processes client and recruiter messages| Email
+    Platform -->|Reads copied opportunity descriptions| OneDrive
+    Platform -->|Imports requests / future submissions| Portals
+    Platform -->|Standardization, translation, matching support, CV drafting| LLM
+    Platform -->|Generates CVs and application packages| Docs
+    Platform -->|Publishes approved candidate material with access control and expiry| SecureSite
+    Platform -->|Future client and opportunity synchronization| CRM
+    Platform -->|Future submission and hiring-stage synchronization| ATS
